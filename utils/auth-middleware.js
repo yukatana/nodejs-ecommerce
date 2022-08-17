@@ -7,7 +7,7 @@ const authMiddleware = (req, res, next) => {
     } else {
         res.status(401).json({
             error: -1,
-            description: `Route ${req.path} method ${req.method} - not authorized.`
+            description: `Route ${req.originalUrl} method ${req.method} - not authorized.`
         })
     }
 }

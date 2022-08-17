@@ -5,10 +5,10 @@ const Container = require("../utils/container")
 const file = "database.json"
 const container = new Container(file)
 
-const APIrouter = new Router()
+const productsRouter = new Router()
 const authMiddleware = require('../utils/auth-middleware')
 
-APIrouter.get("/:id?", async (req, res) => {
+productsRouter.get("/:id?", async (req, res) => {
     if (req.params.id) {
         const product = await container.getById(req.params.id)
         if (!product) {
@@ -22,7 +22,7 @@ APIrouter.get("/:id?", async (req, res) => {
     }
 })
 
-APIrouter.post("/", authMiddleware, async (req, res) => {
+productsRouter.post("/", authMiddleware, async (req, res) => {
     res.json(await container.save({
         timestamp: Date.now(),
         name: req.body.name,
@@ -34,7 +34,7 @@ APIrouter.post("/", authMiddleware, async (req, res) => {
     }))
 })
 
-APIrouter.put("/:id", authMiddleware, async (req, res) => {
+productsRouter.put("/:id", authMiddleware, async (req, res) => {
     const data = await container.getAll()
     const isValid = data.findIndex(el => el.id == req.params.id)
 
@@ -53,11 +53,11 @@ APIrouter.put("/:id", authMiddleware, async (req, res) => {
     }
 })
 
-APIrouter.delete("/:id", authMiddleware, async (req, res) => {
+productsRouter.delete("/:id", authMiddleware, async (req, res) => {
     const success = await container.deleteById(req.params.id)
     success ?
     res.status(200).json({message: `Product ID: ${req.params.id} has been deleted.`})
     : res.status(400).json({error: "Product not found"})
 })
 
-module.exports = APIrouter
+module.exports = productsRouter
