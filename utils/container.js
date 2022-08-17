@@ -69,11 +69,12 @@ module.exports = class FileContainer {
             if (parsedData.find(el => el.id == id)) {
                 parsedData.splice(parsedData.indexOf(parsedData.find(el => el.id == id)), 1)
                 fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
-                return console.log("The item containing the specified ID has been deleted.")
+                console.log("The item containing the specified ID has been deleted.")
+                return true
                 }
             else {
                 console.log("The specified ID does not match any items.")
-                return null
+                return false
             }
         } catch (err) {
             console.error(err)
