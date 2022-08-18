@@ -37,7 +37,7 @@ module.exports = class FileContainer {
         }
     }
 
-    saveCarts = async (carts) => {
+    saveCarts = async (carts) => { //saves all carts. used when one of them has been edited
         try {
             await fs.promises.writeFile(this.file, JSON.stringify(carts, null, 2))
         } catch (err) {
