@@ -30,7 +30,7 @@ productsRouter.post("/", authMiddleware, async (req, res) => {
         code: "",
         thumbnail: req.body.thumbnail,
         price: req.body.price,
-        stock: req.params.stock
+        stock: req.body.stock
     }))
 })
 

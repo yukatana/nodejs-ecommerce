@@ -37,6 +37,14 @@ module.exports = class FileContainer {
         }
     }
 
+    saveCarts = async (carts) => {
+        try {
+            await fs.promises.writeFile(this.file, JSON.stringify(carts, null, 2))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if does not exist
         try {
             let data = await fs.promises.readFile(this.file, "utf-8")
