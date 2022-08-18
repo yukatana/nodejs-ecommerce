@@ -27,7 +27,7 @@ productsRouter.post("/", authMiddleware, async (req, res) => {
         timestamp: Date.now(),
         name: req.body.name,
         description: req.body.description,
-        code: "",
+        code: Math.floor(Math.random() * 1000),
         thumbnail: req.body.thumbnail,
         price: req.body.price,
         stock: req.body.stock

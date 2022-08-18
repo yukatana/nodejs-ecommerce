@@ -50,21 +50,15 @@ cartRouter.post("/:id/products/:product_id", authMiddleware, async (req, res) =>
 cartRouter.delete("/:id/products/:product_id", authMiddleware, async (req, res) => {
     const allCarts = cartContainer.getAll()
     const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
+    const targetProductIndex = allCarts[targetCartIndex].products.findIndex(e => e.id == req.params.product_id)
 
     if (targetCartIndex != -1) {
-        const updatedCarts = allCarts[targetCartIndex].products.push(product)
+        const updatedCarts = allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
         cartContainer.saveCarts(updatedCarts)
-        res.status(200).json({message: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})
+        res.status(200).json({message: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
     } else {
         res.status(404).json({error: `Either cart ID: ${req.params.id} or product ID: ${req.params.product_id} does not exist.`})
     }
-
-
-
-    // const success = await cartContainer.deleteById(req.params.id)
-    // success ?
-    // res.status(200).json({message: `Product ID: ${req.params.id} has been deleted.`})
-    // : res.status(400).json({error: "Product not found"})
 })
 
 module.exports = cartRouter
