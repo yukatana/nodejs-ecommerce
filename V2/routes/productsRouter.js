@@ -1,12 +1,12 @@
 const { Router } = require("express")
 const fs = require ("fs")
 
-const Container = require("../utils/container")
+const Container = require("../containers/fileContainer")
 const file = "database.json"
 const container = new Container(file)
 
 const productsRouter = new Router()
-const authMiddleware = require('../utils/auth-middleware')
+const authMiddleware = require('../utils/authMiddleware')
 
 productsRouter.get("/:id?", async (req, res) => {
     if (req.params.id) {

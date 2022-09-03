@@ -1,13 +1,13 @@
 const { Router } = require("express")
 const fs = require ("fs")
 
-const Container = require("../utils/container")
+const Container = require("../containers/fileContainer")
 
 const productContainer = new Container('database.json')
 const cartContainer = new Container('cart.json')
 
 const cartRouter = new Router()
-const authMiddleware = require('../utils/auth-middleware')
+const authMiddleware = require('../utils/authMiddleware')
 
 cartRouter.post("/", authMiddleware, async (req, res) => {
     const newCart = await cartContainer.save({
