@@ -1,9 +1,9 @@
-const mongoDBontainer = require('../../containers/mongoDBcontainer')
+const MongoDBcontainer = require('../../containers/mongoDBcontainer')
 
-class productsDAOmongoDB extends mongoDBcontainer {
+class ProductsDAOmongoDB extends MongoDBcontainer {
     constructor() {
         super()
     }
 }
 
-module.exports = productsDAOmongoDB
+module.exports = ProductsDAOmongoDB

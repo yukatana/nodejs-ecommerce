@@ -1,6 +1,7 @@
-class mongoDBcontainer {
+class MongoDBcontainer {
     constructor() {
+        
     }
 }
 
-module.exports = mongoDBcontainer
+module.exports = MongoDBcontainer

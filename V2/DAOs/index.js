@@ -3,43 +3,45 @@ const productsDatabase = process.env.PRODUCTS_DATABASE
 const cartsDatabase = process.env.CARTS_DATABASE
 
 // Data Access Objects import for carts
-const cartsDAOmemory = require('./carts/cartsDAOmemory')
-const cartsDAOfile = require('./carts/cartsDAOfile')
-const cartsDAOmongoDB = require('./carts/cartsDAOmongoDB')
-const cartsDAOfirebase = require('./carts/cartsDAOfirebase')
+const CartsDAOmemory = require('./carts/cartsDAOmemory')
+const CartsDAOfile = require('./carts/cartsDAOfile')
+const CartsDAOmongoDB = require('./carts/cartsDAOmongoDB')
+const CartsDAOfirebase = require('./carts/cartsDAOfirebase')
 
 // Data Access Objects import for products
-const productsDAOmemory = require('./products/productsDAOmemory')
-const productsDAOfile = require('./products/productsDAOfile')
-const productsDAOmongoDB = require('./products/productsDAOmongoDB')
-const productsDAOfirebase = require('./products/productsDAOfirebase')
+const ProductsDAOmemory = require('./products/productsDAOmemory')
+const ProductsDAOfile = require('./products/productsDAOfile')
+const ProductsDAOmongoDB = require('./products/productsDAOmongoDB')
+const ProductsDAOfirebase = require('./products/productsDAOfirebase')
 
 // Exporting products DAO instance based on .env config
 switch (productsDatabase) {
     case 'memory' :
-        module.exports = new productsDAOmemory()
+        module.exports = new ProductsDAOmemory()
         break
     case 'file' :
-        module.exports = new productsDAOfile()
+        module.exports = new ProductsDAOfile()
         break
     case 'mongoDB' :
-        module.exports = new productsDAOmongoDB()
+        module.exports = new ProductsDAOmongoDB()
         break
     case 'firebase' :
-        module.exports = new productsDAOfirebase()
+        module.exports = new ProductsDAOfirebase()
+        break
 }
 
 // Exporting carts DAO instance based on .env config
 switch (cartsDatabase) {
     case 'memory' :
-        module.exports = new cartsDAOmemory()
+        module.exports = new CartsDAOmemory()
         break
     case 'file' :
-        module.exports = new cartsDAOfile()
+        module.exports = new CartsDAOfile()
         break
     case 'mongoDB' :
-        module.exports = new cartsDAOmongoDB()
+        module.exports = new CartsDAOmongoDB()
         break
     case 'firebase' :
-        module.exports = new cartsDAOfirebase()
+        module.exports = new CartsDAOfirebase()
+        break
 }
