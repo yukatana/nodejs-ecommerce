@@ -14,34 +14,40 @@ const ProductsDAOfile = require('./products/productsDAOfile')
 const ProductsDAOmongoDB = require('./products/productsDAOmongoDB')
 const ProductsDAOfirebase = require('./products/productsDAOfirebase')
 
-// Exporting products DAO instance based on .env config
-switch (productsDatabase) {
+// Exporting carts DAO instance based on .env config
+let cartsDAO
+switch (cartsDatabase) {
     case 'memory' :
-        module.exports = new ProductsDAOmemory()
+        cartsDAO = new CartsDAOmemory()
         break
     case 'file' :
-        module.exports = new ProductsDAOfile()
+        cartsDAO = new CartsDAOfile()
         break
     case 'mongoDB' :
-        module.exports = new ProductsDAOmongoDB()
+        cartsDAO = new CartsDAOmongoDB()
         break
     case 'firebase' :
-        module.exports = new ProductsDAOfirebase()
+        cartsDAO = new CartsDAOfirebase()
+        break
+}
+// Exporting products DAO instance based on .env config
+let productsDAO
+switch (productsDatabase) {
+    case 'memory' :
+         productsDAO = new ProductsDAOmemory()
+        break
+    case 'file' :
+        productsDAO= new ProductsDAOfile()
+        break
+    case 'mongoDB' :
+        productsDAO = new ProductsDAOmongoDB()
+        break
+    case 'firebase' :
+        productsDAO = new ProductsDAOfirebase()
         break
 }
 
-// Exporting carts DAO instance based on .env config
-switch (cartsDatabase) {
-    case 'memory' :
-        module.exports = new CartsDAOmemory()
-        break
-    case 'file' :
-        module.exports = new CartsDAOfile()
-        break
-    case 'mongoDB' :
-        module.exports = new CartsDAOmongoDB()
-        break
-    case 'firebase' :
-        module.exports = new CartsDAOfirebase()
-        break
+module.exports = {
+    cartsDAO,
+    productsDAO
 }

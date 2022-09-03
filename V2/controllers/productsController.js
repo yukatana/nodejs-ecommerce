@@ -1,18 +1,17 @@
-const Container = require('../DAOs')
-
-const productContainer = new Container('database.json')
-const cartContainer = new Container('cart.json')
+const ProductsContainer = require('../DAOs').productsDAO
+//const productContainer = new Container('database.json')
+//const cartContainer = new Container('cart.json')
 
 getProductById = async (req, res) => {
     if (req.params.id) {
-        const product = await container.getById(req.params.id)
+        const product = await ProductsContainer.getById(req.params.id)
         if (!product) {
             res.status(400).json({error: "Product not found"})
         } else {
             res.json(product)
         }
     } else {
-        const data = await container.getAll()
+        const data = await ProductsContainer.getAll()
         res.json(data)
     }
 }
