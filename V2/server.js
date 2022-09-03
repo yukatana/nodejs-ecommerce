@@ -1,6 +1,7 @@
 const express = require('express')
 const productsRouter = require('./routes/productsRouter')
-const cartRouter = require('./routes/cartRouter')
+const cartRouter = require('./routes/cartsRouter')
+require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 8080
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+// Router declaration
 app.use('/api/products', productsRouter)
 app.use('/api/cart', cartRouter)
 
