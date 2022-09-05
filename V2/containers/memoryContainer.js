@@ -17,9 +17,18 @@ module.exports = class MemoryContainer {
         return object
     }
 
+    updateItem = async (data) => { //saves all items when one of them has been edited
+        try {
+            this.data = data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
-        if (this.data.find(el => el.id == id)) {
-            return this.data.find(el => el.id == id)
+        const item = await this.data.find(el => el.id == id)
+        if (item) {
+            return item
         }
         else {
             return null

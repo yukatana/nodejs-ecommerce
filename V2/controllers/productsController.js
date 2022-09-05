@@ -1,4 +1,4 @@
-const ProductsContainer = require('../DAOs').productsDAO
+const ProductsContainer = require('../DAOs').productsDAO //returns an instance of a DAO class which extends to the chosen container type
 
 getProductById = async (req, res) => {
     if (req.params.id) {
@@ -38,7 +38,7 @@ updateProductById = async (req, res) => {
         data[isValid].price = req.body.price
         data[isValid].stock = req.body.stock
 
-        await fs.promises.writeFile(file, JSON.stringify(data, null, 2))
+        await ProductsContainer.updateItem(data)
         res.status(200).json({message: `Product ID: ${req.params.id} has been updated.`})
     } else {
         res.status(400).json({error: "Product not found"})

@@ -1,4 +1,5 @@
-const CartsContainer = require('../DAOs').cartsDAO
+const CartsContainer = require('../DAOs').cartsDAO //returns an instance of a DAO class which extends to the chosen container type
+const ProductsContainer = require('../DAOs').productsDAO //necessary since some methods need to access the products database
 
 createCart = async (req, res) => {
     const newCart = await CartsContainer.save({
@@ -12,13 +13,15 @@ deleteCartById = async (req, res) => {
     const success = await CartsContainer.deleteById(req.params.id)
     success ?
         res.status(200).json({message: `Cart ID: ${req.params.id} has been deleted.`})
-        : res.status(400).json({error: "Cart not found"})
+        : res.status(400).json({error: 'Cart not found'})
 }
 
 getByCartId = async (req, res) => {
     const cart = await CartsContainer.getById(req.params.id)
     if (!cart) {
-        res.status(400).json({error: "Cart not found"})
+        res.status(400).json({error: 'Cart not found'})
+    } else if (cart.products.length === 0) {
+        res.status(400).json({error: `Cart ID: ${req.params.id} is empty.`})
     } else {
         res.status(200).json(cart.products)
     }
@@ -26,12 +29,12 @@ getByCartId = async (req, res) => {
 
 addProductToCart = async (req, res) => {
     const allCarts = await CartsContainer.getAll()
-    const product = await productContainer.getById(req.params.product_id)
+    const product = await ProductsContainer.getById(req.params.product_id)
     const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
 
     if (product && targetCartIndex != -1) {
         allCarts[targetCartIndex].products.push(product)
-        await CartsContainer.saveCarts(allCarts)
+        await CartsContainer.updateItem(allCarts)
         res.status(200).json({message: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})
     } else {
         res.status(404).json({error: `Either cart ID: ${req.params.id} or product ID: ${req.params.product_id} does not exist.`})
@@ -45,7 +48,7 @@ deleteProductFromCart = async (req, res) => {
 
     if (targetCartIndex != -1 && targetProductIndex != -1) {
         allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
-        await CartsContainer.saveCarts(allCarts)
+        await CartsContainer.updateItem(allCarts)
         res.status(200).json({message: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
     } else {
         res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
