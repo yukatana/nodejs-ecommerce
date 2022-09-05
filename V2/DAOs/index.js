@@ -21,7 +21,7 @@ switch (cartsDatabase) {
         cartsDAO = new CartsDAOmemory()
         break
     case 'file' :
-        cartsDAO = new CartsDAOfile()
+        cartsDAO = new CartsDAOfile('./databases/files/carts.json') //path relative to server.js
         break
     case 'mongoDB' :
         cartsDAO = new CartsDAOmongoDB()
@@ -37,7 +37,7 @@ switch (productsDatabase) {
          productsDAO = new ProductsDAOmemory()
         break
     case 'file' :
-        productsDAO= new ProductsDAOfile()
+        productsDAO= new ProductsDAOfile('./databases/files/products.json') //path relative to server.js
         break
     case 'mongoDB' :
         productsDAO = new ProductsDAOmongoDB()

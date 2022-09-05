@@ -1,26 +1,25 @@
-//Memory-based data handling class for testing purposes. Not for database interaction.
+//Memory-based data handling class for ephemeral data.
 
 module.exports = class MemoryContainer {
 
-    constructor(name) {
-        this.name = name
-        this.products = []
+    constructor() {
+        this.data = []
     }
 
     save = (object) => {
-        if (this.products.length > 0) {
-            object.id = this.products[this.products.length-1].id+1
-            this.products.push(object)
+        if (this.data.length > 0) {
+            object.id = this.data[this.data.length-1].id+1
+            this.data.push(object)
         } else {
             object.id = 1
-            this.products.push(object)  
+            this.data.push(object)
         }
         return object
     }
 
-    getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if does not exist
-        if (products.find(el => el.id == id)) {
-            return products.find(el => el.id == id)
+    getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
+        if (this.data.find(el => el.id == id)) {
+            return this.data.find(el => el.id == id)
         }
         else {
             return null
@@ -28,13 +27,14 @@ module.exports = class MemoryContainer {
     }
 
     getAll = () => { //returns entire array in memory
-        return this.products
+        return this.data
     }
 
     deleteById = async (id) => { //deletes array item (object) specified by ID
-        if (this.products.find(el => el.id == id)) {
-            this.products.splice(this.products.indexOf(this.products.find(el => el.id == id)), 1)
-            return console.log("The item containing the specified ID has been deleted.")
+        if (this.data.find(el => el.id == id)) {
+            this.data.splice(this.data.indexOf(this.data.find(el => el.id == id)), 1)
+            console.log("The item containing the specified ID has been deleted.")
+            return true
             }
         else {
             console.log("The specified ID does not match any items.")
@@ -43,7 +43,7 @@ module.exports = class MemoryContainer {
     }
 
     deleteAll = () => { //deletes all objects in the file and replaces them with an empty array
-        this.products = []
+        this.data = []
         console.log("All items have been deleted.")
     }
 }

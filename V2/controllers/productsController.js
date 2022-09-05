@@ -1,6 +1,4 @@
 const ProductsContainer = require('../DAOs').productsDAO
-//const productContainer = new Container('database.json')
-//const cartContainer = new Container('cart.json')
 
 getProductById = async (req, res) => {
     if (req.params.id) {
@@ -17,7 +15,7 @@ getProductById = async (req, res) => {
 }
 
 addProduct =  async (req, res) => {
-    res.json(await container.save({
+    res.json(await ProductsContainer.save({
         timestamp: Date.now(),
         name: req.body.name,
         description: req.body.description,
@@ -29,7 +27,7 @@ addProduct =  async (req, res) => {
 }
 
 updateProductById = async (req, res) => {
-    const data = await container.getAll()
+    const data = await ProductsContainer.getAll()
     const isValid = data.findIndex(el => el.id == req.params.id)
 
     if (isValid != -1) {
@@ -48,7 +46,7 @@ updateProductById = async (req, res) => {
 }
 
 deleteProductById = async (req, res) => {
-    const success = await container.deleteById(req.params.id)
+    const success = await ProductsContainer.deleteById(req.params.id)
     success ?
         res.status(200).json({message: `Product ID: ${req.params.id} has been deleted.`})
         : res.status(400).json({error: "Product not found"})

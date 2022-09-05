@@ -1,8 +1,5 @@
 const CartsContainer = require('../DAOs').cartsDAO
 
-//const productContainer = new Container('database.json')
-//const cartContainer = new Container('cart.json')
-
 createCart = async (req, res) => {
     const newCart = await CartsContainer.save({
         timestamp: Date.now(),
