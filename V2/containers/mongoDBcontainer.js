@@ -67,7 +67,7 @@ class MongoDBcontainer {
             id = Types.ObjectId(id)
             const success = await this.Schema
                 .deleteOne({_id: id})
-            if (success) {
+            if (success.deletedCount > 0) {
                 console.log("The item containing the specified ID has been deleted.")
                 return true
             } else {
@@ -76,6 +76,28 @@ class MongoDBcontainer {
             }
         } catch (err) {
             console.error(err)
+        }
+    }
+
+    deleteFromCartById = async (cartId, productId) => {
+        try {
+            cartId = Types.ObjectId(cartId)
+            productId = Types.ObjectId(productId)
+            const success = await this.Schema
+                .updateOne({_id: cartId}, {
+                    $pull: {
+                        products: {_id: productId}
+                    }
+                })
+            if (success) {
+                console.log('The item containing the specified ID has been deleted.')
+                return true
+            } else {
+                console.log('The specified ID does not match any items.')
+                return false
+            }
+        } catch (err) {
+            console.log(err)
         }
     }
 

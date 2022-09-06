@@ -43,17 +43,27 @@ addProductToCart = async (req, res) => {
 }
 
 deleteProductFromCart = async (req, res) => {
-    const allCarts = await CartsContainer.getAll()
-    const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
-    const targetProductIndex = allCarts[targetCartIndex].products.findIndex(e => e.id == req.params.product_id)
-
-    if (targetCartIndex != -1 && targetProductIndex != -1) {
-        allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
-        await CartsContainer.updateItem(allCarts)
-        res.status(200).json({message: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
+    //executed when calling this method while using memory or file-based persistence, since assigned IDs are numeric
+    if (!isNaN(req.params.id)) {
+        const allCarts = await CartsContainer.getAll()
+        const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
+        const targetProductIndex = allCarts[targetCartIndex].products.findIndex(e => e.id == req.params.product_id)
+        if (targetCartIndex != -1 && targetProductIndex != -1) {
+            allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
+            await CartsContainer.updateItem(allCarts)
+            return res.status(200).json({message: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
+        } else {
+            res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
+        }
     } else {
-        res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
+        const success = await CartsContainer.deleteFromCartById(req.params.id, req.params.product_id)
+        if (success) {
+            return res.status(200).json({message: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
+        } else {
+            res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
+        }
     }
+
 }
 
 module.exports = {
