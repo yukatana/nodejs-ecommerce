@@ -68,10 +68,10 @@ class MongoDBcontainer {
             const success = await this.Schema
                 .deleteOne({_id: id})
             if (success.deletedCount > 0) {
-                console.log("The item containing the specified ID has been deleted.")
+                console.log('The item containing the specified ID has been deleted.')
                 return true
             } else {
-                console.log("The specified ID does not match any items.")
+                console.log('The specified ID does not match any items.')
                 return false
             }
         } catch (err) {
@@ -83,18 +83,21 @@ class MongoDBcontainer {
         try {
             cartId = Types.ObjectId(cartId)
             productId = Types.ObjectId(productId)
+            const isProductInCart = await this.Schema
+                .findOne({_id: cartId}, {products: {_id: productId}})
+            // console.log(isProductInCart) - returns an object with an empty array if there is no match
             const success = await this.Schema
                 .updateOne({_id: cartId}, {
                     $pull: {
                         products: {_id: productId}
                     }
                 })
-            if (success) {
+            if (success.matchedCount === 0 || isProductInCart.products.length === 0) {
+                console.log(`Either cart ID: ${cartId} does not exist, or product ID: ${productId} is not in that cart`)
+                return false
+            } else {
                 console.log('The item containing the specified ID has been deleted.')
                 return true
-            } else {
-                console.log('The specified ID does not match any items.')
-                return false
             }
         } catch (err) {
             console.log(err)
