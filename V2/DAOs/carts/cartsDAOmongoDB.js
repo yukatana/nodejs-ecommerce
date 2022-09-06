@@ -1,8 +1,8 @@
 const MongoDBcontainer = require('../../containers/mongoDBcontainer')
 
 class CartsDAOmongoDB extends MongoDBcontainer {
-    constructor() {
-        super()
+    constructor(Cart) {
+        super(Cart)
     }
 }
 

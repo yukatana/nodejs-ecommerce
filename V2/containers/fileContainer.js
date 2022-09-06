@@ -1,7 +1,7 @@
 //File-based data persistence class
 const fs = require('fs')
 
-module.exports = class FileContainer {
+class FileContainer {
     constructor(file) {
         this.file = file
     }
@@ -97,3 +97,5 @@ module.exports = class FileContainer {
         }
     }
 }
+
+module.exports = FileContainer

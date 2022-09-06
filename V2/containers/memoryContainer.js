@@ -1,6 +1,6 @@
 //Memory-based data handling class for ephemeral data.
 
-module.exports = class MemoryContainer {
+class MemoryContainer {
 
     constructor() {
         this.data = []
@@ -56,3 +56,5 @@ module.exports = class MemoryContainer {
         console.log("All items have been deleted.")
     }
 }
+
+module.exports = MemoryContainer

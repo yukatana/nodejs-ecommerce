@@ -1,6 +1,8 @@
 require('dotenv').config()
+
 const productsDatabase = process.env.PRODUCTS_DATABASE
 const cartsDatabase = process.env.CARTS_DATABASE
+const connectToMongoDB = require('../databases/mongoDB')
 
 // Data Access Objects import for carts
 const CartsDAOmemory = require('./carts/cartsDAOmemory')
@@ -24,7 +26,11 @@ switch (cartsDatabase) {
         cartsDAO = new CartsDAOfile('./databases/files/carts.json') //path relative to server.js
         break
     case 'mongoDB' :
-        cartsDAO = new CartsDAOmongoDB()
+        const { Cart } = require('../databases/mongoDB/schemas/cart')
+        connectToMongoDB()
+            .then(() => console.log('Successfully connected to database.'))
+            .then(() => cartsDAO = new CartsDAOmongoDB(Cart))
+            .catch((err) => console.log(`Could not connect to database. Error: ${err}`))
         break
     case 'firebase' :
         cartsDAO = new CartsDAOfirebase()
@@ -40,7 +46,11 @@ switch (productsDatabase) {
         productsDAO= new ProductsDAOfile('./databases/files/products.json') //path relative to server.js
         break
     case 'mongoDB' :
-        productsDAO = new ProductsDAOmongoDB()
+        const { Product } = require('../databases/mongoDB/schemas/cart')
+        connectToMongoDB()
+            .then(() => console.log('Successfully connected to database.'))
+            .then(() => productsDAO = new ProductsDAOmongoDB(Product))
+            .catch((err) => console.log(`Could not connect to database. Error: ${err}`))
         break
     case 'firebase' :
         productsDAO = new ProductsDAOfirebase()
