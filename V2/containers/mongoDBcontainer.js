@@ -19,7 +19,14 @@ class MongoDBcontainer {
     updateItem = async (data, id, item) => { //updates a single document in the collection. data param is not used
         try {
             id = Types.ObjectId(id)
-            await this.Schema.replaceOne({_id: id}, item)
+            try {
+                await this.Schema.replaceOne({_id: id}, item) //executed when calling this method for product update
+            } catch { //executed when calling this method to add a product to a cart
+                const cart = await this.Schema
+                    .findOne({_id: id})
+                cart.products.push(item)
+                cart.save()
+            }
         } catch (err) {
             console.log(err)
         }
