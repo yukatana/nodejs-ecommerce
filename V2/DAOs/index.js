@@ -28,7 +28,7 @@ switch (cartsDatabase) {
     case 'mongoDB' :
         const { Cart } = require('../databases/mongoDB/schemas/cart')
         connectToMongoDB()
-            .then(() => console.log('Successfully connected to database.'))
+            .then(() => console.log('Successfully connected to carts database.'))
             .then(() => cartsDAO = new CartsDAOmongoDB(Cart))
             .catch((err) => console.log(`Could not connect to database. Error: ${err}`))
         break
@@ -48,7 +48,7 @@ switch (productsDatabase) {
     case 'mongoDB' :
         const { Product } = require('../databases/mongoDB/schemas/cart')
         connectToMongoDB()
-            .then(() => console.log('Successfully connected to database.'))
+            .then(() => console.log('Successfully connected to products database.'))
             .then(() => productsDAO = new ProductsDAOmongoDB(Product))
             .catch((err) => console.log(`Could not connect to database. Error: ${err}`))
         break
