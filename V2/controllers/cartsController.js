@@ -34,7 +34,8 @@ addProductToCart = async (req, res) => {
 
     if (product && targetCartIndex != -1) {
         allCarts[targetCartIndex].products.push(product)
-        await CartsContainer.updateItem(allCarts)
+        //allCarts has to be passed for memory and file persistence methods, but is used by neither mongoDB nor Firebase
+        await CartsContainer.updateItem(allCarts, req.params.id, product)
         res.status(200).json({message: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})
     } else {
         res.status(404).json({error: `Either cart ID: ${req.params.id} or product ID: ${req.params.product_id} does not exist.`})

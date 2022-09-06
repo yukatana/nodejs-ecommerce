@@ -4,18 +4,18 @@ getProductById = async (req, res) => {
     if (req.params.id) {
         const product = await ProductsContainer.getById(req.params.id)
         if (!product) {
-            res.status(400).json({error: "Product not found"})
+            res.status(400).json({error: 'Product not found'})
         } else {
-            res.json(product)
+            res.status(200).json(product)
         }
     } else {
         const data = await ProductsContainer.getAll()
-        res.json(data)
+        data.length !== 0 ? res.status(200).json(data) : res.status(400).json({error: 'There are currently no products in the system.'})
     }
 }
 
 addProduct =  async (req, res) => {
-    res.json(await ProductsContainer.save({
+    const product = {
         timestamp: Date.now(),
         name: req.body.name,
         description: req.body.description,
@@ -23,7 +23,9 @@ addProduct =  async (req, res) => {
         thumbnail: req.body.thumbnail,
         price: req.body.price,
         stock: req.body.stock
-    }))
+    }
+    const newProduct = await ProductsContainer.save(product)
+    res.status(201).json({newProduct})
 }
 
 updateProductById = async (req, res) => {
@@ -38,7 +40,7 @@ updateProductById = async (req, res) => {
         data[isValid].price = req.body.price
         data[isValid].stock = req.body.stock
 
-        await ProductsContainer.updateItem(data)
+        await ProductsContainer.updateItem(data, req.params.id, data[isValid])
         res.status(200).json({message: `Product ID: ${req.params.id} has been updated.`})
     } else {
         res.status(400).json({error: "Product not found"})

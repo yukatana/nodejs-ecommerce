@@ -2,7 +2,11 @@ require('dotenv').config()
 
 const productsDatabase = process.env.PRODUCTS_DATABASE
 const cartsDatabase = process.env.CARTS_DATABASE
-const connectToMongoDB = require('../databases/mongoDB')
+//import connection function for mongoDB only when it is initialized from .env config
+if (process.env.CARTS_DATABASE === 'mongoDB' ||
+    process.env.PRODUCTS_DATABASE === 'mongoDB') {
+
+}
 
 // Data Access Objects import for carts
 const CartsDAOmemory = require('./carts/cartsDAOmemory')
@@ -26,11 +30,13 @@ switch (cartsDatabase) {
         cartsDAO = new CartsDAOfile('./databases/files/carts.json') //path relative to server.js
         break
     case 'mongoDB' :
-        const { Cart } = require('../databases/mongoDB/schemas/cart')
+        const Cart = require('../databases/mongoDB/schemas/cart')
+        cartsDAO = new CartsDAOmongoDB(Cart)
+        //connection to mongoDB is only required when it's specified in .env
+        const connectToMongoDB = require('../databases/mongoDB')
         connectToMongoDB()
             .then(() => console.log('Successfully connected to carts database.'))
-            .then(() => cartsDAO = new CartsDAOmongoDB(Cart))
-            .catch((err) => console.log(`Could not connect to database. Error: ${err}`))
+            .catch((err) => console.log(`Could not connect to carts database. Error: ${err}`))
         break
     case 'firebase' :
         cartsDAO = new CartsDAOfirebase()
@@ -46,11 +52,13 @@ switch (productsDatabase) {
         productsDAO= new ProductsDAOfile('./databases/files/products.json') //path relative to server.js
         break
     case 'mongoDB' :
-        const { Product } = require('../databases/mongoDB/schemas/cart')
+        const Product = require('../databases/mongoDB/schemas/product')
+        productsDAO = new ProductsDAOmongoDB(Product)
+        //connection to mongoDB is only required when it's specified in .env
+        const connectToMongoDB = require('../databases/mongoDB')
         connectToMongoDB()
             .then(() => console.log('Successfully connected to products database.'))
-            .then(() => productsDAO = new ProductsDAOmongoDB(Product))
-            .catch((err) => console.log(`Could not connect to database. Error: ${err}`))
+            .catch((err) => console.log(`Could not connect to products database. Error: ${err}`))
         break
     case 'firebase' :
         productsDAO = new ProductsDAOfirebase()
