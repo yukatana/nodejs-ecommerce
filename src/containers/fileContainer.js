@@ -1,8 +1,7 @@
-//File-based data handling class fit for interacting with databases.
+//File-based data persistence class
+const fs = require('fs')
 
-const fs = require("fs")
-
-module.exports = class FileContainer {
+class FileContainer {
     constructor(file) {
         this.file = file
     }
@@ -37,15 +36,15 @@ module.exports = class FileContainer {
         }
     }
 
-    saveCarts = async (carts) => { //saves all carts. used when one of them has been edited
+    updateItem = async (data) => { //saves all items when one of them has been edited
         try {
-            await fs.promises.writeFile(this.file, JSON.stringify(carts, null, 2))
+            await fs.promises.writeFile(this.file, JSON.stringify(data, null, 2))
         } catch (err) {
             console.log(err)
         }
     }
 
-    getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if does not exist
+    getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
         try {
             let data = await fs.promises.readFile(this.file, "utf-8")
             let parsedData = await JSON.parse(data)
@@ -76,7 +75,7 @@ module.exports = class FileContainer {
             let parsedData = await JSON.parse(data)
             if (parsedData.find(el => el.id == id)) {
                 parsedData.splice(parsedData.indexOf(parsedData.find(el => el.id == id)), 1)
-                fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
+                await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
                 console.log("The item containing the specified ID has been deleted.")
                 return true
                 }
@@ -98,3 +97,5 @@ module.exports = class FileContainer {
         }
     }
 }
+
+module.exports = FileContainer
