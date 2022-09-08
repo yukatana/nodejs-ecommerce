@@ -6,22 +6,22 @@ createCart = async (req, res) => {
         timestamp: Date.now(),
         products: []
     })
-    res.status(201).json({message: `A new cart has been created with ID: ${newCart.id}.`})
+    res.status(201).json({success: `A new cart has been created with ID: ${newCart.id}.`})
 }
 
 deleteCartById = async (req, res) => {
     const success = await CartsContainer.deleteById(req.params.id)
     success ?
-        res.status(200).json({message: `Cart ID: ${req.params.id} has been deleted.`})
-        : res.status(400).json({error: 'Cart not found'})
+        res.status(200).json({success: `Cart ID: ${req.params.id} has been deleted.`})
+        : res.status(404).json({error: 'Cart not found'})
 }
 
 getByCartId = async (req, res) => {
     const cart = await CartsContainer.getById(req.params.id)
     if (!cart) {
-        res.status(400).json({error: 'Cart not found'})
+        res.status(404).json({error: 'Cart not found'})
     } else if (cart.products.length === 0) {
-        res.status(400).json({error: `Cart ID: ${req.params.id} is empty.`})
+        res.status(200).json({empty: `Cart ID: ${req.params.id} is empty.`})
     } else {
         res.status(200).json(cart.products)
     }
@@ -36,7 +36,7 @@ addProductToCart = async (req, res) => {
         allCarts[targetCartIndex].products.push(product)
         //allCarts has to be passed for memory and file persistence methods, but is used by neither mongoDB nor Firebase
         await CartsContainer.updateItem(allCarts, req.params.id, product)
-        res.status(200).json({message: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})
+        res.status(200).json({success: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})
     } else {
         res.status(404).json({error: `Either cart ID: ${req.params.id} or product ID: ${req.params.product_id} does not exist.`})
     }
@@ -51,14 +51,14 @@ deleteProductFromCart = async (req, res) => {
         if (targetCartIndex != -1 && targetProductIndex != -1) {
             allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
             await CartsContainer.updateItem(allCarts)
-            return res.status(200).json({message: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
+            return res.status(200).json({success: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
         } else {
             res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
         }
     } else {
         const success = await CartsContainer.deleteFromCartById(req.params.id, req.params.product_id)
         if (success) {
-            return res.status(200).json({message: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
+            return res.status(200).json({success: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
         } else {
             res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
         }
