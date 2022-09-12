@@ -34,11 +34,11 @@ updateProductById = async (req, res) => {
 
     if (isValid != -1) {
         data[isValid].timestamp = Date.now()
-        data[isValid].name = req.body.name
-        data[isValid].description = req.body.description
-        data[isValid].thumbnail = req.body.thumbnail
-        data[isValid].price = req.body.price
-        data[isValid].stock = req.body.stock
+        data[isValid].name = req.body.name || data[isValid].name
+        data[isValid].description = req.body.description || data[isValid].description
+        data[isValid].thumbnail = req.body.thumbnail || data[isValid].thumbnail
+        data[isValid].price = req.body.price || data[isValid].price
+        data[isValid].stock = req.body.stock || data[isValid].stock
 
         await ProductsContainer.updateItem(data, req.params.id, data[isValid])
         res.status(200).json({message: `Product ID: ${req.params.id} has been updated.`})

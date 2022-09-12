@@ -2,11 +2,6 @@ require('dotenv').config()
 
 const productsDatabase = process.env.PRODUCTS_DATABASE
 const cartsDatabase = process.env.CARTS_DATABASE
-//import connection function for mongoDB only when it is initialized from .env config
-if (process.env.CARTS_DATABASE === 'mongoDB' ||
-    process.env.PRODUCTS_DATABASE === 'mongoDB') {
-
-}
 
 // Data Access Objects import for carts
 const CartsDAOmemory = require('./carts/cartsDAOmemory')
