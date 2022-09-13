@@ -1,5 +1,4 @@
 const firebase = require('firebase-admin')
-const {Types} = require("mongoose");
 
 class FirebaseContainer {
     constructor(Collection) {
@@ -89,23 +88,21 @@ class FirebaseContainer {
 
     deleteFromCartById = async (cartId, productId) => {
         try {
-            cartId = Types.ObjectId(cartId)
-            productId = Types.ObjectId(productId)
-            const isProductInCart = await this.Schema
-                .findOne({_id: cartId}, {products: {_id: productId}})
-            // console.log(isProductInCart) - returns an object with an empty array if there is no match
-            const success = await this.Schema
-                .updateOne({_id: cartId}, {
-                    $pull: {
-                        products: {_id: productId}
-                    }
+            const doc = await this.query.doc(cartId)
+            const cart = await doc.get()
+            // the entire product object must be fetched so that it can be passed to arrayRemove
+            const product = await this.db.collection('products').doc(productId).get()
+            console.log(product)
+            if (product && cart) {
+                await doc.update({
+                    products: firebase.firestore.FieldValue.arrayRemove(product.data())
                 })
-            if (success.matchedCount === 0 || isProductInCart.products.length === 0) {
-                console.log(`Either cart ID: ${cartId} does not exist, or product ID: ${productId} is not in that cart`)
-                return false
-            } else {
                 console.log('The item containing the specified ID has been deleted.')
                 return true
+            } else {
+                console.log(`Either cart ID: ${cartId} or product ID: ${productId} does not exist`)
+                return false
+
             }
         } catch (err) {
             console.log(err)
@@ -116,7 +113,7 @@ class FirebaseContainer {
         try {
             this.query.listDocuments()
                 .then(docs => docs.map(doc => doc.delete()))
-                .then(console.log('All items have been deleted.'))
+                .then(() => console.log('All items have been deleted.'))
                 .catch(err => console.log(err))
         } catch (err) {
             console.error(err)
