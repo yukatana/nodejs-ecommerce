@@ -34,6 +34,11 @@ switch (cartsDatabase) {
             .catch((err) => console.log(`Could not connect to carts database. Error: ${err}`))
         break
     case 'firebase' :
+        const admin = require('firebase-admin')
+        const serviceAccount = require('../databases/firebase/yukatana-ecommerce-firebase.json')
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount)
+        })
         cartsDAO = new CartsDAOfirebase()
         break
 }
@@ -56,6 +61,11 @@ switch (productsDatabase) {
             .catch((err) => console.log(`Could not connect to products database. Error: ${err}`))
         break
     case 'firebase' :
+        const admin = require('firebase-admin')
+        const serviceAccount = require('../databases/firebase/yukatana-ecommerce-firebase.json')
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount)
+        })
         productsDAO = new ProductsDAOfirebase()
         break
 }

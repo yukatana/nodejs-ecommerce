@@ -2,10 +2,10 @@
 Backend final project for Coderhouse. Developed with Node.js.
 
 ## What do I need to run this project?
-This API relies on the dotenv Node.js dependency in order to dynamically export DAOs on startup. Hence, before you try to use it, please create a .env file on the src folder and add the following fields:
+This API relies on the dotenv Node.js dependency in order to dynamically export DAOs on startup. Hence, before you try to use it, please create a .env file on the root folder and add the following fields:
 
 ### For any database:
-PRODUCTS_DATABASE='mongoDB' - this variable takes either 'memory', 'file', 'mongoDB', or 'firebase' depending in your database preference.  
+PRODUCTS_DATABASE='mongoDB' - this variable takes either 'memory', 'file', 'mongoDB', or 'firebase' depending on your database preference.  
 CARTS_DATABASE='mongoDB' - same as above.
 
 ### For mongoDB:
