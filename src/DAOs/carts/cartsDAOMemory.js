@@ -1,9 +1,9 @@
 const MemoryContainer = require('../../containers/memoryContainer')
 
-class CartsDAOmemory extends MemoryContainer {
+class CartsDAOMemory extends MemoryContainer {
     constructor() {
         super()
     }
 }
 
-module.exports = CartsDAOmemory
+module.exports = CartsDAOMemory

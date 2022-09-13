@@ -32,8 +32,11 @@ addProductToCart = async (req, res) => {
     const product = await ProductsContainer.getById(req.params.product_id)
     const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
 
-    if (product && targetCartIndex != -1) {
-        allCarts[targetCartIndex].products.push(product)
+    if (product && targetCartIndex != -1) { //executed only on file and memory persistence methods
+        if (!isNaN(req.params.id) ||
+            !isNaN(req.params.product_id)) {
+                allCarts[targetCartIndex].products.push(product)
+        }
         //allCarts has to be passed for memory and file persistence methods, but is used by neither mongoDB nor Firebase
         await CartsContainer.updateItem(allCarts, req.params.id, product)
         res.status(200).json({success: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})

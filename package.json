@@ -1,0 +1,31 @@
+{
+  "name": "backend-final-project",
+  "version": "1.0.0",
+  "description": "Backend final project for Coderhouse. Developed with Node.js.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "firebase-admin": "^11.0.1",
+    "mongoose": "^6.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yukatana/backend-final-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yukatana/backend-final-project/issues"
+  },
+  "homepage": "https://github.com/yukatana/backend-final-project#readme"
+}

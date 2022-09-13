@@ -1,7 +1,7 @@
 //MongoDB-based data persistence class. Each instance is loaded using a different Schema with mongoose, hence making it reusable
 const { Types } = require('mongoose')
 
-class MongoDBcontainer {
+class MongoDBContainer {
     constructor(Schema) {
         this.Schema = Schema
     }
@@ -115,4 +115,4 @@ class MongoDBcontainer {
     }
 }
 
-module.exports = MongoDBcontainer
+module.exports = MongoDBContainer

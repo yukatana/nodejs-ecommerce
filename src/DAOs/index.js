@@ -4,29 +4,39 @@ const productsDatabase = process.env.PRODUCTS_DATABASE
 const cartsDatabase = process.env.CARTS_DATABASE
 
 // Data Access Objects import for carts
-const CartsDAOmemory = require('./carts/cartsDAOmemory')
-const CartsDAOfile = require('./carts/cartsDAOfile')
-const CartsDAOmongoDB = require('./carts/cartsDAOmongoDB')
-const CartsDAOfirebase = require('./carts/cartsDAOfirebase')
+const CartsDAOMemory = require('./carts/cartsDAOMemory')
+const CartsDAOFile = require('./carts/cartsDAOFile')
+const CartsDAOMongoDB = require('./carts/cartsDAOMongoDB')
+const CartsDAOFirebase = require('./carts/cartsDAOFirebase')
 
 // Data Access Objects import for products
-const ProductsDAOmemory = require('./products/productsDAOmemory')
-const ProductsDAOfile = require('./products/productsDAOfile')
-const ProductsDAOmongoDB = require('./products/productsDAOmongoDB')
-const ProductsDAOfirebase = require('./products/productsDAOfirebase')
+const ProductsDAOMemory = require('./products/productsDAOMemory')
+const ProductsDAOFile = require('./products/productsDAOFile')
+const ProductsDAOMongoDB = require('./products/productsDAOMongoDB')
+const ProductsDAOFirebase = require('./products/productsDAOFirebase')
+
+//Firebase dynamic require: only initializes when it's specified on the .env file
+if (process.env.CARTS_DATABASE === 'firebase' ||
+    process.env.PRODUCTS_DATABASE === 'firebase') {
+    const admin = require("firebase-admin")
+    const serviceAccount = require("../databases/firebase/yukatana-ecommerce-firebase.json")
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+    })
+}
 
 // Exporting carts DAO instance based on .env config
 let cartsDAO
 switch (cartsDatabase) {
     case 'memory' :
-        cartsDAO = new CartsDAOmemory()
+        cartsDAO = new CartsDAOMemory()
         break
     case 'file' :
-        cartsDAO = new CartsDAOfile('./databases/files/carts.json') //path relative to server.js
+        cartsDAO = new CartsDAOFile('./databases/files/carts.json') //path relative to server.js
         break
     case 'mongoDB' :
         const Cart = require('../databases/mongoDB/schemas/cart')
-        cartsDAO = new CartsDAOmongoDB(Cart)
+        cartsDAO = new CartsDAOMongoDB(Cart)
         //connection to mongoDB is only required when it's specified in .env
         const connectToMongoDB = require('../databases/mongoDB')
         connectToMongoDB()
@@ -34,26 +44,22 @@ switch (cartsDatabase) {
             .catch((err) => console.log(`Could not connect to carts database. Error: ${err}`))
         break
     case 'firebase' :
-        const admin = require('firebase-admin')
-        const serviceAccount = require('../databases/firebase/yukatana-ecommerce-firebase.json')
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
-        })
-        cartsDAO = new CartsDAOfirebase()
+        cartsDAO = new CartsDAOFirebase('carts')
+        console.log('Successfully connected to carts database.')
         break
 }
 // Exporting products DAO instance based on .env config
 let productsDAO
 switch (productsDatabase) {
     case 'memory' :
-         productsDAO = new ProductsDAOmemory()
+         productsDAO = new ProductsDAOMemory()
         break
     case 'file' :
-        productsDAO= new ProductsDAOfile('./databases/files/products.json') //path relative to server.js
+        productsDAO= new ProductsDAOFile('./databases/files/products.json') //path relative to server.js
         break
     case 'mongoDB' :
         const Product = require('../databases/mongoDB/schemas/product')
-        productsDAO = new ProductsDAOmongoDB(Product)
+        productsDAO = new ProductsDAOMongoDB(Product)
         //connection to mongoDB is only required when it's specified in .env
         const connectToMongoDB = require('../databases/mongoDB')
         connectToMongoDB()
@@ -61,12 +67,8 @@ switch (productsDatabase) {
             .catch((err) => console.log(`Could not connect to products database. Error: ${err}`))
         break
     case 'firebase' :
-        const admin = require('firebase-admin')
-        const serviceAccount = require('../databases/firebase/yukatana-ecommerce-firebase.json')
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
-        })
-        productsDAO = new ProductsDAOfirebase()
+        productsDAO = new ProductsDAOFirebase('products')
+        console.log('Successfully connected to products database.')
         break
 }
 

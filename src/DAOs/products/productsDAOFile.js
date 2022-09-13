@@ -1,9 +1,9 @@
 const FileContainer = require('../../containers/fileContainer')
 
-class ProductsDAOfile extends FileContainer {
+class ProductsDAOFile extends FileContainer {
     constructor(file) {
         super(file)
     }
 }
 
-module.exports = ProductsDAOfile
+module.exports = ProductsDAOFile
