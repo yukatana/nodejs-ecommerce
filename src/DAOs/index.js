@@ -32,7 +32,7 @@ switch (cartsDatabase) {
         cartsDAO = new CartsDAOMemory()
         break
     case 'file' :
-        cartsDAO = new CartsDAOFile('./databases/files/carts.json') //path relative to server.js
+        cartsDAO = new CartsDAOFile('./databases/files/carts.json') //path relative to app.js
         break
     case 'mongoDB' :
         const Cart = require('../databases/mongoDB/schemas/cart')
@@ -55,7 +55,7 @@ switch (productsDatabase) {
          productsDAO = new ProductsDAOMemory()
         break
     case 'file' :
-        productsDAO= new ProductsDAOFile('./databases/files/products.json') //path relative to server.js
+        productsDAO= new ProductsDAOFile('./databases/files/products.json') //path relative to app.js
         break
     case 'mongoDB' :
         const Product = require('../databases/mongoDB/schemas/product')

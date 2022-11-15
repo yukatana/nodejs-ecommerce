@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const cartsRouter = Router()
-const authMiddleware = require('../utils/authMiddleware')
+const authMiddleware = require('../middlewares/auth/checkAuthentication')
 const {
     createCart,
     deleteCartById,
