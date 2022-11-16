@@ -1,0 +1,46 @@
+h1 {
+    color: blue;
+    font-size: 20px;
+    text-align: center;
+}
+
+input {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+form {
+    width: 50%;
+    margin-left: 25%;
+}
+
+form .submit {
+    background-color: greenyellow; 
+}
+
+label {
+    font-weight: bold;
+}
+
+.table {
+    max-width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+td > img {
+    max-height: 75px;
+}
+
+#chatBox > p {
+    color: green;
+}
+
+p > b {
+    color: blue;
+}
+
+.date {
+    color: brown;
+}

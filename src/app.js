@@ -16,6 +16,8 @@ app.use('/api/products', productsRouter)
 app.use('/api/cart', cartRouter)
 app.use('/auth', authRouter)
 
+app.use(express.static(__dirname + '/public'))
+
 app.use('*', (req, res) => {
     res.status(404).json({
         error: -2,
