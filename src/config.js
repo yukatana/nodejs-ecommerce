@@ -19,7 +19,7 @@ const MONGODB_URI = process.env.MONGODB_URI
 const MONGODB_DATABASE = process.env.MONGODB_DATABASE
 const MONGODB_SESSIONS = process.env.MONGODB_SESSIONS
 const SESSION_SECRET = process.env.SESSION_SECRET
-const PORT = args.port
+const PORT = process.env.PORT || args.port //takes environment port to be assigned by deployment container
 const MODE = args.mode
 
 module.exports = {

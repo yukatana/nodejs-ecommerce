@@ -18,6 +18,11 @@ passport.use('signup', new LocalStrategy(
     signupStrategy)
 )
 
+// Importing express app in order to pass passport middlewares
+const app = require('../app')
+app.use(passport.initialize())
+app.use(passport.session())
+
 // GET login form
 authRouter.get('/login', serveLogin)
 // POST a login attempt

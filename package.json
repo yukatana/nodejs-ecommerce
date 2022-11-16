@@ -1,12 +1,12 @@
 {
   "name": "backend-final-project",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Backend final project for Coderhouse. Developed with Node.js.",
-  "main": "server.js",
+  "main": "bin/run.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "start": "node bin/run.js",
+    "dev": "nodemon bin/run.js"
   },
   "keywords": [],
   "author": "",
