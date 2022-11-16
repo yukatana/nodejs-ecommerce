@@ -12,8 +12,8 @@ app.use(session({
     saveUninitialized: true
 }))
 
-serveLogin = () => {
-
+serveLogin = (req, res) => {
+    res.sendFile(__dirname + '/public/login.html')
 }
 
 tryLogin = (req, res) => {
@@ -21,8 +21,12 @@ tryLogin = (req, res) => {
     res.redirect('/')
 }
 
-serveSignup = () => {
+serveLoginError = (req, res) => {
+    res.sendFile(__dirname + '/public/loginError.html')
+}
 
+serveSignup = (req, res) => {
+    res.sendFile(__dirname + '/public/signup.html')
 }
 
 trySignup = (req, res) => {
@@ -30,15 +34,26 @@ trySignup = (req, res) => {
     res.redirect('/')
 }
 
+serveSignupError = (req, res) => {
+    res.sendFile(__dirname + '/public/signupError.html')
+}
+
 logout = (req, res) => {
     req.session.destroy()
     req.logout(() => res.redirect('/auth/logout'))
 }
 
+serveLogout = (req, res) => {
+    res.sendFile(__dirname + '/public/logout.html')
+}
+
 module.exports = {
     serveLogin,
     tryLogin,
+    serveLoginError,
     serveSignup,
     trySignup,
+    serveSignupError,
+    serveLogout,
     logout
 }
