@@ -18,7 +18,12 @@ const signupStrategy = async (req, username, password, done) => {
     const hashedPassword = hashPassword(password)
     const user = new User({
         username,
-        password: hashedPassword
+        password: hashedPassword,
+        name: req.body.name,
+        address: req.body.address,
+        age: req.body.age,
+        phone: req.body.phone,
+        avatar: req.body.avatar
     })
     await user.save()
     return done(null, user)

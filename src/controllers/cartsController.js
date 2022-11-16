@@ -1,8 +1,13 @@
 const CartsContainer = require('../DAOs').cartsDAO //returns an instance of a DAO class which extends to the chosen container type
 const ProductsContainer = require('../DAOs').productsDAO //necessary since some methods need to access the products database
+const verifyUsername = require('../utils/verifyUsername')
 
 createCart = async (req, res) => {
+    if (await verifyUsername(req.params.username) === null) {
+        return res.status(400).json({error: `Bad request - can't create a cart for an invalid username.`})
+    }
     const newCart = await CartsContainer.save({
+        username: req.params.username,
         timestamp: Date.now(),
         products: []
     })

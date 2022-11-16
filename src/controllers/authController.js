@@ -16,7 +16,7 @@ serveLogin = (req, res) => {
     res.sendFile(__dirname + '/public/login.html')
 }
 
-tryLogin = (req, res) => {
+saveSession = (req, res) => {
     req.session.user = req.user.username
     res.redirect('/')
 }
@@ -27,11 +27,6 @@ serveLoginError = (req, res) => {
 
 serveSignup = (req, res) => {
     res.sendFile(__dirname + '/public/signup.html')
-}
-
-trySignup = (req, res) => {
-    req.session.user = req.user.username
-    res.redirect('/')
 }
 
 serveSignupError = (req, res) => {
@@ -48,11 +43,10 @@ serveLogout = (req, res) => {
 }
 
 module.exports = {
+    saveSession,
     serveLogin,
-    tryLogin,
     serveLoginError,
     serveSignup,
-    trySignup,
     serveSignupError,
     serveLogout,
     logout

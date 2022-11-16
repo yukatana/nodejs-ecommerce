@@ -6,13 +6,13 @@ const authController = require('../controllers/authController')
 // GET login form
 authRouter.get('/login', authController.serveLogin)
 // POST a login attempt
-authRouter.post('/login', passportLogin, authController.tryLogin)
+authRouter.post('/login', passportLogin, authController.saveSession)
 // GET login error page
 authRouter.get('/login', authController.serveLoginError)
 // GET signup form
 authRouter.get('/signup', authController.serveSignup)
 // POST a signup attempt
-authRouter.post('/signup', passportSignup, authController.trySignup)
+authRouter.post('/signup', passportSignup, authController.saveSession)
 // GET signup error page
 authRouter.get('/login', authController.serveSignupError)
 //GET logout page
