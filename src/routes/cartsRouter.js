@@ -5,6 +5,8 @@ const authMiddleware = require('../middlewares/auth/checkAuthentication')
 
 // POST new cart related to a username
 cartsRouter.post('/:username', authMiddleware, cartsController.createCart)
+// POST a purchase request of the products in one of a user's carts
+cartsRouter.post('/:username/:id', authMiddleware, cartsController.purchaseCart)
 // DELETE a cart by ID
 cartsRouter.delete('/:id', authMiddleware, cartsController.deleteCartById)
 // GET a cart's products by ID

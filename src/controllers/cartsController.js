@@ -71,7 +71,23 @@ deleteProductFromCart = async (req, res) => {
             res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
         }
     }
+}
 
+purchaseCart = async (req, res) => {
+    const username = req.params.username
+    const id = req.params.id
+    const cart = await CartsContainer.getById(id)
+    if (await verifyUsername(username) !== null && cart) {
+        if (cart.username === username) {
+            //insert twilio code here
+        } else {
+            res.status(400).json({error: `Cart ID: ${id} does not belong to user ${username}.`})
+        }
+    } else if (cart.products.length === 0) {
+        res.status(200).json({empty: `Cart ID: ${req.params.id} is empty.`})
+    } else {
+        res.status(404).json({error: `Either username ${username} or cart ID: ${id} does not exist.`})
+    }
 }
 
 module.exports = {
@@ -79,5 +95,6 @@ module.exports = {
     deleteCartById,
     getByCartId,
     addProductToCart,
-    deleteProductFromCart
+    deleteProductFromCart,
+    purchaseCart
 }

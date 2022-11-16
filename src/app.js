@@ -14,6 +14,7 @@ app.use(cookieParser())
 // Router declaration
 app.use('/api/products', productsRouter)
 app.use('/api/cart', cartRouter)
+
 app.use('/auth', authRouter)
 
 app.use(express.static(__dirname + '/public'))
