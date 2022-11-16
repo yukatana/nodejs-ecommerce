@@ -1,0 +1,37 @@
+// Passport import, initialization, and configuration
+const passport = require('passport')
+const { loginStrategy, signupStrategy } = require('../../middlewares/auth/passportStrategies')
+const LocalStrategy = require('passport-local').Strategy
+passport.use('login', new LocalStrategy(loginStrategy))
+passport.use('signup', new LocalStrategy(
+    {passReqToCallback: true},
+    signupStrategy)
+)
+
+// Types and User schema to be used by deserialize
+const { Types } = require('mongoose')
+const User = require('../../databases/mongoDB/schemas/user')
+passport.serializeUser((user, done) => {
+    done(null, user._id)
+})
+passport.deserializeUser(async (id, done) => {
+    id = Types.ObjectId(id)
+    const user = await User.findById(id)
+    done(null, user)
+})
+
+// Importing express app in order to pass passport middlewares
+const app = require('../../app')
+app.use(passport.initialize())
+app.use(passport.session())
+
+const passportSignup = passport.authenticate('signup',
+    {failureRedirect: '/signupError'})
+
+const passportLogin = passport.authenticate('login',
+    {failureRedirect: '/loginError'})
+
+module.exports = {
+    passportSignup,
+    passportLogin
+}
