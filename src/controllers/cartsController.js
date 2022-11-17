@@ -1,6 +1,7 @@
 const CartsContainer = require('../DAOs').cartsDAO //returns an instance of a DAO class which extends to the chosen container type
 const ProductsContainer = require('../DAOs').productsDAO //necessary since some methods need to access the products database
 const verifyUsername = require('../utils/verifyUsername')
+const twilioService = require('../services/twilio')
 
 createCart = async (req, res) => {
     if (await verifyUsername(req.params.username) === null) {
@@ -75,11 +76,15 @@ deleteProductFromCart = async (req, res) => {
 
 purchaseCart = async (req, res) => {
     const username = req.params.username
+    const name = req.session.user.name
     const id = req.params.id
     const cart = await CartsContainer.getById(id)
     if (await verifyUsername(username) !== null && cart) {
         if (cart.username === username) {
-            //insert twilio code here
+            //using Twilio to send a WhatsApp message and an email upon purchase
+            await twilioService.sendPurchaseWhatsapp(name, username)
+            await twilioService.sendPurchaseEmail(name, username, cart)
+            //logger.info()
         } else {
             res.status(400).json({error: `Cart ID: ${id} does not belong to user ${username}.`})
         }

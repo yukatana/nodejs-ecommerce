@@ -17,7 +17,7 @@ serveLogin = (req, res) => {
 }
 
 saveSession = (req, res) => {
-    req.session.user = req.user.username
+    req.session.user = req.user
     res.redirect('/')
 }
 
