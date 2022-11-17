@@ -1,4 +1,5 @@
 require('dotenv').config()
+const { logger } = require('../../logs')
 
 const productsDatabase = process.env.PRODUCTS_DATABASE
 const cartsDatabase = process.env.CARTS_DATABASE
@@ -40,12 +41,12 @@ switch (cartsDatabase) {
         //connection to mongoDB is only required when it's specified in .env
         const connectToMongoDB = require('../databases/mongoDB')
         connectToMongoDB()
-            .then(() => console.log('Successfully connected to carts database.'))
-            .catch((err) => console.log(`Could not connect to carts database. Error: ${err}`))
+            .then(() => logger.info('Successfully connected to carts database.'))
+            .catch((err) => logger.error(`Could not connect to carts database. Error: ${err}`))
         break
     case 'firebase' :
         cartsDAO = new CartsDAOFirebase('carts')
-        console.log('Successfully connected to carts database.')
+        logger.info('Successfully connected to carts database.')
         break
 }
 // Exporting products DAO instance based on .env config
@@ -63,12 +64,12 @@ switch (productsDatabase) {
         //connection to mongoDB is only required when it's specified in .env
         const connectToMongoDB = require('../databases/mongoDB')
         connectToMongoDB()
-            .then(() => console.log('Successfully connected to products database.'))
-            .catch((err) => console.log(`Could not connect to products database. Error: ${err}`))
+            .then(() => logger.info('Successfully connected to products database.'))
+            .catch((err) => logger.error(`Could not connect to products database. Error: ${err}`))
         break
     case 'firebase' :
         productsDAO = new ProductsDAOFirebase('products')
-        console.log('Successfully connected to products database.')
+        logger.info('Successfully connected to products database.')
         break
 }
 

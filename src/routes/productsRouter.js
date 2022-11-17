@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const productsRouter = Router()
-const authMiddleware = require('../middlewares/auth/checkAuthentication')
+const checkAuthentication = require('../middlewares/auth/checkAuthentication')
 const {
     getProductById,
     addProduct,
@@ -11,10 +11,10 @@ const {
 // GET product by ID or all products if no ID is passed
 productsRouter.get("/:id?", getProductById)
 // POST a new product
-productsRouter.post("/", authMiddleware, addProduct)
+productsRouter.post("/", checkAuthentication, addProduct)
 // PUT an existing product by ID
-productsRouter.put("/:id", authMiddleware, updateProductById)
+productsRouter.put("/:id", checkAuthentication, updateProductById)
 // DELETE a product by ID
-productsRouter.delete("/:id", authMiddleware, deleteProductById)
+productsRouter.delete("/:id", checkAuthentication, deleteProductById)
 
 module.exports = productsRouter

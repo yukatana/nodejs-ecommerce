@@ -18,14 +18,28 @@ sendPurchaseWhatsapp = async (name, username) => {
     return logger.info(info)
 }
 
-sendPurchaseEmail = () => {
-
-}
-
-sendRegisteredUserEmail = (message) => {
-    sendgridMail.send(message)
+sendPurchaseEmail = (name, username, cart) => {
+    const msg = {
+        to: config.MY_EMAIL,
+        from: config.MY_EMAIL,
+        subject: `New purchase from ${name} - ${username}`,
+        html: `${cart}`
+    }
+    sendgridMail.send(msg)
         .then((res) => logger.info(res))
         .catch(err => logger.error(err))
 }
 
-module.exports = { sendPurchaseWhatsapp, sendPurchaseEmail }
+sendRegisteredUserEmail = (req, res, next) => {
+    const msg = {
+        to: config.MY_EMAIL,
+        from: config.MY_EMAIL,
+        subject: `New user registered - ${req.user.username}`
+    }
+    sendgridMail.send(msg)
+        .then((res) => logger.info(res))
+        .catch(err => logger.error(err))
+    next()
+}
+
+module.exports = { sendPurchaseWhatsapp, sendPurchaseEmail, sendRegisteredUserEmail }
