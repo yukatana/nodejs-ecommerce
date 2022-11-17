@@ -1,4 +1,4 @@
-// Database credentials loaded in .env
+// Database and Twilio credentials loaded in .env
 require('dotenv').config()
 
 // Set up port from CLI command on startup
@@ -13,12 +13,20 @@ const args = require('yargs')(process.argv.slice(2))
     })
     .argv
 
+// For MongoDB
 const MONGODB_USERNAME = process.env.MONGODB_USERNAME
 const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD
 const MONGODB_URI = process.env.MONGODB_URI
 const MONGODB_DATABASE = process.env.MONGODB_DATABASE
 const MONGODB_SESSIONS = process.env.MONGODB_SESSIONS
 const SESSION_SECRET = process.env.SESSION_SECRET
+
+// For Twilio
+const TWILIO_SID = process.env.TWILIO_SID
+const TWILIO_TOKEN = process.env.TWILIO_TOKEN
+const TWILIO_PHONE = process.env.TWILIO_PHONE
+const MY_PHONE = process.env.MY_PHONE
+
 const PORT = process.env.PORT || args.port //takes environment port to be assigned by deployment container
 const MODE = args.mode
 
@@ -29,6 +37,10 @@ module.exports = {
     MONGODB_DATABASE,
     MONGODB_SESSIONS,
     SESSION_SECRET,
+    TWILIO_SID,
+    TWILIO_TOKEN,
+    TWILIO_PHONE,
+    MY_PHONE,
     PORT,
     MODE
 }
