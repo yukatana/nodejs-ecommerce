@@ -5,12 +5,22 @@ const cartRouter = require('./routes/cartsRouter')
 const authRouter = require('./routes/authRouter')
 const cookieParser = require('cookie-parser')
 const { warningLogger } = require('../logs')
+const session = require('express-session')
 
 const app = express()
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
+
+// passport config import
+const { passport } = require('./middlewares/auth/passport')
+app.use(passport.initialize())
+app.use(passport.session())
+
+// session config import
+const { sessionConfig } = require('./middlewares/sessionConfig')
+app.use(session(sessionConfig))
 
 // Router declaration
 app.use('/api/products', productsRouter)
