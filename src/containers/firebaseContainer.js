@@ -1,4 +1,5 @@
 const firebase = require('firebase-admin')
+const { logger } = require('../../logs')
 
 class FirebaseContainer {
     constructor(Collection) {
@@ -13,7 +14,7 @@ class FirebaseContainer {
             await docs.set({id: docs.id, ...object})
             return await this.getById(docs.id)
         } catch (err) {
-            console.log(err)
+            logger.info(err)
         }
     }
 
@@ -28,7 +29,7 @@ class FirebaseContainer {
                 })
             }
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -43,7 +44,7 @@ class FirebaseContainer {
                 return null
             }
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
@@ -66,7 +67,7 @@ class FirebaseContainer {
                 return false
             }
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
@@ -75,14 +76,14 @@ class FirebaseContainer {
             const exists = await this.getById(id)
             if (exists) {
                 await this.query.doc(id).delete()
-                console.log('The item containing the specified ID has been deleted.')
+                logger.info('The item containing the specified ID has been deleted.')
                 return true
             } else {
-                console.log('The specified ID does not match any items.')
+                logger.info('The specified ID does not match any items.')
                 return false
             }
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
@@ -92,20 +93,20 @@ class FirebaseContainer {
             const cart = await doc.get()
             // the entire product object must be fetched so that it can be passed to arrayRemove
             const product = await this.db.collection('products').doc(productId).get()
-            console.log(product)
+            logger.info(product)
             if (product && cart) {
                 await doc.update({
                     products: firebase.firestore.FieldValue.arrayRemove(product.data())
                 })
-                console.log('The item containing the specified ID has been deleted.')
+                logger.info('The item containing the specified ID has been deleted.')
                 return true
             } else {
-                console.log(`Either cart ID: ${cartId} or product ID: ${productId} does not exist`)
+                logger.info(`Either cart ID: ${cartId} or product ID: ${productId} does not exist`)
                 return false
 
             }
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -113,10 +114,10 @@ class FirebaseContainer {
         try {
             this.query.listDocuments()
                 .then(docs => docs.map(doc => doc.delete()))
-                .then(() => console.log('All items have been deleted.'))
-                .catch(err => console.log(err))
+                .then(() => logger.info('All items have been deleted.'))
+                .catch(err => logger.error(err))
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 }

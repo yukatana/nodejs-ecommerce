@@ -1,5 +1,6 @@
 //MongoDB-based data persistence class. Each instance is loaded using a different Schema with mongoose, hence making it reusable
 const { Types } = require('mongoose')
+const { logger } = require('../../logs')
 
 class MongoDBContainer {
     constructor(Schema) {
@@ -12,7 +13,7 @@ class MongoDBContainer {
             return await new this.Schema(object)
                 .save()
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -28,7 +29,7 @@ class MongoDBContainer {
                 cart.save()
             }
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -44,7 +45,7 @@ class MongoDBContainer {
                 return null
             }
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
@@ -58,7 +59,7 @@ class MongoDBContainer {
                 return false
             }
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
@@ -68,14 +69,14 @@ class MongoDBContainer {
             const success = await this.Schema
                 .deleteOne({_id: id})
             if (success.deletedCount > 0) {
-                console.log('The item containing the specified ID has been deleted.')
+                logger.info('The item containing the specified ID has been deleted.')
                 return true
             } else {
-                console.log('The specified ID does not match any items.')
+                logger.info('The specified ID does not match any items.')
                 return false
             }
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
@@ -93,14 +94,14 @@ class MongoDBContainer {
                     }
                 })
             if (success.matchedCount === 0 || isProductInCart.products.length === 0) {
-                console.log(`Either cart ID: ${cartId} does not exist, or product ID: ${productId} is not in that cart`)
+                logger.info(`Either cart ID: ${cartId} does not exist, or product ID: ${productId} is not in that cart`)
                 return false
             } else {
-                console.log('The item containing the specified ID has been deleted.')
+                logger.info('The item containing the specified ID has been deleted.')
                 return true
             }
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -108,9 +109,9 @@ class MongoDBContainer {
         try {
             this.Schema
                 .remove({})
-            console.log("All items have been deleted.")
+            logger.info("All items have been deleted.")
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 }

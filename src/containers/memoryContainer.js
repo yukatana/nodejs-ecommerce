@@ -1,4 +1,5 @@
 //Memory-based data handling class for ephemeral data.
+const { logger } = require('../../logs')
 
 class MemoryContainer {
 
@@ -21,7 +22,7 @@ class MemoryContainer {
         try {
             this.data = data
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -42,18 +43,18 @@ class MemoryContainer {
     deleteById = async (id) => { //deletes array item (object) specified by ID
         if (this.data.find(el => el.id == id)) {
             this.data.splice(this.data.indexOf(this.data.find(el => el.id == id)), 1)
-            console.log("The item containing the specified ID has been deleted.")
+            logger.info("The item containing the specified ID has been deleted.")
             return true
             }
         else {
-            console.log("The specified ID does not match any items.")
+            logger.info("The specified ID does not match any items.")
             return null
         }
     }
 
     deleteAll = () => { //deletes all objects in the file and replaces them with an empty array
         this.data = []
-        console.log("All items have been deleted.")
+        logger.info("All items have been deleted.")
     }
 }
 

@@ -1,5 +1,6 @@
 //File-based data persistence class
 const fs = require('fs')
+const { logger } = require('../../logs')
 
 class FileContainer {
     constructor(file) {
@@ -32,7 +33,7 @@ class FileContainer {
                 return object
             }
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -40,7 +41,7 @@ class FileContainer {
         try {
             await fs.promises.writeFile(this.file, JSON.stringify(data, null, 2))
         } catch (err) {
-            console.log(err)
+            logger.error(err)
         }
     }
 
@@ -64,7 +65,7 @@ class FileContainer {
             let data = await fs.promises.readFile(this.file, "utf-8")
             return JSON.parse(data)
         } catch (err) {
-            console.error(err)
+            logger.error(err)
             return false
         }
     }
@@ -76,24 +77,24 @@ class FileContainer {
             if (parsedData.find(el => el.id == id)) {
                 parsedData.splice(parsedData.indexOf(parsedData.find(el => el.id == id)), 1)
                 await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
-                console.log("The item containing the specified ID has been deleted.")
+                logger.info("The item containing the specified ID has been deleted.")
                 return true
                 }
             else {
-                console.log("The specified ID does not match any items.")
+                logger.info("The specified ID does not match any items.")
                 return false
             }
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
     deleteAll = async () => { //deletes all objects in the file and replaces them with an empty array
         try {
             await fs.promises.writeFile(this.file, JSON.stringify([]))
-            console.log("All items have been deleted.")
+            logger.info("All items have been deleted.")
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 }
