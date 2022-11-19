@@ -4,6 +4,8 @@ const cartsController = require('../controllers/cartsController')
 const checkAuthentication = require('../middlewares/auth/checkAuthentication')
 const { sendRegisteredUserEmail } = require('../services/twilio')
 
+// GET all carts related to a user
+cartsRouter.get('/:username', checkAuthentication, cartsController.getCartsByUser)
 // POST new cart related to a username
 cartsRouter.post('/:username', checkAuthentication, cartsController.createCart)
 // POST a purchase request of the products in one of a user's carts

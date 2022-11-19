@@ -4,7 +4,7 @@ serveLogin = (req, res) => {
 
 saveSession = (req, res) => {
     req.session.user = req.user
-    res.redirect('/')
+    res.redirect(`/api/cart/${req.user.username}`)
 }
 
 serveLoginError = (req, res) => {

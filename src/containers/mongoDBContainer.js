@@ -114,6 +114,22 @@ class MongoDBContainer {
             logger.error(err)
         }
     }
+
+    getByUsername = async (username) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
+        try {
+            const items = await this.Schema
+                .find({ username })
+                .exec()
+            if (items) {
+                return items
+            }
+            else {
+                return null
+            }
+        } catch (err) {
+            logger.error(err)
+        }
+    }
 }
 
 module.exports = MongoDBContainer

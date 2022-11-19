@@ -18,28 +18,34 @@ sendPurchaseWhatsapp = async (name, username) => {
     return logger.info(info)
 }
 
-sendPurchaseEmail = (name, username, cart) => {
+sendPurchaseEmail = async (name, username, cart) => {
     const msg = {
         to: config.MY_EMAIL,
         from: config.MY_EMAIL,
         subject: `New purchase from ${name} - ${username}`,
         html: `${cart}`
     }
-    sendgridMail.send(msg)
+    return await sendgridMail.send(msg)
         .then((res) => logger.info(res))
         .catch(err => logger.error(err))
 }
 
-sendRegisteredUserEmail = (req, res, next) => {
-    const msg = {
-        to: config.MY_EMAIL,
-        from: config.MY_EMAIL,
-        subject: `New user registered - ${req.user.username}`
+sendRegisteredUserEmail = async (req, res, next) => {
+    const date = new Date.now().toLocaleDateString()
+    try {
+        const msg = {
+            to: config.MY_EMAIL,
+            from: config.MY_EMAIL,
+            subject: `New user registered - ${req.user.username}`,
+            html: `<h1> ${req.user.username} has registered in the platform at ${date}`
+        }
+        sendgridMail.send(msg)
+            .then((res) => logger.info(res))
+            .catch(err => logger.error(err))
+        next()
+    } catch (err) {
+        logger.error(err)
     }
-    sendgridMail.send(msg)
-        .then((res) => logger.info(res))
-        .catch(err => logger.error(err))
-    next()
 }
 
 module.exports = { sendPurchaseWhatsapp, sendPurchaseEmail, sendRegisteredUserEmail }

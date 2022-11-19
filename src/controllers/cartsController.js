@@ -96,11 +96,24 @@ purchaseCart = async (req, res) => {
     }
 }
 
+getCartsByUser = async (req, res) => {
+    const username = req.params.username
+    const carts = await CartsContainer.getByUsername(username)
+    if (!carts) {
+        res.status(404).json({error: `Carts not found for ${username}`})
+    // } else if (carts.products.length === 0) {
+    //     res.status(200).json({empty: `Cart ID: ${req.params.id} is empty.`})
+    } else {
+        res.status(200).json(carts)
+    }
+}
+
 module.exports = {
     createCart,
     deleteCartById,
     getByCartId,
     addProductToCart,
     deleteProductFromCart,
-    purchaseCart
+    purchaseCart,
+    getCartsByUser
 }
