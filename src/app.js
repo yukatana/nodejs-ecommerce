@@ -27,7 +27,7 @@ app.use('/api/products', productsRouter)
 app.use('/api/cart', cartRouter)
 app.use('/auth', authRouter)
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(process.cwd() + '/src/public'))
 
 app.use('*', warningLogger, (req, res) => {
     res.status(404).json({

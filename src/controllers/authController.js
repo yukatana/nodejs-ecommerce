@@ -1,5 +1,3 @@
-const path = require('path')
-
 serveLogin = (req, res) => {
     res.sendFile(process.cwd() + '/src/public/login.html')
 }
