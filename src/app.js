@@ -13,14 +13,14 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
 
+// session config import
+const { sessionConfig } = require('./middlewares/sessionConfig')
+app.use(session(sessionConfig))
+
 // passport config import
 const { passport } = require('./middlewares/auth/passport')
 app.use(passport.initialize())
 app.use(passport.session())
-
-// session config import
-const { sessionConfig } = require('./middlewares/sessionConfig')
-app.use(session(sessionConfig))
 
 // Router declaration
 app.use('/api/products', productsRouter)

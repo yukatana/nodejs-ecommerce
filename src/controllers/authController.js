@@ -1,5 +1,7 @@
+const path = require('path')
+
 serveLogin = (req, res) => {
-    res.sendFile(__dirname + '/public/login.html')
+    res.sendFile(process.cwd() + '/src/public/login.html')
 }
 
 saveSession = (req, res) => {
@@ -8,15 +10,15 @@ saveSession = (req, res) => {
 }
 
 serveLoginError = (req, res) => {
-    res.sendFile(__dirname + '/public/loginError.html')
+    res.sendFile(process.cwd() + '/src/public/loginError.html')
 }
 
 serveSignup = (req, res) => {
-    res.sendFile(__dirname + '/public/signup.html')
+    res.sendFile(process.cwd() + '/src/public/signup.html')
 }
 
 serveSignupError = (req, res) => {
-    res.sendFile(__dirname + '/public/signupError.html')
+    res.sendFile(process.cwd() + '/src/public/signupError.html')
 }
 
 logout = (req, res) => {
@@ -25,7 +27,7 @@ logout = (req, res) => {
 }
 
 serveLogout = (req, res) => {
-    res.sendFile(__dirname + '/public/logout.html')
+    res.sendFile(process.cwd() + '/src/public/logout.html')
 }
 
 module.exports = {
