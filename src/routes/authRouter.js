@@ -8,13 +8,13 @@ authRouter.get('/login', authController.serveLogin)
 // POST a login attempt
 authRouter.post('/login', passportLogin, authController.saveSession)
 // GET login error page
-authRouter.get('/login', authController.serveLoginError)
+authRouter.get('/loginError', authController.serveLoginError)
 // GET signup form
 authRouter.get('/signup', authController.serveSignup)
 // POST a signup attempt
 authRouter.post('/signup', passportSignup, authController.saveSession)
 // GET signup error page
-authRouter.get('/login', authController.serveSignupError)
+authRouter.get('/signupError', authController.serveSignupError)
 //GET logout page
 authRouter.get('/logout', authController.serveLogout)
 // POST a logout attempt

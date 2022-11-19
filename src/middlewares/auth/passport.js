@@ -21,10 +21,10 @@ passport.deserializeUser(async (id, done) => {
 })
 
 const passportSignup = passport.authenticate('signup',
-    {failureRedirect: '/signupError'})
+    {failureRedirect: '/auth/signupError'})
 
 const passportLogin = passport.authenticate('login',
-    {failureRedirect: '/loginError'})
+    {failureRedirect: '/auth/loginError'})
 
 module.exports = {
     passport,
