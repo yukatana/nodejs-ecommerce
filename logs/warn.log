@@ -9,3 +9,31 @@
 {"level":"warn","message":"Bad GET request received for non-existing route /"}
 {"level":"warn","message":"Bad GET request received for non-existing route /"}
 {"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"error"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"_message":"users validation failed","errors":{"address":{"kind":"required","message":"Path `address` is required.","name":"ValidatorError","path":"address","properties":{"message":"Path `address` is required.","path":"address","type":"required"}},"age":{"kind":"required","message":"Path `age` is required.","name":"ValidatorError","path":"age","properties":{"message":"Path `age` is required.","path":"age","type":"required"}},"avatar":{"kind":"required","message":"Path `avatar` is required.","name":"ValidatorError","path":"avatar","properties":{"message":"Path `avatar` is required.","path":"avatar","type":"required"}},"name":{"kind":"required","message":"Path `name` is required.","name":"ValidatorError","path":"name","properties":{"message":"Path `name` is required.","path":"name","type":"required"}},"phone":{"kind":"required","message":"Path `phone` is required.","name":"ValidatorError","path":"phone","properties":{"message":"Path `phone` is required.","path":"phone","type":"required"}}},"level":"error","message":"users validation failed: name: Path `name` is required., address: Path `address` is required., age: Path `age` is required., phone: Path `phone` is required., avatar: Path `avatar` is required.","name":"ValidationError"}
+{"level":"warn","message":"Bad GET request received for non-existing route /"}
+{"level":"warn","message":"Bad GET request received for non-existing route /signupError"}
+{"level":"warn","message":"Bad GET request received for non-existing route /signupError"}
+{"_message":"users validation failed","errors":{"address":{"kind":"required","message":"Path `address` is required.","name":"ValidatorError","path":"address","properties":{"message":"Path `address` is required.","path":"address","type":"required"}},"age":{"kind":"required","message":"Path `age` is required.","name":"ValidatorError","path":"age","properties":{"message":"Path `age` is required.","path":"age","type":"required"}},"avatar":{"kind":"required","message":"Path `avatar` is required.","name":"ValidatorError","path":"avatar","properties":{"message":"Path `avatar` is required.","path":"avatar","type":"required"}},"name":{"kind":"required","message":"Path `name` is required.","name":"ValidatorError","path":"name","properties":{"message":"Path `name` is required.","path":"name","type":"required"}},"phone":{"kind":"required","message":"Path `phone` is required.","name":"ValidatorError","path":"phone","properties":{"message":"Path `phone` is required.","path":"phone","type":"required"}}},"level":"error","message":"users validation failed: name: Path `name` is required., address: Path `address` is required., age: Path `age` is required., phone: Path `phone` is required., avatar: Path `avatar` is required.","name":"ValidationError"}
+{"level":"warn","message":"Bad GET request received for non-existing route /auth/css/styles.css"}

@@ -17,7 +17,7 @@ const infoLogger = (req, res, next) => {
 }
 
 const warningLogger = (req, res, next) => {
-    logger.warn(`Bad ${req.method} request received for non-existing route ${req.path}`)
+    logger.warn(`Bad ${req.method} request received for non-existing route ${req.originalUrl}`)
     next()
 }
 

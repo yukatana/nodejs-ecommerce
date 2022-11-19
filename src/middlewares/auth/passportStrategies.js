@@ -1,5 +1,6 @@
 const User = require('../../databases/mongoDB/schemas/user')
 const { comparePassword, hashPassword } = require('../../utils/bcrypt')
+const { logger } = require('../../../logs')
 
 const loginStrategy = async (username, password, done) => {
     const user = await User.findOne({username})
@@ -16,17 +17,24 @@ const signupStrategy = async (req, username, password, done) => {
          return done(null, false, {message: 'User already exists. Please, register with a different username.'})
     }
     const hashedPassword = hashPassword(password)
-    const user = new User({
-        username,
-        password: hashedPassword,
-        name: req.body.name,
-        address: req.body.address,
-        age: req.body.age,
-        phone: req.body.phone,
-        avatar: req.body.avatar
-    })
-    await user.save()
-    return done(null, user)
+
+    try {
+        const user = new User({
+            username,
+            password: hashedPassword,
+            name: req.body.name,
+            address: req.body.address,
+            age: req.body.age,
+            phone: req.body.phone,
+            avatar: req.body.avatar
+        })
+        await user.save()
+        return done(null, user)
+    } catch (err) {
+        logger.error(err)
+        return done(err)
+    }
+
 }
 
 module.exports = {
