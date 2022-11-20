@@ -119,8 +119,7 @@ class MongoDBContainer {
         try {
             const items = await this.Schema
                 .find({ username })
-                .exec()
-            if (items) {
+            if (items.length > 0) {
                 return items
             }
             else {

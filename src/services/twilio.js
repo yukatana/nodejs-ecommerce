@@ -8,30 +8,40 @@ const sendgridMail = require('@sendgrid/mail')
 sendgridMail.setApiKey(config.SENDGRID_API_KEY)
 
 sendPurchaseWhatsapp = async (name, username) => {
-    const info = await client.messages.create(
-        {
-            from: `whatsapp:${config.TWILIO_PHONE}`,
-            to: `whatsapp:${config.MY_PHONE}`,
-            body: `New purchase from ${name} - ${username}`
-        }
-    )
-    return logger.info(info)
+    try {
+        const info = await client.messages.create(
+            {
+                from: `whatsapp:${config.TWILIO_PHONE}`,
+                to: `whatsapp:${config.MY_PHONE}`,
+                body: `New purchase from ${name} - ${username}`
+            }
+        )
+        return logger.info(info)
+    } catch (err) {
+        logger.error(err)
+    }
+
 }
 
 sendPurchaseEmail = async (name, username, cart) => {
-    const msg = {
-        to: config.MY_EMAIL,
-        from: config.MY_EMAIL,
-        subject: `New purchase from ${name} - ${username}`,
-        html: `${cart}`
+    try {
+        const msg = {
+            to: config.MY_EMAIL,
+            from: config.MY_EMAIL,
+            subject: `New purchase from ${name} - ${username}`,
+            html: `${cart}`
+        }
+        return await sendgridMail.send(msg)
+            .then((res) => logger.info(res))
+            .catch(err => logger.error(err))
+    } catch (err) {
+        logger.error(err)
     }
-    return await sendgridMail.send(msg)
-        .then((res) => logger.info(res))
-        .catch(err => logger.error(err))
+
 }
 
 sendRegisteredUserEmail = async (req, res, next) => {
-    const date = new Date.now().toLocaleDateString()
+    const date = new Date().toLocaleString()
     try {
         const msg = {
             to: config.MY_EMAIL,

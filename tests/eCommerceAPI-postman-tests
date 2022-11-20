@@ -1,11 +1,75 @@
 {
 	"info": {
 		"_postman_id": "537c5f82-0928-4d35-9262-1796456fc428",
-		"name": "New Collection",
+		"name": "eCommerce testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "20914554"
 	},
 	"item": [
+		{
+			"name": "Auth router",
+			"item": [
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Product router",
 			"item": [
@@ -19,29 +83,10 @@
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "test",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "price",
-									"value": "10",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "thumbnail",
-									"value": "yadda",
-									"type": "text",
-									"disabled": true
-								}
-							]
+							"urlencoded": []
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/products/2",
+							"raw": "http://localhost:8080/api/products/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -50,7 +95,7 @@
 							"path": [
 								"api",
 								"products",
-								"2"
+								""
 							]
 						}
 					},
@@ -75,8 +120,18 @@
 									"type": "text"
 								},
 								{
+									"key": "stock",
+									"value": "100",
+									"type": "text"
+								},
+								{
 									"key": "thumbnail",
 									"value": "https://api.docred.com/cms/images/195/feed",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Causes Chagas disease.",
 									"type": "text"
 								}
 							]
@@ -108,22 +163,36 @@
 								{
 									"key": "name",
 									"value": "Giardia intestinalis",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "price",
-									"value": "20",
+									"value": "100",
 									"type": "text"
 								},
 								{
 									"key": "thumbnail",
 									"value": "https://www.researchgate.net/profile/Hadi-Abd/publication/290433467/figure/fig2/AS:616376788062236@1523967086818/The-figure-demonstrates-the-protozoic-parasite-Giardia-intestinalis-cysts-1000x_Q640.jpg",
-									"type": "text"
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Funny looking parasyte.",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/products/1",
+							"raw": "http://localhost:8080/api/products/6316b1712125e15d536ca623",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,7 +201,7 @@
 							"path": [
 								"api",
 								"products",
-								"1"
+								"6316b1712125e15d536ca623"
 							],
 							"query": [
 								{
@@ -151,7 +220,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products/1",
+							"raw": "http://localhost:8080/api/products/DgMZpPoWOVq3cIr244Z4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -160,7 +229,7 @@
 							"path": [
 								"api",
 								"products",
-								"1"
+								"DgMZpPoWOVq3cIr244Z4"
 							]
 						}
 					},
@@ -198,7 +267,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/2",
+							"raw": "http://localhost:8080/api/cart/631749ec37982a843785863e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -207,7 +276,7 @@
 							"path": [
 								"api",
 								"cart",
-								"2"
+								"631749ec37982a843785863e"
 							]
 						}
 					},
@@ -219,7 +288,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/1/products",
+							"raw": "http://localhost:8080/api/cart/WZtfTYo4K2F3WNYk4UzX/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -228,7 +297,7 @@
 							"path": [
 								"api",
 								"cart",
-								"1",
+								"WZtfTYo4K2F3WNYk4UzX",
 								"products"
 							]
 						}
@@ -240,8 +309,12 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/1/products/2",
+							"raw": "http://localhost:8080/api/cart/WZtfTYo4K2F3WNYk4UzX/products/g3JsOu1Efsdu8izmpC6O",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -250,9 +323,9 @@
 							"path": [
 								"api",
 								"cart",
-								"1",
+								"WZtfTYo4K2F3WNYk4UzX",
 								"products",
-								"2"
+								"g3JsOu1Efsdu8izmpC6O"
 							]
 						}
 					},
@@ -264,7 +337,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/1/products/2",
+							"raw": "http://localhost:8080/api/cart/WZtfTYo4K2F3WNYk4UzX/products/g3JsOu1Efsdu8izmpC6O",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -273,9 +346,31 @@
 							"path": [
 								"api",
 								"cart",
-								"1",
+								"WZtfTYo4K2F3WNYk4UzX",
 								"products",
-								"2"
+								"g3JsOu1Efsdu8izmpC6O"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Purchase a cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/rommel.aranguren@gmail.com/637a54ef390cbec6cc660099",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"rommel.aranguren@gmail.com",
+								"637a54ef390cbec6cc660099"
 							]
 						}
 					},

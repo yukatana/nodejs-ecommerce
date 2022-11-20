@@ -86,6 +86,7 @@ purchaseCart = async (req, res) => {
             await twilioService.sendPurchaseWhatsapp(name, username)
             await twilioService.sendPurchaseEmail(name, username, cart)
             logger.info(`New purchase from ${username}. Cart: ${cart}`)
+            res.status(202).json({success: `User ${username} has successfully purchased Cart ID: ${id}.`})
         } else {
             res.status(400).json({error: `Cart ID: ${id} does not belong to user ${username}.`})
         }

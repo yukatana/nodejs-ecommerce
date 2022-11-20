@@ -9,7 +9,7 @@ cartsRouter.get('/:username', checkAuthentication, cartsController.getCartsByUse
 // POST new cart related to a username
 cartsRouter.post('/:username', checkAuthentication, cartsController.createCart)
 // POST a purchase request of the products in one of a user's carts
-cartsRouter.post('/:username/:id', checkAuthentication, sendRegisteredUserEmail, cartsController.purchaseCart)
+cartsRouter.post('/:username/:id', checkAuthentication, cartsController.purchaseCart)
 // DELETE a cart by ID
 cartsRouter.delete('/:id', checkAuthentication, cartsController.deleteCartById)
 // GET a cart's products by ID
