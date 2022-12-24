@@ -1,5 +1,5 @@
-const CartsContainer = require('../DAOs').cartsDAO //returns an instance of a DAO class which extends to the chosen container type
-const ProductsContainer = require('../DAOs').productsDAO //necessary since some methods need to access the products database
+const CartsContainer = require('../factories').cartsDAO //returns an instance of a DAO class which extends to the chosen container type
+const ProductsContainer = require('../factories').productsDAO //necessary since some methods need to access the products database
 const verifyUsername = require('../utils/verifyUsername')
 const twilioService = require('../services/twilio')
 const { logger } = require('../../logs')

@@ -2,7 +2,7 @@
 const { Types } = require('mongoose')
 const { logger } = require('../../logs')
 
-class MongoDBContainer {
+class MongoDBDAO {
     constructor(Schema) {
         this.Schema = Schema
     }
@@ -131,4 +131,4 @@ class MongoDBContainer {
     }
 }
 
-module.exports = MongoDBContainer
+module.exports = MongoDBDAO

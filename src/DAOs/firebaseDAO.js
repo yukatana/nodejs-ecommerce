@@ -1,7 +1,7 @@
 const firebase = require('firebase-admin')
 const { logger } = require('../../logs')
 
-class FirebaseContainer {
+class FirebaseDAO {
     constructor(Collection) {
         this.collection = Collection
         this.db = firebase.firestore()
@@ -122,4 +122,4 @@ class FirebaseContainer {
     }
 }
 
-module.exports = FirebaseContainer
+module.exports = FirebaseDAO

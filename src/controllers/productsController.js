@@ -1,4 +1,4 @@
-const ProductsContainer = require('../DAOs').productsDAO //returns an instance of a DAO class which extends to the chosen container type
+const ProductsContainer = require('../factories').productsDAO //returns an instance of a DAO class which extends to the chosen container type
 const { logger } = require('../../logs')
 
 getProductById = async (req, res) => {

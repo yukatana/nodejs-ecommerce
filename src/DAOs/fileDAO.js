@@ -2,7 +2,7 @@
 const fs = require('fs')
 const { logger } = require('../../logs')
 
-class FileContainer {
+class FileDAO {
     constructor(file) {
         this.file = file
     }
@@ -17,7 +17,6 @@ class FileContainer {
             } catch (err) { //executed when the file does not contain JSON-compatible information or is empty
                 parsedData = []
             }
- 
 
             if (parsedData.length > 0) { //executed if the file already has an array in it
                 object.id = parsedData[parsedData.length-1].id+1
@@ -56,7 +55,7 @@ class FileContainer {
                 return null
             }  
         } catch (err) {
-            console.error(err)
+            logger.error(err)
         }
     }
 
@@ -99,4 +98,4 @@ class FileContainer {
     }
 }
 
-module.exports = FileContainer
+module.exports = FileDAO

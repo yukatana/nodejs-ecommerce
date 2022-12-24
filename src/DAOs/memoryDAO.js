@@ -1,7 +1,7 @@
 //Memory-based data handling class for ephemeral data.
 const { logger } = require('../../logs')
 
-class MemoryContainer {
+class MemoryDAO {
 
     constructor() {
         this.data = []
@@ -58,4 +58,4 @@ class MemoryContainer {
     }
 }
 
-module.exports = MemoryContainer
+module.exports = MemoryDAO

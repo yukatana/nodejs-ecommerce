@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const productsRouter = require('./routes/productsRouter')
 const cartRouter = require('./routes/cartsRouter')

@@ -13,6 +13,10 @@ const args = require('yargs')(process.argv.slice(2))
     })
     .argv
 
+// Database declaration for each entity from environment
+const PRODUCTS_DATABASE = process.env.PRODUCTS_DATABASE
+const CARTS_DATABASE = process.env.CARTS_DATABASE
+
 // For MongoDB
 const MONGODB_USERNAME = process.env.MONGODB_USERNAME
 const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD
@@ -33,6 +37,8 @@ const PORT = process.env.PORT || args.port //takes environment port to be assign
 const MODE = args.mode
 
 module.exports = {
+    PRODUCTS_DATABASE,
+    CARTS_DATABASE,
     MONGODB_USERNAME,
     MONGODB_PASSWORD,
     MONGODB_URI,
