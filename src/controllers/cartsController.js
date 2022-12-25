@@ -1,5 +1,5 @@
-const CartsContainer = require('../factories').cartsDAO //returns an instance of a DAO class which extends to the chosen container type
-const ProductsContainer = require('../factories').productsDAO //necessary since some methods need to access the products database
+const CartDAO = require('../factories').getCartsDAO() //returns an instance of a DAO class which extends to the chosen container type
+const ProductDAO = require('../factories').getProductsDAO() //necessary since some methods need to access the products database
 const verifyUsername = require('../utils/verifyUsername')
 const twilioService = require('../services/twilio')
 const { logger } = require('../../logs')
@@ -8,7 +8,7 @@ createCart = async (req, res) => {
     if (await verifyUsername(req.params.username) === null) {
         return res.status(400).json({error: `Bad request - can't create a cart for an invalid username.`})
     }
-    const newCart = await CartsContainer.save({
+    const newCart = await CartDAO.save({
         username: req.params.username,
         timestamp: Date.now(),
         products: []
@@ -17,14 +17,14 @@ createCart = async (req, res) => {
 }
 
 deleteCartById = async (req, res) => {
-    const success = await CartsContainer.deleteById(req.params.id)
+    const success = await CartDAO.deleteById(req.params.id)
     success ?
         res.status(200).json({success: `Cart ID: ${req.params.id} has been deleted.`})
         : res.status(404).json({error: 'Cart not found'})
 }
 
 getByCartId = async (req, res) => {
-    const cart = await CartsContainer.getById(req.params.id)
+    const cart = await CartDAO.getById(req.params.id)
     if (!cart) {
         res.status(404).json({error: 'Cart not found'})
     } else if (cart.products.length === 0) {
@@ -35,8 +35,8 @@ getByCartId = async (req, res) => {
 }
 
 addProductToCart = async (req, res) => {
-    const allCarts = await CartsContainer.getAll()
-    const product = await ProductsContainer.getById(req.params.product_id)
+    const allCarts = await CartDAO.getAll()
+    const product = await ProductDAO.getById(req.params.product_id)
     const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
 
     if (product && targetCartIndex != -1) { //executed only on file and memory persistence methods
@@ -45,7 +45,7 @@ addProductToCart = async (req, res) => {
                 allCarts[targetCartIndex].products.push(product)
         }
         //allCarts has to be passed for memory and file persistence methods, but is used by neither mongoDB nor Firebase
-        await CartsContainer.updateItem(allCarts, req.params.id, product)
+        await CartDAO.updateItem(allCarts, req.params.id, product)
         res.status(200).json({success: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})
     } else {
         res.status(404).json({error: `Either cart ID: ${req.params.id} or product ID: ${req.params.product_id} does not exist.`})
@@ -55,18 +55,18 @@ addProductToCart = async (req, res) => {
 deleteProductFromCart = async (req, res) => {
     //executed when calling this method while using memory or file-based persistence, since assigned IDs are numeric
     if (!isNaN(req.params.id)) {
-        const allCarts = await CartsContainer.getAll()
+        const allCarts = await CartDAO.getAll()
         const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
         const targetProductIndex = allCarts[targetCartIndex].products.findIndex(e => e.id == req.params.product_id)
         if (targetCartIndex != -1 && targetProductIndex != -1) {
             allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
-            await CartsContainer.updateItem(allCarts)
+            await CartDAO.updateItem(allCarts)
             return res.status(200).json({success: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
         } else {
             res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
         }
     } else {
-        const success = await CartsContainer.deleteFromCartById(req.params.id, req.params.product_id)
+        const success = await CartDAO.deleteFromCartById(req.params.id, req.params.product_id)
         if (success) {
             return res.status(200).json({success: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
         } else {
@@ -79,7 +79,7 @@ purchaseCart = async (req, res) => {
     const username = req.params.username
     const name = req.session.user.name
     const id = req.params.id
-    const cart = await CartsContainer.getById(id)
+    const cart = await CartDAO.getById(id)
     if (await verifyUsername(username) !== null && cart) {
         if (cart.username === username) {
             //using Twilio to send a WhatsApp message and an email upon purchase
@@ -99,9 +99,9 @@ purchaseCart = async (req, res) => {
 
 getCartsByUser = async (req, res) => {
     const username = req.params.username
-    const carts = await CartsContainer.getByUsername(username)
+    const carts = await CartDAO.getByUsername(username)
     if (!carts) {
-        res.status(404).json({error: `Carts not found for ${username}`})
+        res.status(404).json({error: `No carts found for ${username}`})
     // } else if (carts.products.length === 0) {
     //     res.status(200).json({empty: `Cart ID: ${req.params.id} is empty.`})
     } else {

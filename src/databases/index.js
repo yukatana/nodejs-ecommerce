@@ -14,7 +14,7 @@ module.exports = class DatabaseConnections {
                 this.productsDatabase === 'mongoDB') {
                 const mongoDBConnection = require('../databases/mongoDB')
                 const MongoDBConnection = new mongoDBConnection(config.MONGODB_USERNAME, config.MONGODB_PASSWORD, config.MONGODB_URI, config.MONGODB_DATABASE)
-                this.mongoDBConnection = MongoDBConnection.connect()
+                this.mongoDBConnection = await MongoDBConnection.connect()
                     .then(() => logger.info('Successfully connected to MongoDB database.'))
                     .catch((err) => logger.error(`Could not connect to MongoDB database. Error: ${err}`))
             } else if (this.cartsDatabase === 'firebase' ||
