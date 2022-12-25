@@ -12,13 +12,12 @@ const loginStrategy = async (username, password, done) => {
 }
 
 const signupStrategy = async (req, username, password, done) => {
-    const userExists = await User.findOne({ username })
-    if (userExists) {
-         return done(null, false, {message: 'User already exists. Please, register with a different username.'})
-    }
-    const hashedPassword = hashPassword(password)
-
     try {
+        const userExists = await User.findOne({ username })
+        if (userExists) {
+            return done(null, false, {message: 'User already exists. Please, register with a different username.'})
+        }
+        const hashedPassword = hashPassword(password)
         const user = new User({
             username,
             password: hashedPassword,
@@ -34,7 +33,6 @@ const signupStrategy = async (req, username, password, done) => {
         logger.error(err)
         return done(err)
     }
-
 }
 
 module.exports = {

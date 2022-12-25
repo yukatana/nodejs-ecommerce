@@ -4,7 +4,7 @@ const cartRouter = require('./routes/cartsRouter')
 const authRouter = require('./routes/authRouter')
 const cookieParser = require('cookie-parser')
 const { warningLogger } = require('../logs')
-const session = require('express-session')
+// const session = require('express-session') - DEPRECATED: now using JWT for authentication
 
 const app = express()
 
@@ -12,14 +12,14 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
 
-// session config import
-const { sessionConfig } = require('./middlewares/sessionConfig')
-app.use(session(sessionConfig))
+// DEPRECATED! Now using JWT for authentication.
+// const { sessionConfig } = require('./middlewares/sessionConfig')
+// app.use(session(sessionConfig))
 
 // passport config import
-const { passport } = require('./middlewares/auth/passport')
-app.use(passport.initialize())
-app.use(passport.session())
+// const { passport } = require('./middlewares/auth/passport')
+// app.use(passport.initialize())
+// app.use(passport.session())
 
 // Router declaration
 app.use('/api/products', productsRouter)

@@ -33,6 +33,9 @@ const MY_PHONE = process.env.MY_PHONE
 const MY_EMAIL = process.env.MY_EMAIL
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
 
+// SENSITIVE: JWT secret key
+const JWT_KEY = process.env.JWT_KEY
+
 const PORT = process.env.PORT || args.port //takes environment port to be assigned by deployment container
 const MODE = args.mode
 
@@ -52,5 +55,6 @@ module.exports = {
     MY_EMAIL,
     SENDGRID_API_KEY,
     PORT,
-    MODE
+    MODE,
+    JWT_KEY
 }

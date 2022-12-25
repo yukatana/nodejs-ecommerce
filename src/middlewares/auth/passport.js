@@ -1,3 +1,6 @@
+const config = require('../../config')
+const { logger } = require('../../../logs')
+
 // Passport import, initialization, and configuration
 const passport = require('passport')
 const { loginStrategy, signupStrategy } = require('../../middlewares/auth/passportStrategies')
@@ -6,6 +9,20 @@ passport.use('login', new LocalStrategy(loginStrategy))
 passport.use('signup', new LocalStrategy(
     {passReqToCallback: true},
     signupStrategy)
+)
+
+// setting up JWT functionality
+const { JWTStrategy, ExtractJWT } = require('passport-jwt')
+passport.use(new JWTStrategy({
+        secretOrKey: config.JWT_KEY,
+        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+    }, async (token, done) => {
+        try {
+            return done(null, token.user)
+        } catch (err) {
+            logger.error(err)
+        }
+    })
 )
 
 // Types and User schema to be used by deserialize
@@ -26,8 +43,12 @@ const passportSignup = passport.authenticate('signup',
 const passportLogin = passport.authenticate('login',
     {failureRedirect: '/auth/loginError'})
 
+const passportJwt = passport.authenticate('jwt',
+    {session: false})
+
 module.exports = {
     passport,
     passportSignup,
-    passportLogin
+    passportLogin,
+    passportJwt
 }
