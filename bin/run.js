@@ -4,6 +4,10 @@ const { cpus } = require('os')
 const config = require('../src/config')
 const app = require('../src/app')
 
+//database connection is called as soon as the app is initialized
+require('../src/databases').connect()
+    .then(() => logger.info('Successfully connected to all databases.'))
+
 if (config.MODE === 'cluster' && cluster.isPrimary) {
     logger.info(`Started master process with PID: ${process.pid}`)
     //Forking a worker for each core
