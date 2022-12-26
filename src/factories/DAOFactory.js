@@ -72,7 +72,7 @@ module.exports = class DAOFactory {
         if (this.messageDAO) {
             return this.messageDAO
         }
-        switch (config.MESSAGES_DATABASE) {
+        switch (config.MESSAGE_DATABASE) {
             case 'memory' :
                 const MessageDAOMemory = require('../DAOs/memoryDAO')
                 this.messageDAO = new MessageDAOMemory()
@@ -85,7 +85,7 @@ module.exports = class DAOFactory {
                 break
             case 'mongodb' :
                 const MessageDAOMongoDB = require('../DAOs/mongoDBDAO')
-                const MessageModel = require('../databases/mongoDB/schemas/product')
+                const MessageModel = require('../databases/mongoDB/schemas/message')
                 this.messageDAO = new MessageDAOMongoDB(MessageModel)
                 return this.messageDAO
                 break

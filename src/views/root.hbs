@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <form>
+        <div id="ratio"></div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email">
+            <input type="text" class="form-control" id="type" placeholder="Enter type: user or system">
+        </div>
+        <small id="emailHelp" class="form-text text-muted">An email address is mandatory in order to send a message.</small>
+
+        <div id="chatBox"></div>
+
+        <div class="form-row">
+            <div class="form-group col-10">
+                <input class="form-control" id="message" placeholder="Send a message...">
+            </div>
+            <button type="submit" class="btn btn-primary col-2" onclick="sendMessage()">Send</button>
+        </div>
+    </form>
+</div>

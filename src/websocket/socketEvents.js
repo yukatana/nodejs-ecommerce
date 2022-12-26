@@ -1,0 +1,9 @@
+const MESSAGES_INIT = 'MESSAGES_INIT'
+const POST_MESSAGE = 'POST_MESSAGE'
+const NEW_MESSAGE = 'NEW_MESSAGE'
+
+module.exports = {
+    MESSAGES_INIT,
+    POST_MESSAGE,
+    NEW_MESSAGE,
+}

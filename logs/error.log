@@ -4,3 +4,39 @@
 {"code":400,"message":"Bad Request","response":{"body":{"errors":[{"field":"content","help":"http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#message.content","message":"Unless a valid template_id is provided, the content parameter is required. There must be at least one defined content block. We typically suggest both text/plain and text/html blocks are included, but only one block is required."}]},"headers":{"access-control-allow-headers":"Authorization, Content-Type, On-behalf-of, x-sg-elas-acl","access-control-allow-methods":"POST","access-control-allow-origin":"https://sendgrid.api-docs.io","access-control-max-age":"600","connection":"close","content-length":"365","content-type":"application/json","date":"Sat, 19 Nov 2022 22:25:41 GMT","server":"nginx","strict-transport-security":"max-age=600; includeSubDomains","x-no-cors-reason":"https://sendgrid.com/docs/Classroom/Basics/API/cors.html"}}}
 {"code":63007,"level":"error","moreInfo":"https://www.twilio.com/docs/errors/63007","status":400}
 {"code":63007,"level":"error","moreInfo":"https://www.twilio.com/docs/errors/63007","status":400}
+{
+  message: 'Fatal error: please adjust MESSAGE_DATABASE environment variable to match a supported persistence mechanism.',
+  level: 'error',
+  timestamp: '2022-12-26T13:54:03.661Z'
+}
+{
+  message: 'Fatal error: please adjust MESSAGE_DATABASE environment variable to match a supported persistence mechanism.',
+  level: 'error',
+  timestamp: '2022-12-26T14:24:23.809Z'
+}
+{
+  message: 'Fatal error: please adjust MESSAGE_DATABASE environment variable to match a supported persistence mechanism.',
+  level: 'error',
+  timestamp: '2022-12-26T14:25:19.915Z'
+}
+{
+  message: 'Fatal error: please adjust MESSAGE_DATABASE environment variable to match a supported persistence mechanism.',
+  level: 'error',
+  timestamp: '2022-12-26T14:25:19.998Z'
+}
+{
+  level: 'error',
+  message: "Cannot read properties of undefined (reading 'getAll')",
+  stack: "TypeError: Cannot read properties of undefined (reading 'getAll')\n" +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:10:44)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:25:22.511Z'
+}

@@ -3,6 +3,12 @@ const cluster = require('cluster')
 const { cpus } = require('os')
 const config = require('../src/config')
 const app = require('../src/app')
+// Express app is passed to an http server instance in order to set up the websocket's listener
+const { Server } = require('http')
+const http = new Server(app)
+
+// Initializing modular websocket listener with http server as argument
+require('../src/websocket/socketListener')(http)
 
 //database connection is called as soon as the app is initialized
 require('../src/databases').connect()

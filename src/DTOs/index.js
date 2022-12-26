@@ -18,4 +18,13 @@ class ProductDTO {
     }
 }
 
-module.exports = { CartDTO, ProductDTO }
+class MessageDTO {
+    constructor(message) {
+        this.username = message.username
+        this.type = message.type
+        this.body = message.body
+        this.dateString = message.dateString
+    }
+}
+
+module.exports = { CartDTO, ProductDTO, MessageDTO }

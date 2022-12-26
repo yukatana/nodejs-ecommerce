@@ -12,10 +12,10 @@ passport.use('signup', new LocalStrategy(
 )
 
 // setting up JWT functionality
-const { JWTStrategy, ExtractJWT } = require('passport-jwt')
+const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 passport.use(new JWTStrategy({
         secretOrKey: config.JWT_KEY,
-        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     }, async (token, done) => {
         try {
             return done(null, token.user)

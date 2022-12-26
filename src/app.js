@@ -2,6 +2,7 @@ const express = require('express')
 const productsRouter = require('./routes/productsRouter')
 const cartRouter = require('./routes/cartsRouter')
 const authRouter = require('./routes/authRouter')
+const chatRouter = require('./routes/chatRouter')
 const cookieParser = require('cookie-parser')
 const { warningLogger } = require('../logs')
 // const session = require('express-session') - DEPRECATED: now using JWT for authentication
@@ -21,10 +22,15 @@ app.use(cookieParser())
 // app.use(passport.initialize())
 // app.use(passport.session())
 
+// Handlebars config import
+const hbs = require('./views')
+app.engine('hbs', hbs.engine)
+
 // Router declaration
 app.use('/api/products', productsRouter)
 app.use('/api/cart', cartRouter)
 app.use('/auth', authRouter)
+app.use('/chat', chatRouter)
 
 app.use(express.static(process.cwd() + '/src/public'))
 

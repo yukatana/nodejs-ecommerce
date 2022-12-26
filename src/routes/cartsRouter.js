@@ -2,7 +2,6 @@ const { Router } = require('express')
 const cartsRouter = Router()
 const cartsController = require('../controllers/cartsController')
 const checkAuthentication = require('../middlewares/auth/checkAuthentication')
-const { sendRegisteredUserEmail } = require('../services/twilio')
 
 // GET all carts related to a user
 cartsRouter.get('/:username', checkAuthentication, cartsController.getCartsByUser)
