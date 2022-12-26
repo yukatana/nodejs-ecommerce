@@ -1,21 +1,38 @@
-const ProductDAO = require('../factories').getProductsDAO() //returns an instance of a DAO class which extends to the chosen container type
+const ProductDAO = require('../factories').getProductDAO() //returns an instance of a DAO class which extends to the chosen container type
 const { logger } = require('../../logs')
 
 getProductById = async (req, res) => {
     if (req.params.id) {
         const product = await ProductDAO.getById(req.params.id)
         if (!product) {
-            res.status(404).json({error: 'Product not found'})
+            res.status(404).json({error: 'Product not found.'})
         } else {
             res.status(200).json(product)
         }
     } else {
         const data = await ProductDAO.getAll()
+        // evaluates whether the query returned any data
         data.length !== 0 ? res.status(200).json(data) : res.status(404).json({error: 'No products were found on the database.'})
     }
 }
 
-addProduct =  async (req, res) => {
+getByCategory = async (req, res) => {
+    try {
+        if (!req.params.category) {
+            return res.status(400).json({error: `BAD REQUEST - please specify a category parameter.`})
+        }
+        const category = req.params.category
+        const products = await ProductDAO.filter('category', category)
+        if (!products) {
+            return res.status(404).json({error: `No products matched your filter for category ${category}.`})
+        }
+        return res.status(200).json(products)
+    } catch (err) {
+        logger.error(err)
+    }
+}
+
+addProduct = async (req, res) => {
     const product = {
         timestamp: Date.now(),
         name: req.body.name,
@@ -62,5 +79,6 @@ module.exports = {
     getProductById,
     addProduct,
     updateProductById,
-    deleteProductById
+    deleteProductById,
+    getByCategory
 }

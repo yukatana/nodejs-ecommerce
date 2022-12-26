@@ -4,11 +4,11 @@ const { logger } = require('../../logs')
 module.exports = class DAOFactory {
     constructor() {}
 
-    static getCartsDAO = () => {
+    static getCartDAO = () => {
         if (this.cartsDAO) {
             return this.cartsDAO
         }
-        switch (config.CARTS_DATABASE) {
+        switch (config.CART_DATABASE) {
             case 'memory' :
                 const CartsDAOMemory = require('../DAOs/memoryDAO')
                 this.cartsDAO = new CartsDAOMemory()
@@ -19,7 +19,7 @@ module.exports = class DAOFactory {
                 this.cartsDAO = new CartsDAOFile('./databases/files/carts.json') //path relative to app.js
                 return this.cartsDAO
                 break
-            case 'mongoDB' :
+            case 'mongodb' :
                 const CartsDAOMongoDB = require('../DAOs/mongoDBDAO')
                 const CartModel = require('../databases/mongoDB/schemas/cart')
                 this.cartsDAO = new CartsDAOMongoDB(CartModel)
@@ -32,15 +32,15 @@ module.exports = class DAOFactory {
                 return this.cartsDAO
                 break
             default:
-                logger.error(`Fatal error: please adjust CARTS_DATABASE environment variable to match a supported persistence mechanism.`)
+                logger.error(`Fatal error: please adjust CART_DATABASE environment variable to match a supported persistence mechanism.`)
         }
     }
 
-    static getProductsDAO = () => {
+    static getProductDAO = () => {
         if (this.productsDAO) {
             return this.productsDAO
         }
-        switch (config.PRODUCTS_DATABASE) {
+        switch (config.PRODUCT_DATABASE) {
             case 'memory' :
                 const ProductsDAOMemory = require('../DAOs/memoryDAO')
                 this.productsDAO = new ProductsDAOMemory()
@@ -51,7 +51,7 @@ module.exports = class DAOFactory {
                 this.productsDAO = new ProductsDAOFile('./databases/files/products.json') //path relative to app.js
                 return this.productsDAO
                 break
-            case 'mongoDB' :
+            case 'mongodb' :
                 const ProductsDAOMongoDB = require('../DAOs/mongoDBDAO')
                 const ProductModel = require('../databases/mongoDB/schemas/product')
                 this.productsDAO = new ProductsDAOMongoDB(ProductModel)
@@ -64,7 +64,39 @@ module.exports = class DAOFactory {
                 return this.productsDAO
                 break
             default:
-                logger.error(`Fatal error: please adjust PRODUCTS_DATABASE environment variable to match a supported persistence mechanism.`)
+                logger.error(`Fatal error: please adjust PRODUCT_DATABASE environment variable to match a supported persistence mechanism.`)
+        }
+    }
+
+    static getMessageDAO = () => {
+        if (this.messageDAO) {
+            return this.messageDAO
+        }
+        switch (config.MESSAGES_DATABASE) {
+            case 'memory' :
+                const MessageDAOMemory = require('../DAOs/memoryDAO')
+                this.messageDAO = new MessageDAOMemory()
+                return this.messageDAO
+                break
+            case 'file' :
+                const MessageDAOFile = require('../DAOs/fileDAO')
+                this.messageDAO = new MessageDAOFile('./databases/files/products.json') //path relative to app.js
+                return this.messageDAO
+                break
+            case 'mongodb' :
+                const MessageDAOMongoDB = require('../DAOs/mongoDBDAO')
+                const MessageModel = require('../databases/mongoDB/schemas/product')
+                this.messageDAO = new MessageDAOMongoDB(MessageModel)
+                return this.messageDAO
+                break
+            case 'firebase' :
+                const MessageDAOFirebase = require('../DAOs/firebaseDAO')
+                this.messageDAO = new MessageDAOFirebase('products')
+                logger.info('Successfully connected to message database.')
+                return this.messageDAO
+                break
+            default:
+                logger.error(`Fatal error: please adjust MESSAGE_DATABASE environment variable to match a supported persistence mechanism.`)
         }
     }
 }

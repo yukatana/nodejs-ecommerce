@@ -80,6 +80,22 @@ class MongoDBDAO {
         }
     }
 
+    filter = async (key, value) => { // filters a collection by key value pairs, or null if it does not exist
+        try {
+            const items = await this.Schema
+                .find({ [key]: value }) // dynamic key assignment allows for re-usability
+                .exec()
+            if (items.length > 0) {
+                return items
+            }
+            else {
+                return null
+            }
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
     deleteFromCartById = async (cartId, productId) => {
         try {
             cartId = Types.ObjectId(cartId)

@@ -20,13 +20,12 @@ sendPurchaseWhatsapp = async (name, username) => {
     } catch (err) {
         logger.error(err)
     }
-
 }
 
 sendPurchaseEmail = async (name, username, cart) => {
     try {
         const msg = {
-            to: config.MY_EMAIL,
+            to: username,
             from: config.MY_EMAIL,
             subject: `New purchase from ${name} - ${username}`,
             html: `${cart}`
@@ -37,7 +36,6 @@ sendPurchaseEmail = async (name, username, cart) => {
     } catch (err) {
         logger.error(err)
     }
-
 }
 
 sendRegisteredUserEmail = async (req, res, next) => {
@@ -47,7 +45,7 @@ sendRegisteredUserEmail = async (req, res, next) => {
             to: config.MY_EMAIL,
             from: config.MY_EMAIL,
             subject: `New user registered - ${req.user.username}`,
-            html: `<h1> ${req.user.username} has registered in the platform at ${date}`
+            html: `<h1> ${req.user.username} has registered in the platform at ${date} </h1>`
         }
         sendgridMail.send(msg)
             .then((res) => logger.info(res))
