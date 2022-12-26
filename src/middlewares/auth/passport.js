@@ -43,12 +43,12 @@ const passportSignup = passport.authenticate('signup',
 const passportLogin = passport.authenticate('login',
     {failureRedirect: '/auth/loginError'})
 
-const passportJwt = passport.authenticate('jwt',
+const passportJWT = passport.authenticate('jwt',
     {session: false})
 
 module.exports = {
     passport,
     passportSignup,
     passportLogin,
-    passportJwt
+    passportJWT
 }
