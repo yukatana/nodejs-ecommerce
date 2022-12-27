@@ -1,9 +1,0 @@
-{{#if messages}}
-    {{#each messages}}
-    <p>
-        <b>{{this.username}} - {{this.type}}</b> <span class="date">[{{this.dateString}}]:</span> {{this.body}}
-    </p>
-    {{/each}}
-{{else}}
-    <p>No messages yet... Why don't you write something?</p>
-{{/if}}

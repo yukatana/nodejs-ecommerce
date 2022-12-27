@@ -14,12 +14,7 @@ module.exports = socketListener = (httpServer) => {
     socketServer.on('connection',  async (socket) => {
         logger.info('A new client has connected to the websocket channel.')
 
-        // Initial emission of all messages for the frontend
-        const messages = await MessageDAO.getAll()
-        const messagesToClient = messages.map(msg => {return new MessageDTO(msg)})
-        socketServer.emit(events.MESSAGES_INIT, messagesToClient)
-
-        // New message handler
+        // The only necessary websocket event is POST_MESSAGE since initialization is handled by handlebars in order to allow filtering
         socket.on(events.POST_MESSAGE, async (msg) => {
             logger.info(msg)
             await MessageDAO.save(msg)

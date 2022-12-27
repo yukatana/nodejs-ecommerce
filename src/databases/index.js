@@ -3,15 +3,15 @@ const { logger } = require('../../logs')
 
 module.exports = class DatabaseConnections {
     //connection to mongoDB and/or firebase is only required when it's specified in .env
-    static cartsDatabase = config.CARTS_DATABASE
-    static productsDatabase = config.PRODUCTS_DATABASE
+    static cartsDatabase = config.CART_DATABASE
+    static productsDatabase = config.PRODUCT_DATABASE
 
     constructor() {}
 
     static connect = async () => {
         try {
-            if (this.cartsDatabase === 'mongoDB' ||
-                this.productsDatabase === 'mongoDB') {
+            if (this.cartsDatabase === 'mongodb' ||
+                this.productsDatabase === 'mongodb') {
                 const mongoDBConnection = require('../databases/mongoDB')
                 const MongoDBConnection = new mongoDBConnection(config.MONGODB_USERNAME, config.MONGODB_PASSWORD, config.MONGODB_URI, config.MONGODB_DATABASE)
                 this.mongoDBConnection = await MongoDBConnection.connect()

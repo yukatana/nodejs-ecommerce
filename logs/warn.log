@@ -116,3 +116,905 @@
     '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
   timestamp: '2022-12-26T14:25:22.511Z'
 }
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:11:53)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:31:32.295Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:37:19.768Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:37:23.642Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:38:12.835Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:38:13.297Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:38:14.875Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:39:06.220Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:39:30.283Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:16:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:39:59.880Z'
+}
+{
+  level: 'error',
+  message: 'allMessages.map is not a function',
+  stack: 'TypeError: allMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:17:47)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:40:41.956Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuf13',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:29.062Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEufGw',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:30.076Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEufpi',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:32.303Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEugnQ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:36.253Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuh_n',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:41.269Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEujIe',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:46.571Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEukWu',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:51.579Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEullJ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:42:56.598Z'
+}
+{
+  level: 'error',
+  message: 'filteredMessages.map is not a function',
+  stack: 'TypeError: filteredMessages.map is not a function\n' +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:22:59)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at Route.dispatch (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:114:3)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:365:14)\n' +
+    '    at param (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:376:14)\n' +
+    '    at Function.process_params (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:421:3)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\index.js:280:10)',
+  timestamp: '2022-12-26T14:42:58.270Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEumzc',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:01.610Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuoC1',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:06.627Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEupQT',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:11.649Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuqer',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:16.663Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEurtI',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:21.685Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEut5d',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:26.698Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuuJv',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:31.708Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuvYE',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:36.722Z'
+}
+{
+  level: 'error',
+  message: "Cannot read properties of null (reading 'map')",
+  stack: "TypeError: Cannot read properties of null (reading 'map')\n" +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:22:59)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-12-26T14:43:37.474Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuwml',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:41.746Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuyam',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:49.171Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuyle',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:49.866Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEuzAl',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:51.601Z'
+}
+{
+  level: 'error',
+  message: "Cannot read properties of null (reading 'map')",
+  stack: "TypeError: Cannot read properties of null (reading 'map')\n" +
+    '    at serveChat (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\chatController.js:22:59)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-12-26T14:43:54.678Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEu-O-',
+  level: 'warn',
+  timestamp: '2022-12-26T14:43:56.608Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEu_dG',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:01.619Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv0rg',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:06.638Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv241',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:11.652Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv3IO',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:16.666Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv4Wr',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:21.688Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv5lB',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:26.702Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv6zd',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:31.721Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv8Bv',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:36.732Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEv9QT',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:41.759Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEvAex',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:46.782Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/css/styles.css',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:51.383Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/js/main.js',
+  level: 'warn',
+  timestamp: '2022-12-26T14:44:51.386Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/js/main.js',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:06.594Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/css/styles.css',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:06.598Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/css/styles.css',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:09.069Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/js/main.js',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:09.072Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEvHBk',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:13.586Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEvHR8',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:14.570Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEvHmI',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:15.925Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/js/main.js',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:18.786Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /chat/css/styles.css',
+  level: 'warn',
+  timestamp: '2022-12-26T14:45:18.789Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwt3g',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:10.861Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwtMh',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:12.077Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwtfh',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:13.293Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwts1',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:14.083Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwt-z',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:14.655Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwuCg',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:15.532Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwurL',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:18.136Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEww3l',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:23.154Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwxIJ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:28.181Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwyWh',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:33.198Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEwzk-',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:38.208Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEw-zC',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:43.213Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx0Bc',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:48.232Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx1Q3',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:53.253Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx2ea',
+  level: 'warn',
+  timestamp: '2022-12-26T14:52:58.278Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx3su',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:03.289Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx55K',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:08.309Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx6Je',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:13.323Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx7Y5',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:18.343Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx8mQ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:23.356Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx9-k',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:28.369Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExAyo',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:32.341Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExBKJ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:33.845Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExByd',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:36.426Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExCcF',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:39.089Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExDqZ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:44.102Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExF32',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:49.125Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExGHY',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:54.150Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExHW1',
+  level: 'warn',
+  timestamp: '2022-12-26T14:53:59.171Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExIkK',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:04.183Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExJyg',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:09.198Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExLBB',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:14.223Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExMPj',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:19.246Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExNe4',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:24.262Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExOsR',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:29.277Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExQ4k',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:34.289Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExRJ8',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:39.306Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExSXO',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:44.314Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExTlg',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:49.323Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExUsU',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:53.856Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExV6t',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:54.906Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExVPz',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:56.126Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExVyD',
+  level: 'warn',
+  timestamp: '2022-12-26T14:54:58.318Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExWwA',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:02.284Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExV6t',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:06.357Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExY8E',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:07.280Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExZMW',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:12.289Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExaal',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:17.297Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExbp2',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:22.308Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExd1O',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:27.323Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExeFq',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:32.342Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExeyX',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:35.202Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExfGy',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:36.509Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExfii',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:38.286Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExges',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:42.136Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExhtB',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:47.149Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExj5W',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:52.162Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExkJo',
+  level: 'warn',
+  timestamp: '2022-12-26T14:55:57.172Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExlYI',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:02.197Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExmmi',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:07.215Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExn_5',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:12.232Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExpDT',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:17.248Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExqRu',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:22.268Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExqaZ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:22.821Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExqxm',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:24.306Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExrQQ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:26.268Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExsVB',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:30.683Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExtjq',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:35.704Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExuyL',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:40.728Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExwAh',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:45.742Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExxP3',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:50.757Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExyda',
+  level: 'warn',
+  timestamp: '2022-12-26T14:56:55.784Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLExzr-',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:00.801Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEx_Ba',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:06.279Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEy0fO',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:12.283Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEy270',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:18.275Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEy3am',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:24.275Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEy52b',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:30.281Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEy6WK',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:36.279Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEy7-A',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:42.285Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEy9Rs',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:48.281Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyAvd',
+  level: 'warn',
+  timestamp: '2022-12-26T14:57:54.282Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyCNG',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:00.275Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyDrD',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:06.294Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyF8A',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:11.609Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyFhV',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:13.857Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyFwr',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:14.839Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyGFX',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:16.163Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyHU0',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:21.188Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyIb4',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:25.735Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyIm1',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:26.435Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyJN-',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:28.992Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyK12',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:31.620Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyL6j',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:36.079Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyMK-',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:41.089Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyNZJ',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:46.102Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyOnn',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:51.128Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyQ08',
+  level: 'warn',
+  timestamp: '2022-12-26T14:58:56.139Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /socket.io/?EIO=4&transport=polling&t=OLEyREX',
+  level: 'warn',
+  timestamp: '2022-12-26T14:59:01.156Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /favicon.ico',
+  level: 'warn',
+  timestamp: '2022-12-26T15:16:14.907Z'
+}

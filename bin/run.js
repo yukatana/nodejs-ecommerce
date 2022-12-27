@@ -29,9 +29,9 @@ if (config.MODE === 'cluster' && cluster.isPrimary) {
     //Runs express server for every worker that is spawned or just once if we're running on fork mode
     const PORT = config.PORT
 
-    app.listen(PORT, () => {
+    http.listen(PORT, () => {
         logger.info(`Express server listening on port ${PORT} - PID: ${process.pid}`)
     })
 
-    app.on('error', error => logger.info(`HTTP server error: ${error}`))
+    http.on('error', error => logger.info(`HTTP server error: ${error}`))
 }

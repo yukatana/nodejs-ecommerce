@@ -23,7 +23,7 @@ app.use(cookieParser())
 // app.use(passport.session())
 
 // Handlebars config import
-const hbs = require('./views')
+const hbs = require('../views')
 app.engine('hbs', hbs.engine)
 
 // Router declaration
