@@ -38,6 +38,21 @@ class MemoryDAO {
         }
     }
 
+    pushToProperty = (id, item, property) => {
+        try {
+            const data = this.data
+            const targetIndex = allCarts.findIndex(e => e.id == id)
+            if (item && targetIndex !== -1) {
+                data[targetIndex][property].push(item)
+                return data[targetIndex]
+            }
+            // Null is returned if no item is passed or if the passed id does not match any items
+            return null
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
     getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
         const item = await this.data.find(el => el.id == id)
         if (item) {

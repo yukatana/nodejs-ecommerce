@@ -35,4 +35,15 @@ class MessageDTO {
     }
 }
 
-module.exports = { CartDTO, ProductDTO, MessageDTO }
+class OrderDTO {
+    constructor(order) {
+        this.products = order.products
+        this.deliveryAddress = order.deliveryAddress
+        this.originCart = order.originCart
+        this.orderNumber = order.orderNumber
+        this.state = order.state
+        this.dateString = order.dateString
+    }
+}
+
+module.exports = { CartDTO, ProductDTO, MessageDTO, OrderDTO }

@@ -36,6 +36,19 @@ class MongoDBDAO {
         }
     }
 
+    // Different from updateItem. Used to push an element to an array inside a document
+    pushToProperty = async (id, item, property) => {
+        try {
+            const id = Types.ObjectId(id)
+            const document = await this.Schema
+                .findOne({_id: id})
+            document[property].push(item)
+            return document.save()
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
     getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
         try {
             id = Types.ObjectId(id)

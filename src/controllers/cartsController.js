@@ -1,19 +1,25 @@
 const { logger } = require('../../logs')
-const CartDAO = require('../factories/DAOFactory').getCartDAO() //returns an instance of a DAO class which extends to the chosen container type
-const ProductDAO = require('../factories/DAOFactory').getProductDAO() //necessary since some methods need to access the products database
-const verifyUsername = require('../utils/verifyUsername')
+//returns an instance of a DAO class which extends to the chosen container type
+const CartDAO = require('../factories/DAOFactory').getCartDAO()
+//necessary since some methods need to access the products database
+const ProductDAO = require('../factories/DAOFactory').getProductDAO()
+const { CartDTO, ProductDTO, OrderDTO } = require('../DTOs')
+const userService = require('../services/userService')
 const twilioService = require('../services/twilio')
 
 createCart = async (req, res) => {
-    if (await verifyUsername(req.params.username) === null) {
+    const username = req.params.username
+    // Verifies whether the username is in the users MongoDB collection
+    if (await userService.verifyUsername(username) === null) {
         return res.status(400).json({error: `Bad request - can't create a cart for an invalid username.`})
     }
     const newCart = await CartDAO.save({
-        username: req.params.username,
-        timestamp: Date.now(),
-        products: []
+        username,
+        products: [],
+        dateString: new Date.toLocaleString(),
+        deliveryAddress: await userService.getDeliveryAddress()
     })
-    res.status(201).json({success: `A new cart has been created with ID: ${newCart.id}.`})
+    res.status(201).json(new CartDTO(newCart))
 }
 
 deleteCartById = async (req, res) => {
@@ -30,23 +36,18 @@ getByCartId = async (req, res) => {
     } else if (cart.products.length === 0) {
         res.status(200).json({empty: `Cart ID: ${req.params.id} is empty.`})
     } else {
-        res.status(200).json(cart.products)
+        res.status(200).json(cart.products.map(product => { return new ProductDTO(product) }))
     }
 }
 
 addProductToCart = async (req, res) => {
-    const allCarts = await CartDAO.getAll()
-    const product = await ProductDAO.getById(req.params.product_id)
-    const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
-
-    if (product && targetCartIndex != -1) { //executed only on file and memory persistence methods
-        if (!isNaN(req.params.id) ||
-            !isNaN(req.params.product_id)) {
-                allCarts[targetCartIndex].products.push(product)
-        }
-        //allCarts has to be passed for memory and file persistence methods, but is used by neither mongoDB nor Firebase
-        await CartDAO.updateItem(allCarts, req.params.id, product)
-        res.status(200).json({success: `Product ID: ${req.params.product_id} has been added to cart ID: ${req.params.id}`})
+    const cartId = req.params.id
+    const productId = req.params.productId
+    const product = await ProductDAO.getById(productId)
+    // Executes only when a corresponding product has been found for the passed id
+    if (product) {
+        const updatedCart = await CartDAO.pushToProperty(cartId, product, 'products') // third parameter specifies the key to push changes to
+        res.status(200).json(new CartDTO(updatedCart))
     } else {
         res.status(404).json({error: `Either cart ID: ${req.params.id} or product ID: ${req.params.product_id} does not exist.`})
     }

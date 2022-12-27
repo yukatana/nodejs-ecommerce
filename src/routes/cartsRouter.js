@@ -14,8 +14,8 @@ cartsRouter.delete('/:id', checkAuthentication, cartsController.deleteCartById)
 // GET a cart's products by ID
 cartsRouter.get('/:id/products', cartsController.getByCartId)
 // POST a product to a cart
-cartsRouter.post('/:id/products/:product_id', checkAuthentication, cartsController.addProductToCart)
+cartsRouter.post('/:id/products/:productId', checkAuthentication, cartsController.addProductToCart)
 // DELETE a product from a cart
-cartsRouter.delete('/:id/products/:product_id', checkAuthentication, cartsController.deleteProductFromCart)
+cartsRouter.delete('/:id/products/:productId', checkAuthentication, cartsController.deleteProductFromCart)
 
 module.exports = cartsRouter
