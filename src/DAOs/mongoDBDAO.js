@@ -112,26 +112,27 @@ class MongoDBDAO {
         }
     }
 
-    deleteFromCartById = async (cartId, productId) => {
+    deleteFromPropertyById = async (cartId, productId) => {
         try {
             cartId = Types.ObjectId(cartId)
             productId = Types.ObjectId(productId)
-            const isProductInCart = await this.Schema
+            const productToDelete = await this.Schema
                 .findOne({_id: cartId}, {products: {_id: productId}})
-            // console.log(isProductInCart) - returns an object with an empty array if there is no match
+            // console.log(productToDelete) - returns an object with an empty array if there is no match
             const success = await this.Schema
                 .updateOne({_id: cartId}, {
                     $pull: {
                         products: {_id: productId}
                     }
                 })
-            if (success.matchedCount === 0 || isProductInCart.products.length === 0) {
+            // Executes when there it no match in a given cart for a given product
+            if (success.matchedCount === 0 || productToDelete === []) {
                 logger.info(`Either cart ID: ${cartId} does not exist, or product ID: ${productId} is not in that cart`)
-                return false
-            } else {
-                logger.info('The item containing the specified ID has been deleted.')
-                return true
+                return null
             }
+            logger.info('The item containing the specified ID has been deleted.')
+            // Returns the updated object when deletion is successful
+            return await this.Schema.findOne({_id: cartId})
         } catch (err) {
             logger.error(err)
         }

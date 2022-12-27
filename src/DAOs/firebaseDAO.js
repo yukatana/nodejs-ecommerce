@@ -21,13 +21,19 @@ class FirebaseDAO {
     updateItem = async (id, item) => { //updates a single document in the collection. data param is not used
         try {
             const doc = this.query.doc(id)
-            if (this.collection === 'products') {
-                return await doc.update(item) //executed when calling this method for product updates
-            } else if (this.collection === 'carts') {
-                return doc.update({
-                    products: firebase.firestore.FieldValue.arrayUnion(item)
-                })
-            }
+            // Executed when calling this method for product updates
+            return await doc.update(item)
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
+    pushToProperty = async (id, item, property) => {
+        try {
+            const doc = this.query.doc(id)
+            return doc.update({
+                [property]: firebase.firestore.FieldValue.arrayUnion(item)
+            })
         } catch (err) {
             logger.error(err)
         }

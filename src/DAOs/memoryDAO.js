@@ -38,21 +38,6 @@ class MemoryDAO {
         }
     }
 
-    pushToProperty = (id, item, property) => {
-        try {
-            const data = this.data
-            const targetIndex = allCarts.findIndex(e => e.id == id)
-            if (item && targetIndex !== -1) {
-                data[targetIndex][property].push(item)
-                return data[targetIndex]
-            }
-            // Null is returned if no item is passed or if the passed id does not match any items
-            return null
-        } catch (err) {
-            logger.error(err)
-        }
-    }
-
     getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
         const item = await this.data.find(el => el.id == id)
         if (item) {
@@ -75,6 +60,36 @@ class MemoryDAO {
             }
         else {
             logger.info("The specified ID does not match any items.")
+            return null
+        }
+    }
+
+    pushToProperty = (id, item, property) => {
+        try {
+            const data = this.data
+            const targetIndex = data.findIndex(e => e.id == id)
+            if (item && targetIndex !== -1) {
+                data[targetIndex][property].push(item)
+                return data[targetIndex]
+            }
+            // Null is returned if no item is passed or if the passed id does not match any items
+            return null
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
+    deleteFromPropertyById = async (cartId, productId) => {
+        //executed when calling this method while using memory or file-based persistence, since assigned IDs are numeric
+        if (!isNaN(cartId)) {
+            const allCarts = this.data
+            const targetCartIndex = allCarts.findIndex(e => e.id == cartId)
+            const targetProductIndex = allCarts[targetCartIndex].products.findIndex(e => e.id == productId)
+            if (targetCartIndex != -1 && targetProductIndex != -1) {
+                allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
+                this.data = allCarts
+                return allCarts[targetCartIndex].products
+            }
             return null
         }
     }

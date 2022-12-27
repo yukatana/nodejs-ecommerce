@@ -19,7 +19,7 @@ createCart = async (req, res) => {
         dateString: new Date.toLocaleString(),
         deliveryAddress: await userService.getDeliveryAddress()
     })
-    res.status(201).json(new CartDTO(newCart))
+    return res.status(201).json(new CartDTO(newCart))
 }
 
 deleteCartById = async (req, res) => {
@@ -54,26 +54,14 @@ addProductToCart = async (req, res) => {
 }
 
 deleteProductFromCart = async (req, res) => {
-    //executed when calling this method while using memory or file-based persistence, since assigned IDs are numeric
-    if (!isNaN(req.params.id)) {
-        const allCarts = await CartDAO.getAll()
-        const targetCartIndex = allCarts.findIndex(e => e.id == req.params.id)
-        const targetProductIndex = allCarts[targetCartIndex].products.findIndex(e => e.id == req.params.product_id)
-        if (targetCartIndex != -1 && targetProductIndex != -1) {
-            allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
-            await CartDAO.updateItem(allCarts)
-            return res.status(200).json({success: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
-        } else {
-            res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
-        }
-    } else {
-        const success = await CartDAO.deleteFromCartById(req.params.id, req.params.product_id)
-        if (success) {
-            return res.status(200).json({success: `Product ID: ${req.params.product_id} has been deleted from cart ID: ${req.params.id}`})
-        } else {
-            res.status(404).json({error: `Either cart ID: ${req.params.id} does not exist or product ID: ${req.params.product_id} was not in that cart.`})
-        }
+    const cartId = req.params.id
+    const productId = req.params.productId
+    const success = await CartDAO.deleteFromPropertyById(cartId, productId)
+    if (success) {
+        return res.status(200).json({success: `Product ID: ${productId} has been deleted from cart ID: ${cartId}`})
     }
+    // Executes when there are no matches since null is returned from the deleteFromPropertyById() method
+    return res.status(404).json({error: `Either cart ID: ${cartId} does not exist or product ID: ${productId} was not in that cart.`})
 }
 
 purchaseCart = async (req, res) => {

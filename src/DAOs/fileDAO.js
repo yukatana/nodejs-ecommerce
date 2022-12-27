@@ -7,30 +7,33 @@ class FileDAO {
         this.file = file
     }
 
+    getParsedData = async () => {
+        let data = await fs.promises.readFile(this.file, 'utf-8')
+        let parsedData
+        try {
+            parsedData = await JSON.parse(data)
+        } catch (err) { // Executed when the file does not contain JSON-compatible information or is empty
+            parsedData = []
+        }
+        return parsedData
+    }
+
     save = async (object) => {
         try {
-            let data = await fs.promises.readFile(this.file, "utf-8")
-            let parsedData
-
-            try {
-                parsedData = await JSON.parse(data)
-            } catch (err) { //executed when the file does not contain JSON-compatible information or is empty
-                parsedData = []
-            }
-
-            if (parsedData.length > 0) { //executed if the file already has an array in it
+            let parsedData = this.getParsedData()
+            // Executed if the file already has an array in it
+            if (parsedData.length > 0) {
                 object.id = parsedData[parsedData.length-1].id+1
                 parsedData.push(object)
                 await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
                 return object
             }
-            else { //executed when the file contains some other JSON compatible data that's not an array (i.e.: an object)
-                parsedData = []
-                object.id = 1
-                parsedData.push(object)
-                await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
-                return object
-            }
+            // Executed when the file contains some other JSON compatible data that's not an array (i.e.: an object)
+            parsedData = []
+            object.id = 1
+            parsedData.push(object)
+            await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
+            return object
         } catch (err) {
             logger.error(err)
         }
@@ -38,13 +41,7 @@ class FileDAO {
 
     updateItem = async (id, item) => { //saves all items when one of them has been edited
         try {
-            let data = await fs.promises.readFile(this.file, "utf-8")
-            let parsedData
-            try {
-                parsedData = await JSON.parse(data)
-            } catch (err) { //executed when the file does not contain JSON-compatible information or is empty
-                parsedData = []
-            }
+            let parsedData = this.getParsedData()
             const isValid = parsedData.findIndex(el => el.id == id)
             if (isValid != -1) {
                 parsedData[isValid].dateString = new Date.toLocaleString()
@@ -58,6 +55,42 @@ class FileDAO {
                 return parsedData[isValid]
             }
             // Returns null when no match is found for the id param
+            return null
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
+    pushToProperty = async (id, item, property) => {
+        try {
+            let parsedData = this.getParsedData()
+            const targetIndex = parsedData.findIndex(e => e.id == id)
+            if (item && targetIndex !== -1) {
+                parsedData[targetIndex][property].push(item)
+                await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
+                return parsedData[targetIndex]
+            }
+            // Null is returned if no item is passed or if the passed id does not match any items
+            return null
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
+    deleteFromPropertyById = async (cartId, productId) => {
+        try {
+            let parsedData = this.getParsedData()
+            //executed when calling this method while using memory or file-based persistence, since assigned IDs are numeric
+            if (!isNaN(cartId)) {
+                const targetCartIndex = parsedData.findIndex(e => e.id == cartId)
+                const targetProductIndex = parsedData[targetCartIndex].products.findIndex(e => e.id == productId)
+                if (targetCartIndex != -1 && targetProductIndex != -1) {
+                    parsedData[targetCartIndex].products.splice(targetProductIndex, 1)
+                    await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
+                    return parsedData[targetCartIndex].products
+                }
+            }
+            // Returns null when an invalid ID format is passed or when there are no matches
             return null
         } catch (err) {
             logger.error(err)
