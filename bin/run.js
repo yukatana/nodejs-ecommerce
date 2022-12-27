@@ -33,5 +33,5 @@ if (config.MODE === 'cluster' && cluster.isPrimary) {
         logger.info(`Express server listening on port ${PORT} - PID: ${process.pid}`)
     })
 
-    http.on('error', error => logger.info(`HTTP server error: ${error}`))
+    http.on('error', error => logger.error(`HTTP server error: ${error}`))
 }

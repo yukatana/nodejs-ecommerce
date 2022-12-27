@@ -9,10 +9,10 @@ productsRouter.get('/:id?', productsController.getProductById)
 // GET all products pertaining to a specific category
 productsRouter.get('/category/:category', productsController.getByCategory)
 // POST a new product
-productsRouter.post('/', passportJWT, checkAuthentication, productsController.addProduct)
+productsRouter.post('/', passportJWT, /*checkAuthentication,*/ productsController.addProduct)
 // PUT an existing product by ID
-productsRouter.put('/:id', passportJWT, checkAuthentication, productsController.updateProductById)
+productsRouter.put('/:id', passportJWT, /*checkAuthentication,*/ productsController.updateProductById)
 // DELETE a product by ID
-productsRouter.delete('/:id', passportJWT, checkAuthentication, productsController.deleteProductById)
+productsRouter.delete('/:id', passportJWT, /*checkAuthentication,*/ productsController.deleteProductById)
 
 module.exports = productsRouter
