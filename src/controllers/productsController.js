@@ -48,12 +48,7 @@ getByCategory = async (req, res) => {
 addProduct = async (req, res) => {
     const product = {
         dateString: new Date.toLocaleString(),
-        name: req.body.name,
-        category: req.body.category,
-        description: req.body.description,
-        thumbnail: req.body.thumbnail,
-        price: req.body.price,
-        stock: req.body.stock
+        ...req.body
     }
     let newProduct = await ProductDAO.save(product)
     logger.info(`New product successfully added - ${newProduct}`)
@@ -62,24 +57,18 @@ addProduct = async (req, res) => {
 }
 
 updateProductById = async (req, res) => {
-    // Evaluates all data in order to be compatible with file and memory persistence DAOs
-    const data = await ProductDAO.getAll()
-    const isValid = data.findIndex(el => el.id == req.params.id)
-
-    if (isValid != -1) {
-        data[isValid].dateString = new Date.toLocaleString()
-        data[isValid].name = req.body.name || data[isValid].name
-        data[isValid].category = req.body.category || data[isValid].category
-        data[isValid].description = req.body.description || data[isValid].description
-        data[isValid].thumbnail = req.body.thumbnail || data[isValid].thumbnail
-        data[isValid].price = req.body.price || data[isValid].price
-        data[isValid].stock = req.body.stock || data[isValid].stock
-
-        const result = await ProductDAO.updateItem(data, req.params.id, data[isValid])
-        logger.info(`Product successfully updated - ${result}`)
-        return res.status(200).json({message: `Product ID: ${req.params.id} has been updated.`})
+    const id = req.params.id
+    const item = {
+        dateString: new Date.toLocaleString(),
+        ...req.body
     }
-    return res.status(404).json({error: 'Product not found'})
+    const result = await ProductDAO.updateItem(id, item)
+    logger.info(`Product successfully updated - ${result}`)
+    // Guard clause evaluates whether there was an ID match (null is returned from the DAO if not, hence returning 404)
+    if (result === false) {
+        return res.status(404).json({error: 'Product not found'})
+    }
+    return res.status(200).json({message: `Product ID: ${req.params.id} has been updated.`})
 }
 
 deleteProductById = async (req, res) => {

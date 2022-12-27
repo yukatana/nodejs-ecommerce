@@ -18,9 +18,21 @@ class MemoryDAO {
         return object
     }
 
-    updateItem = async (data) => { //saves all items when one of them has been edited
+    updateItem = async (id, item) => { //saves all items when one of them has been edited
         try {
-            this.data = data
+            const isValid = this.data.findIndex(el => el.id == id)
+            if (isValid != -1) {
+                this.data[isValid].dateString = new Date.toLocaleString()
+                this.data[isValid].name = item.name || this.data[isValid].name
+                this.data[isValid].category = item.category || this.data[isValid].category
+                this.data[isValid].description = item.description || this.data[isValid].description
+                this.data[isValid].thumbnail = item.thumbnail || this.data[isValid].thumbnail
+                this.data[isValid].price = item.price || this.data[isValid].price
+                this.data[isValid].stock = item.stock || this.data[isValid].stock
+                return this.data
+            }
+            // Returns null when no match is found for the id param
+            return null
         } catch (err) {
             logger.error(err)
         }

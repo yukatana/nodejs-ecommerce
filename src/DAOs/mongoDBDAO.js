@@ -9,7 +9,6 @@ class MongoDBDAO {
 
     save = async (object) => {
         try {
-            delete object.timestamp //deletes controller-created timestamp, since mongoDB adds its own
             return await new this.Schema(object)
                 .save()
         } catch (err) {
@@ -17,16 +16,20 @@ class MongoDBDAO {
         }
     }
 
-    updateItem = async (data, id, item) => { //updates a single document in the collection. data param is not used
+    updateItem = async (id, item) => { //updates a single document in the collection
         try {
             id = Types.ObjectId(id)
             try {
-                await this.Schema.replaceOne({_id: id}, item) //executed when calling this method for product update
+                const result = await this.Schema.replaceOne({_id: id}, item) //executed when calling this method for product update
+                // Returns null when no match is found for the id param
+                if (result.matchedCount === 0) {
+                    return null
+                }
             } catch { //executed when calling this method to add a product to a cart
                 const cart = await this.Schema
                     .findOne({_id: id})
                 cart.products.push(item)
-                cart.save()
+                return cart.save()
             }
         } catch (err) {
             logger.error(err)

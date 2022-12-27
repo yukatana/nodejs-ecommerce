@@ -18,7 +18,7 @@ class FirebaseDAO {
         }
     }
 
-    updateItem = async (data, id, item) => { //updates a single document in the collection. data param is not used
+    updateItem = async (id, item) => { //updates a single document in the collection. data param is not used
         try {
             const doc = this.query.doc(id)
             if (this.collection === 'products') {

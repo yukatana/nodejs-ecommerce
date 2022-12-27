@@ -36,9 +36,29 @@ class FileDAO {
         }
     }
 
-    updateItem = async (data) => { //saves all items when one of them has been edited
+    updateItem = async (id, item) => { //saves all items when one of them has been edited
         try {
-            await fs.promises.writeFile(this.file, JSON.stringify(data, null, 2))
+            let data = await fs.promises.readFile(this.file, "utf-8")
+            let parsedData
+            try {
+                parsedData = await JSON.parse(data)
+            } catch (err) { //executed when the file does not contain JSON-compatible information or is empty
+                parsedData = []
+            }
+            const isValid = parsedData.findIndex(el => el.id == id)
+            if (isValid != -1) {
+                parsedData[isValid].dateString = new Date.toLocaleString()
+                parsedData[isValid].name = item.name || parsedData[isValid].name
+                parsedData[isValid].category = item.category || parsedData[isValid].category
+                parsedData[isValid].description = item.description || parsedData[isValid].description
+                parsedData[isValid].thumbnail = item.thumbnail || parsedData[isValid].thumbnail
+                parsedData[isValid].price = item.price || parsedData[isValid].price
+                parsedData[isValid].stock = item.stock || parsedData[isValid].stock
+                await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
+                return parsedData[isValid]
+            }
+            // Returns null when no match is found for the id param
+            return null
         } catch (err) {
             logger.error(err)
         }
