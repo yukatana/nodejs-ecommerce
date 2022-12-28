@@ -137,7 +137,7 @@ class MongoDBDAO {
                 })
             // Executes when there it no match in a given cart for a given product
             if (result.matchedCount === 0 || productToDelete === []) {
-                logger.info(`Either cart ID: ${parentId} does not exist, or product ID: ${property} is not in that cart`)
+                logger.info(`Either cart ID: ${parentId} does not exist, or product ID: ${property.id} is not in that cart`)
                 return null
             }
             logger.info('The item containing the specified ID has been deleted.')

@@ -68,14 +68,15 @@ updateProductById = async (req, res) => {
     if (result === false) {
         return res.status(404).json({error: 'Product not found'})
     }
-    return res.status(200).json({message: `Product ID: ${req.params.id} has been updated.`})
+    return res.status(200).json({message: `Product ID: ${id} has been updated.`})
 }
 
 deleteProductById = async (req, res) => {
-    const success = await ProductDAO.deleteById(req.params.id)
-    if (success) {logger.info(`Product ID: ${req.params.id} has been deleted successfully.`)}
+    const id = req.params.id
+    const success = await ProductDAO.deleteById(id)
+    if (success) {logger.info(`Product ID: ${id} has been deleted successfully.`)}
     success ?
-        res.status(200).json({message: `Product ID: ${req.params.id} has been deleted.`})
+        res.status(200).json({message: `Product ID: ${id} has been deleted.`})
         : res.status(404).json({error: 'Product not found'})
 }
 

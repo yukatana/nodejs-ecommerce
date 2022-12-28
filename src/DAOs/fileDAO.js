@@ -82,18 +82,20 @@ class FileDAO {
             logger.error(err)
         }
     }
-
-    deleteFromPropertyById = async (cartId, productId) => {
+    // First parameter is the ID of the document in this collection, the second is an object with the property's ID and name to delete from - allows re-usability
+    deleteFromPropertyById = async (parentId, property) => {
         try {
             let parsedData = this.getParsedData()
             //executed when calling this method while using memory or file-based persistence, since assigned IDs are numeric
-            if (!isNaN(cartId)) {
-                const targetCartIndex = parsedData.findIndex(e => e.id == cartId)
-                const targetProductIndex = parsedData[targetCartIndex].products.findIndex(e => e.id == productId)
-                if (targetCartIndex != -1 && targetProductIndex != -1) {
-                    parsedData[targetCartIndex].products.splice(targetProductIndex, 1)
+            if (!isNaN(parentId)) {
+                // Getting the index of the object to delete from
+                const targetObjectIndex = parsedData.findIndex(e => e.id == parentId)
+                // Getting the index of the object in the target property to delete from in the parent array
+                const targetIndexInProperty = parsedData[targetObjectIndex][property.name].findIndex(e => e.id == property.id)
+                if (targetObjectIndex !== -1 && targetIndexInProperty !== -1) {
+                    parsedData[targetObjectIndex][property.name].splice(targetIndexInProperty, 1)
                     await fs.promises.writeFile(this.file, JSON.stringify(parsedData, null, 2))
-                    return parsedData[targetCartIndex].products
+                    return parsedData[targetObjectIndex][property.name]
                 }
             }
             // Returns null when an invalid ID format is passed or when there are no matches

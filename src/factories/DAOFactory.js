@@ -91,12 +91,44 @@ module.exports = class DAOFactory {
                 break
             case 'firebase' :
                 const MessageDAOFirebase = require('../DAOs/firebaseDAO')
-                this.messageDAO = new MessageDAOFirebase('products')
+                this.messageDAO = new MessageDAOFirebase('messages')
                 logger.info('Successfully connected to message database.')
                 return this.messageDAO
                 break
             default:
                 logger.error(`Fatal error: please adjust MESSAGE_DATABASE environment variable to match a supported persistence mechanism.`)
+        }
+    }
+
+    static getOrderDAO = () => {
+        if (this.orderDAO) {
+            return this.orderDAO
+        }
+        switch (config.ORDER_DATABASE) {
+            case 'memory' :
+                const OrderDAOMemory = require('../DAOs/memoryDAO')
+                this.orderDAO = new OrderDAOMemory()
+                return this.orderDAO
+                break
+            case 'file' :
+                const OrderDAOFile = require('../DAOs/fileDAO')
+                this.orderDAO = new OrderDAOFile('./databases/files/orders.json') //path relative to app.js
+                return this.orderDAO
+                break
+            case 'mongodb' :
+                const OrderDAOMongoDB = require('../DAOs/mongoDBDAO')
+                const OrderModel = require('../databases/mongoDB/schemas/order')
+                this.orderDAO = new OrderDAOMongoDB(OrderModel)
+                return this.orderDAO
+                break
+            case 'firebase' :
+                const OrderDAOFirebase = require('../DAOs/firebaseDAO')
+                this.orderDAO = new OrderDAOFirebase('orders')
+                logger.info('Successfully connected to order database.')
+                return this.orderDAO
+                break
+            default:
+                logger.error(`Fatal error: please adjust ORDER_DATABASE environment variable to match a supported persistence mechanism.`)
         }
     }
 }

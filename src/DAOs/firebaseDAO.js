@@ -103,23 +103,22 @@ class FirebaseDAO {
         }
     }
 
-    deleteFromCartById = async (cartId, productId) => {
+    // First parameter is the ID of the document in this collection, the second is an object with the property's ID and name to delete from - allows re-usability
+    deleteFromPropertyById = async (parentId, property) => {
         try {
-            const doc = await this.query.doc(cartId)
-            const cart = await doc.get()
+            const doc = await this.query.doc(parentId)
+            const parentReference = await doc.get()
             // the entire product object must be fetched so that it can be passed to arrayRemove
-            const product = await this.db.collection('products').doc(productId).get()
-            logger.info(product)
-            if (product && cart) {
+            const itemToDeleteFromParent = await this.db.collection(property.name).doc(property.id).get()
+            if (parentReference && itemToDeleteFromParent) {
                 await doc.update({
-                    products: firebase.firestore.FieldValue.arrayRemove(product.data())
+                    products: firebase.firestore.FieldValue.arrayRemove(itemToDeleteFromParent.data())
                 })
-                logger.info('The item containing the specified ID has been deleted.')
+                logger.info(`Item ID: ${property.id} has been deleted from property '${property.name}'.`)
                 return true
             } else {
-                logger.info(`Either cart ID: ${cartId} or product ID: ${productId} does not exist`)
-                return false
-
+                logger.info(`Either cart ID: ${parentId} or product ID: ${property.id} does not exist`)
+                return null
             }
         } catch (err) {
             logger.error(err)

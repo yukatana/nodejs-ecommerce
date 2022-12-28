@@ -84,16 +84,19 @@ class MemoryDAO {
         }
     }
 
-    deleteFromPropertyById = async (cartId, productId) => {
+    // First parameter is the ID of the document in this collection, the second is an object with the property's ID and name to delete from - allows re-usability
+    deleteFromPropertyById = async (parentId, property) => {
         //executed when calling this method while using memory or file-based persistence, since assigned IDs are numeric
-        if (!isNaN(cartId)) {
-            const allCarts = this.data
-            const targetCartIndex = allCarts.findIndex(e => e.id == cartId)
-            const targetProductIndex = allCarts[targetCartIndex].products.findIndex(e => e.id == productId)
-            if (targetCartIndex != -1 && targetProductIndex != -1) {
-                allCarts[targetCartIndex].products.splice(targetProductIndex, 1)
-                this.data = allCarts
-                return allCarts[targetCartIndex].products
+        if (!isNaN(parentId)) {
+            const data = this.data
+            // Getting the index of the object to delete from
+            const targetObjectIndex = data.findIndex(e => e.id == parentId)
+            // Getting the index of the object in the target property to delete from in the parent array
+            const targetIndexInProperty = data[targetObjectIndex][property.name].findIndex(e => e.id == property.id)
+            if (targetObjectIndex !== -1 && targetIndexInProperty !== -1) {
+                data[targetObjectIndex][property.name].splice(targetIndexInProperty, 1)
+                this.data = data
+                return data[targetObjectIndex][property.name]
             }
             return null
         }
