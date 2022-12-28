@@ -3,13 +3,22 @@ const { Types } = require('mongoose')
 const { logger } = require('../../logs')
 
 class MongoDBDAO {
-    constructor(Schema) {
-        this.Schema = Schema
+    constructor(model) {
+        this.Model = model
+    }
+
+    // Useful for getting document count in order to assign order numbers
+    getCount = async () => {
+        try {
+            return await this.Model.countDocuments()
+        } catch (err) {
+            logger.error(err)
+        }
     }
 
     save = async (object) => {
         try {
-            return await new this.Schema(object)
+            return await new this.Model(object)
                 .save()
         } catch (err) {
             logger.error(err)
@@ -20,13 +29,13 @@ class MongoDBDAO {
         try {
             id = Types.ObjectId(id)
             try {
-                const result = await this.Schema.replaceOne({_id: id}, item) //executed when calling this method for product update
+                const result = await this.Model.replaceOne({_id: id}, item) //executed when calling this method for product update
                 // Returns null when no match is found for the id param
                 if (result.matchedCount === 0) {
                     return null
                 }
             } catch { //executed when calling this method to add a product to a cart
-                const cart = await this.Schema
+                const cart = await this.Model
                     .findOne({_id: id})
                 cart.products.push(item)
                 return cart.save()
@@ -39,8 +48,8 @@ class MongoDBDAO {
     // Different from updateItem. Used to push an element to an array inside a document
     pushToProperty = async (id, item, property) => {
         try {
-            const id = Types.ObjectId(id)
-            const document = await this.Schema
+            id = Types.ObjectId(id)
+            const document = await this.Model
                 .findOne({_id: id})
             document[property].push(item)
             return document.save()
@@ -52,7 +61,7 @@ class MongoDBDAO {
     getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
         try {
             id = Types.ObjectId(id)
-            const item = await this.Schema
+            const item = await this.Model
                 .findOne({_id: id})
             if (item) {
                 return item
@@ -67,7 +76,7 @@ class MongoDBDAO {
 
     getAll = async () => { //returns entire collection
         try {
-            const data = await this.Schema
+            const data = await this.Model
                 .find()
             if (data) {
                 return data
@@ -82,7 +91,7 @@ class MongoDBDAO {
     deleteById = async (id) => { //deletes array item (object) specified by ID
         try {
             id = Types.ObjectId(id)
-            const success = await this.Schema
+            const success = await this.Model
                 .deleteOne({_id: id})
             if (success.deletedCount > 0) {
                 logger.info('The item containing the specified ID has been deleted.')
@@ -98,9 +107,9 @@ class MongoDBDAO {
 
     filter = async (key, value) => { // filters a collection by key value pairs, or null if it does not exist
         try {
-            const items = await this.Schema
-                .find({ [key]: value }) // dynamic key assignment allows for re-usability
-                .exec()
+            const items = await this.Model
+                // dynamic key assignment allows for re-usability
+                .find({ [key]: value })
             if (items.length > 0) {
                 return items
             }
@@ -112,27 +121,28 @@ class MongoDBDAO {
         }
     }
 
-    deleteFromPropertyById = async (cartId, productId) => {
+    // First parameter is the ID of the document in this collection, the second is an object with the property's ID and name to delete from - allows re-usability
+    deleteFromPropertyById = async (parentId, property) => {
         try {
-            cartId = Types.ObjectId(cartId)
-            productId = Types.ObjectId(productId)
-            const productToDelete = await this.Schema
-                .findOne({_id: cartId}, {products: {_id: productId}})
-            // console.log(productToDelete) - returns an object with an empty array if there is no match
-            const success = await this.Schema
-                .updateOne({_id: cartId}, {
+            parentId = Types.ObjectId(parentId)
+            property.id = Types.ObjectId(property.id)
+            const productToDelete = await this.Model
+                .findOne({_id: parentId}, {[property.name]: {_id: property.id}})
+            // productToDelete returns an object with an empty array if there is no match
+            const result = await this.Model
+                .updateOne({_id: parentId}, {
                     $pull: {
-                        products: {_id: productId}
+                        [property.name]: {_id: property.id}
                     }
                 })
             // Executes when there it no match in a given cart for a given product
-            if (success.matchedCount === 0 || productToDelete === []) {
-                logger.info(`Either cart ID: ${cartId} does not exist, or product ID: ${productId} is not in that cart`)
+            if (result.matchedCount === 0 || productToDelete === []) {
+                logger.info(`Either cart ID: ${parentId} does not exist, or product ID: ${property} is not in that cart`)
                 return null
             }
             logger.info('The item containing the specified ID has been deleted.')
             // Returns the updated object when deletion is successful
-            return await this.Schema.findOne({_id: cartId})
+            return await this.Model.findOne({_id: parentId})
         } catch (err) {
             logger.error(err)
         }
@@ -140,24 +150,9 @@ class MongoDBDAO {
 
     deleteAll = async () => { //WARNING! Deletes all documents in the collection, yet not the collection itself
         try {
-            this.Schema
+            this.Model
                 .remove({})
             logger.info("All items have been deleted.")
-        } catch (err) {
-            logger.error(err)
-        }
-    }
-
-    getByUsername = async (username) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
-        try {
-            const items = await this.Schema
-                .find({ username })
-            if (items.length > 0) {
-                return items
-            }
-            else {
-                return null
-            }
         } catch (err) {
             logger.error(err)
         }

@@ -8,6 +8,16 @@ class FirebaseDAO {
         this.query = this.db.collection(this.collection)
     }
 
+    // Useful for getting document count in order to assign order numbers
+    getCount = async () => {
+        try {
+            const snapshot = this.collection.get()
+            return snapshot.data().count
+        } catch (err) {
+            logger.error(err)
+        }
+    }
+
     save = async (object) => {
         try {
             const docs = this.query.doc()

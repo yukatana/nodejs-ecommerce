@@ -80,7 +80,7 @@ module.exports = class DAOFactory {
                 break
             case 'file' :
                 const MessageDAOFile = require('../DAOs/fileDAO')
-                this.messageDAO = new MessageDAOFile('./databases/files/products.json') //path relative to app.js
+                this.messageDAO = new MessageDAOFile('./databases/files/messages.json') //path relative to app.js
                 return this.messageDAO
                 break
             case 'mongodb' :

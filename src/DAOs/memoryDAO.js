@@ -7,6 +7,11 @@ class MemoryDAO {
         this.data = []
     }
 
+    // Useful for getting document count in order to assign order numbers
+    getCount = () => {
+        return this.data.length
+    }
+
     save = (object) => {
         if (this.data.length > 0) {
             object.id = this.data[this.data.length-1].id+1

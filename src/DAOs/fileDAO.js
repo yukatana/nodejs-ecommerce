@@ -7,6 +7,12 @@ class FileDAO {
         this.file = file
     }
 
+    // Useful for getting document count in order to assign order numbers
+    getCount = async () => {
+        const data = this.getParsedData()
+        return data.length
+    }
+
     getParsedData = async () => {
         let data = await fs.promises.readFile(this.file, 'utf-8')
         let parsedData
