@@ -1,6 +1,7 @@
+const config = require('../../config')
+const { logger } = require('../../../logs')
 const User = require('../../databases/mongoDB/schemas/user')
 const { comparePassword, hashPassword } = require('../../utils/bcrypt')
-const { logger } = require('../../../logs')
 
 const loginStrategy = async (username, password, done) => {
     const user = await User.findOne({username})
@@ -21,11 +22,10 @@ const signupStrategy = async (req, username, password, done) => {
         const user = new User({
             username,
             password: hashedPassword,
-            name: req.body.name,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             address: req.body.address,
-            age: req.body.age,
             phone: req.body.phone,
-            avatar: req.body.avatar
         })
         await user.save()
         return done(null, user)
@@ -35,7 +35,21 @@ const signupStrategy = async (req, username, password, done) => {
     }
 }
 
+// setting up JWT functionality
+const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
+const jwtStrategy = new JWTStrategy({
+    secretOrKey: config.JWT_KEY,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+}, async (token, done) => {
+    try {
+        return done(null, token)
+    } catch (err) {
+        logger.error(err)
+    }
+})
+
 module.exports = {
     loginStrategy,
-    signupStrategy
+    signupStrategy,
+    jwtStrategy
 }

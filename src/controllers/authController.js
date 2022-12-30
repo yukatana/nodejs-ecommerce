@@ -12,12 +12,13 @@ saveSuccessfulAuthentication = async (req, res) => {
     await twilioService.sendRegisteredUserEmail()
     const user = req.user
     const purgedUser = new UserDTO(user)
+    // Signing token to send to client along with the information it contains
     const token = jwt.sign({ user: purgedUser }, config.JWT_KEY)
     res.status(200).json({...purgedUser, token})
 }
 
 serveLoginError = (req, res) => {
-    res.sendFile(process.cwd() + '/src/public/loginError.html')
+    res.status(400).json({error: 'Invalid credentials. Please try again.'})
 }
 
 serveSignup = (req, res) => {
@@ -25,7 +26,7 @@ serveSignup = (req, res) => {
 }
 
 serveSignupError = (req, res) => {
-    res.sendFile(process.cwd() + '/src/public/signupError.html')
+    res.status(400).json({error: 'Invalid credentials. Please try again.'})
 }
 
 // DEPRECATED SINCE AUTHENTICATION IS NOW BASED ON JWT
