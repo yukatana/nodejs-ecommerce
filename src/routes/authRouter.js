@@ -1,23 +1,25 @@
 const { Router } = require('express')
 const authRouter = Router()
 const { passportSignup, passportLogin } = require('../middlewares/auth/passport')
-const authController = require('../controllers/authController')
+const AuthController = require('../controllers/authController')
 
 // GET login form
-authRouter.get('/login', authController.serveLogin)
+authRouter.get('/login', AuthController.serveLogin)
 // POST a login attempt
-authRouter.post('/login', passportLogin, authController.saveSuccessfulAuthentication)
+authRouter.post('/login', passportLogin, AuthController.successfulLogin)
 // GET login error page
-authRouter.get('/loginError', authController.serveLoginError)
+authRouter.get('/loginError', AuthController.serveLoginError)
 // GET signup form
-authRouter.get('/signup', authController.serveSignup)
+authRouter.get('/signup', AuthController.serveSignup)
 // POST a signup attempt
-authRouter.post('/signup', passportSignup, authController.saveSuccessfulAuthentication)
+authRouter.post('/signup', passportSignup, AuthController.successfulSignup)
 // GET signup error page
-authRouter.get('/signupError', authController.serveSignupError)
+authRouter.get('/signupError', AuthController.serveSignupError)
+// GET unauthorized request page
+authRouter.get('/unauthorized', AuthController.serveUnauthorizedMessage)
 //GET logout page
-authRouter.get('/logout', authController.serveLogout)
+authRouter.get('/logout', AuthController.serveLogout)
 // POST a logout attempt
-authRouter.post('/logout', authController.logout)
+authRouter.post('/logout', AuthController.logout)
 
 module.exports = authRouter

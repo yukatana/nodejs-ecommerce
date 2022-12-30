@@ -1018,3 +1018,18 @@
   level: 'warn',
   timestamp: '2022-12-26T15:16:14.907Z'
 }
+{
+  message: 'Bad GET request received for non-existing route /',
+  level: 'warn',
+  timestamp: '2022-12-30T05:18:00.283Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /carts/',
+  level: 'warn',
+  timestamp: '2022-12-30T05:31:37.563Z'
+}
+{
+  message: 'Bad GET request received for non-existing route /carts/test@test.com',
+  level: 'warn',
+  timestamp: '2022-12-30T05:31:56.644Z'
+}

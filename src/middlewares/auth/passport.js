@@ -22,10 +22,12 @@ passport.deserializeUser(async (id, done) => {
 })
 
 const passportSignup = passport.authenticate('signup',
-    {failureRedirect: '/auth/signupError'})
+    {failureRedirect: '/auth/signupError',
+    session: false})
 
 const passportLogin = passport.authenticate('login',
-    {failureRedirect: '/auth/loginError'})
+    {failureRedirect: '/auth/loginError',
+    session: false})
 
 const jwtValidation = passport.authenticate('jwt',
     {session: false})

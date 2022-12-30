@@ -3,48 +3,55 @@ const twilioService = require('../services/twilio')
 const { UserDTO } = require('../DTOs')
 const jwt = require('jsonwebtoken')
 
-serveLogin = (req, res) => {
-    res.sendFile(process.cwd() + '/src/public/login.html')
+
+class AuthController {
+    static serveLogin = (req, res) => {
+        res.sendFile(process.cwd() + '/src/public/login.html')
+    }
+
+    static successfulLogin = async (req, res) => {
+        const user = req.user
+        const purgedUser = new UserDTO(user)
+        // Signing token to send to client along with the information it contains
+        const token = jwt.sign({ user: purgedUser }, config.JWT_KEY)
+        res.status(200).json({...purgedUser, token})
+    }
+
+    static successfulSignup = async (req, res) => {
+        const user = req.user
+        const purgedUser = new UserDTO(user)
+        // Twilio service sends an email to the administrator when a new user has signed up
+        await twilioService.sendRegisteredUserEmail(purgedUser.username)
+        // Signing token to send to client along with the information it contains
+        const token = jwt.sign({ user: purgedUser }, config.JWT_KEY)
+        res.status(200).json({...purgedUser, token})
+    }
+
+    static serveLoginError = (req, res) => {
+        res.status(400).json({error: 'Invalid credentials. Please try again.'})
+    }
+
+    static serveSignup = (req, res) => {
+        res.sendFile(process.cwd() + '/src/public/signup.html')
+    }
+
+    static serveSignupError = (req, res) => {
+        res.status(400).json({error: 'Invalid credentials. Please try again.'})
+    }
+
+    static serveUnauthorizedMessage = (req, res) => {
+        res.status(401).json({error: 'Unauthorized'})
+    }
+
+    // DEPRECATED SINCE AUTHENTICATION IS NOW BASED ON JWT
+    static logout = (req, res) => {
+        req.session.destroy()
+        req.logout(() => res.redirect('/auth/logout'))
+    }
+
+    static serveLogout = (req, res) => {
+        res.sendFile(process.cwd() + '/src/public/logout.html')
+    }
 }
 
-saveSuccessfulAuthentication = async (req, res) => {
-    // Twilio service sends an email to the administrator when a new user has signed up
-    await twilioService.sendRegisteredUserEmail()
-    const user = req.user
-    const purgedUser = new UserDTO(user)
-    // Signing token to send to client along with the information it contains
-    const token = jwt.sign({ user: purgedUser }, config.JWT_KEY)
-    res.status(200).json({...purgedUser, token})
-}
-
-serveLoginError = (req, res) => {
-    res.status(400).json({error: 'Invalid credentials. Please try again.'})
-}
-
-serveSignup = (req, res) => {
-    res.sendFile(process.cwd() + '/src/public/signup.html')
-}
-
-serveSignupError = (req, res) => {
-    res.status(400).json({error: 'Invalid credentials. Please try again.'})
-}
-
-// DEPRECATED SINCE AUTHENTICATION IS NOW BASED ON JWT
-logout = (req, res) => {
-    req.session.destroy()
-    req.logout(() => res.redirect('/auth/logout'))
-}
-
-serveLogout = (req, res) => {
-    res.sendFile(process.cwd() + '/src/public/logout.html')
-}
-
-module.exports = {
-    saveSuccessfulAuthentication,
-    serveLogin,
-    serveLoginError,
-    serveSignup,
-    serveSignupError,
-    serveLogout,
-    logout
-}
+module.exports = AuthController
