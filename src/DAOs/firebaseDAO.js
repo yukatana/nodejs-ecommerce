@@ -38,6 +38,16 @@ class FirebaseDAO {
         }
     }
 
+    // filters a collection by key value pairs, or null if it does not exist
+    filter = async (key, value) => {
+        const querySnapshot = this.query.where(key, '==', value).get()
+        const result = querySnapshot.data()
+        if (result.length === 0) {
+            return null
+        }
+        return result
+    }
+
     pushToProperty = async (id, item, property) => {
         try {
             const doc = this.query.doc(id)
@@ -72,15 +82,11 @@ class FirebaseDAO {
                 return docs.map(doc => {
                     return {
                         id: doc.id,
-                        name: doc.data().name,
-                        price: doc.data().price,
-                        stock: doc.data().stock,
-                        thumbnail: doc.data().thumbnail,
-                        description: doc.data().description
+                        data: doc.data()
                     }
                 })
             } else {
-                return false
+                return null
             }
         } catch (err) {
             logger.error(err)

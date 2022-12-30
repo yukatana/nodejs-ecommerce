@@ -6,29 +6,33 @@ const ProductDAO = require('../factories/DAOFactory').getProductDAO()
 // Order DAO necessary to save incoming orders to databases
 const OrderDAO = require('../factories/DAOFactory').getOrderDAO()
 const { CartDTO, ProductDTO, OrderDTO } = require('../DTOs')
-const userService = require('../services/userService')
+const UserService = require('../services/userService')
 const twilioService = require('../services/twilio')
 
 createCart = async (req, res) => {
     const username = req.params.username
     // Verifies whether the username is in the users MongoDB collection
-    if (await userService.verifyUsername(username) === null) {
+    if (await UserService.verifyUsername(username) === null) {
         return res.status(400).json({error: `Bad request - can't create a cart for an invalid username.`})
     }
     const newCart = await CartDAO.save({
         username,
         products: [],
         dateString: new Date.toLocaleString(),
-        deliveryAddress: await userService.getDeliveryAddress()
+        deliveryAddress: await UserService.getDeliveryAddress()
     })
+    // pushCartToUser method pushes the newly created cart's ID to the user object's 'carts' property
+    await UserService.pushCartToUser(username, newCart._id)
     return res.status(201).json(new CartDTO(newCart))
 }
 
 deleteCartById = async (req, res) => {
-    const id = req.params.id
-    const success = await CartDAO.deleteById(id)
+    const cartId = req.params.id
+    const cartOwner = await CartDAO.getById(cartId).username
+    const success = await CartDAO.deleteById(cartId)
+    await UserService.removeCartFromUser(cartOwner, cartId)
     success ?
-        res.status(200).json({success: `Cart ID: ${id} has been deleted.`})
+        res.status(200).json({success: `Cart ID: ${cartId} has been deleted.`})
         : res.status(404).json({error: 'Cart not found'})
 }
 
@@ -76,7 +80,7 @@ purchaseCart = async (req, res) => {
     const clientUsername = req.user.username // WAITING FOR ANSWER REGARDING AUTHORIZATION PERSISTENCE
     const id = req.params.id
     const cart = await CartDAO.getById(id)
-    if (await userService.verifyUsername(cartOwnerUsername) !== null && cart) {
+    if (await UserService.verifyUsername(cartOwnerUsername) !== null && cart) {
         // Verifying that the specified cart belongs to the username passed in the URL
         if (cart.username === cartOwnerUsername) {
             //using Twilio to send a WhatsApp message and an email upon purchase

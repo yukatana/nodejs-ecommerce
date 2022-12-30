@@ -45,6 +45,16 @@ class FileDAO {
         }
     }
 
+    // filters a collection by key value pairs, or null if it does not exist
+    filter = async (key, value) => {
+        const parsedData = this.getParsedData()
+        const result = parsedData.filter(e => e[key] === value)
+        if (result.length === 0) {
+            return null
+        }
+        return result
+    }
+
     updateItem = async (id, item) => { //saves all items when one of them has been edited
         try {
             let parsedData = this.getParsedData()

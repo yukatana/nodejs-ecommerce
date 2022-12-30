@@ -1,13 +1,30 @@
 const User = require('../databases/mongoDB/schemas/user')
 
-// Verifies that a username actually exists in the database
-const verifyUsername = async (username) => {
-    return User.findOne({username})
+class UserService {
+    // Verifies that a username actually exists in the database
+    static verifyUsername = async (username) => {
+        return User.findOne({username})
+    }
+
+    // Fetches delivery address from user databases for when carts are created
+    static getDeliveryAddress = async (username) => {
+        return User.findOne({username}, 'deliveryAddress -_id')
+    }
+
+    // Pushes a newly created cart to the 'carts' property in the user object
+    static pushCartToUser = async (username, cartId) => {
+        const user = User.findOne({username})
+        user.carts.push(cartId)
+        return user.save()
+    }
+
+    // Deletes a cart from a user's 'carts' property
+    static removeCartFromUser = async (username, cartId) => {
+        const user = User.findOne({username})
+        user.carts.pull(cartId)
+        return user.save()
+    }
 }
 
-// Fetches delivery address from user databases for when carts are created
-const getDeliveryAddress = async (username) => {
-    return User.findOne({username}, 'deliveryAddress -_id')
-}
 
-module.exports = { verifyUsername, getDeliveryAddress }
+module.exports = UserService

@@ -28,18 +28,12 @@ class MongoDBDAO {
     updateItem = async (id, item) => { //updates a single document in the collection
         try {
             id = Types.ObjectId(id)
-            try {
-                const result = await this.Model.replaceOne({_id: id}, item) //executed when calling this method for product update
-                // Returns null when no match is found for the id param
-                if (result.matchedCount === 0) {
-                    return null
-                }
-            } catch { //executed when calling this method to add a product to a cart
-                const cart = await this.Model
-                    .findOne({_id: id})
-                cart.products.push(item)
-                return cart.save()
+            const result = await this.Model.updateOne({_id: id}, item)
+            // Returns null when no match is found for the id param
+            if (result.matchedCount === 0) {
+                return null
             }
+            return result
         } catch (err) {
             logger.error(err)
         }
@@ -103,7 +97,8 @@ class MongoDBDAO {
         }
     }
 
-    filter = async (key, value) => { // filters a collection by key value pairs, or null if it does not exist
+    // filters a collection by key value pairs, or null if it does not exist
+    filter = async (key, value) => {
         try {
             const items = await this.Model
                 // dynamic key assignment allows for re-usability
