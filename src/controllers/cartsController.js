@@ -18,7 +18,7 @@ createCart = async (req, res) => {
     const newCart = await CartDAO.save({
         username,
         products: [],
-        dateString: new Date.toLocaleString(),
+        dateString: new Date().toLocaleString(),
         deliveryAddress: await UserService.getDeliveryAddress()
     })
     // pushCartToUser method pushes the newly created cart's ID to the user object's 'carts' property
@@ -91,7 +91,7 @@ purchaseCart = async (req, res) => {
                 username: cartOwnerUsername,
                 items: cart.products,
                 orderNumber: OrderDAO.getCount()+1, // Order numbers are increasingly assigned based on how many documents there are in the order collection
-                dateString: new Date.toLocaleString(),
+                dateString: new Date().toLocaleString(),
                 state: 'generated'
             }
             const newOrder = OrderDAO.save(order)

@@ -13,7 +13,7 @@ sendPurchaseWhatsapp = async (name, username) => {
             {
                 from: `whatsapp:${config.TWILIO_PHONE}`,
                 to: `whatsapp:${config.MY_PHONE}`,
-                body: `New purchase from ${name} - ${username}`
+                body: `New purchase from ${username}`
             }
         )
         return logger.info(info)

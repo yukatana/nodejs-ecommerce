@@ -37,7 +37,7 @@ class MemoryDAO {
         try {
             const isValid = this.data.findIndex(el => el.id == id)
             if (isValid != -1) {
-                this.data[isValid].dateString = new Date.toLocaleString()
+                this.data[isValid].dateString = new Date().toLocaleString()
                 this.data[isValid].name = item.name || this.data[isValid].name
                 this.data[isValid].category = item.category || this.data[isValid].category
                 this.data[isValid].description = item.description || this.data[isValid].description

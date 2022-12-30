@@ -60,7 +60,7 @@ class FileDAO {
             let parsedData = this.getParsedData()
             const isValid = parsedData.findIndex(el => el.id == id)
             if (isValid != -1) {
-                parsedData[isValid].dateString = new Date.toLocaleString()
+                parsedData[isValid].dateString = new Date().toLocaleString()
                 parsedData[isValid].name = item.name || parsedData[isValid].name
                 parsedData[isValid].category = item.category || parsedData[isValid].category
                 parsedData[isValid].description = item.description || parsedData[isValid].description
