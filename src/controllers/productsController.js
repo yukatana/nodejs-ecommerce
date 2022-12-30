@@ -45,6 +45,9 @@ getByCategory = async (req, res) => {
 addProduct = async (req, res) => {
     const product = {
         dateString: new Date.toLocaleString(),
+        // Description and stock fields are optional, so defaults are assigned in the controller to avoid cluttering DAOs
+        description: req.body.description || null,
+        stock: req.body.stock || 0,
         ...req.body
     }
     // VERIFY IF PRODUCT ALREADY EXISTS
