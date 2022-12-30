@@ -17,9 +17,5 @@ authRouter.post('/signup', passportSignup, AuthController.successfulSignup)
 authRouter.get('/signupError', AuthController.serveSignupError)
 // GET unauthorized request page
 authRouter.get('/unauthorized', AuthController.serveUnauthorizedMessage)
-//GET logout page
-authRouter.get('/logout', AuthController.serveLogout)
-// POST a logout attempt
-authRouter.post('/logout', AuthController.logout)
 
 module.exports = authRouter

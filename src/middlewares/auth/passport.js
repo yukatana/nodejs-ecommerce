@@ -3,10 +3,7 @@ const passport = require('passport')
 const { loginStrategy, signupStrategy, jwtStrategy } = require('../../middlewares/auth/passportStrategies')
 const LocalStrategy = require('passport-local').Strategy
 passport.use('login', new LocalStrategy(loginStrategy))
-passport.use('signup', new LocalStrategy(
-    {passReqToCallback: true},
-    signupStrategy)
-)
+passport.use('signup', new LocalStrategy({passReqToCallback: true}, signupStrategy))
 passport.use(jwtStrategy)
 
 // Types and User schema to be used by deserialize
@@ -30,7 +27,8 @@ const passportLogin = passport.authenticate('login',
     session: false})
 
 const jwtValidation = passport.authenticate('jwt',
-    {session: false})
+    {failureRedirect: '/auth/unauthorized',
+    session: false})
 
 module.exports = {
     passport,

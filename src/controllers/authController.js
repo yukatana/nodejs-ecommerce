@@ -40,17 +40,7 @@ class AuthController {
     }
 
     static serveUnauthorizedMessage = (req, res) => {
-        res.status(401).json({error: 'Unauthorized'})
-    }
-
-    // DEPRECATED SINCE AUTHENTICATION IS NOW BASED ON JWT
-    static logout = (req, res) => {
-        req.session.destroy()
-        req.logout(() => res.redirect('/auth/logout'))
-    }
-
-    static serveLogout = (req, res) => {
-        res.sendFile(process.cwd() + '/src/public/logout.html')
+        res.status(401).json({error: 'Unauthorized to make this request.'})
     }
 }
 

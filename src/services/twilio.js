@@ -24,11 +24,22 @@ sendPurchaseWhatsapp = async (name, username) => {
 
 sendPurchaseEmail = async (name, username, cart) => {
     try {
+        const productsHTML = cart.products.map(product => {return `<li>Name: ${product.name}, Price: $${product.price}, Qty: ${product.qty}</li>`})
+        const productsHTMLString = productsHTML.join('')
         const msg = {
             to: username,
             from: config.MY_EMAIL,
-            subject: `New purchase from ${name} - ${username}`,
-            html: `${cart}`
+            cc: config.MY_EMAIL,
+            subject: `New purchase from ${username}`,
+            html: `<h1>User ${username} has purchased cart ID: ${cart._id || cart.id}</h1>
+                   <h2>Details:</h2>
+                   <h3 style='position: center'>Cart ID: ${cart._id || cart.id}</h3>
+                   <h3 style='position: center'>Username: ${cart.username}</h3>
+                   <h3 style='position: center'>Delivery address: ${cart.deliveryAddress}</h3>
+                   <ul>Products:
+                        ${productsHTMLString}
+                   </ul>
+                   <h3 style='position: center'>Purchased at: ${cart.dateString}</h3>`
         }
         return await sendgridMail.send(msg)
             .then((res) => logger.info(res))
