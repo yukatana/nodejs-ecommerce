@@ -20,14 +20,11 @@ class ProductDTO {
         this.stock = product.stock
         this.dateString = product.dateString
     }
-
-    toClient = () => {
-        return {name: this.name, thumbnail: this.thumbnail, description: this.description, price: this.price, stock: this.stock}
-    }
 }
 
 class MessageDTO {
     constructor(message) {
+        // No _id is assigned since messages are part of the websocket channel and not the REST API itself
         this.username = message.username
         this.type = message.type
         this.body = message.body
@@ -37,6 +34,7 @@ class MessageDTO {
 
 class OrderDTO {
     constructor(order) {
+        this._id = order._id || order.id
         this.products = order.products
         this.deliveryAddress = order.deliveryAddress
         this.originCart = order.originCart
@@ -46,4 +44,14 @@ class OrderDTO {
     }
 }
 
-module.exports = { CartDTO, ProductDTO, MessageDTO, OrderDTO }
+class UserDTO {
+    constructor(user) {
+        this.firstName = user.firstName
+        this.lastName = user.lastName
+        this.username = user.username
+        this.address = user.address
+        this.phone = user.phone
+    }
+}
+
+module.exports = { CartDTO, ProductDTO, MessageDTO, OrderDTO, UserDTO }

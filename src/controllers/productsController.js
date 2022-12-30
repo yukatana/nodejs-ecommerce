@@ -4,26 +4,23 @@ const { ProductDTO } = require('../DTOs')
 const { logger } = require('../../logs')
 
 getProductById = async (req, res) => {
-    try {
-        if (req.params.id) {
-            let product = await ProductDAO.getById(req.params.id)
-            if (!product) {
-                return res.status(404).json({error: 'Product not found.'})
-            }
-            // toClient() method returns only name, thumbnail, price, and stock
-            product = new ProductDTO(product).toClient()
-            return res.status(200).json(product)
-        } else {
-            let data = await ProductDAO.getAll()
-            // evaluates whether the query returned any data
-            if (data.length !== 0) {
-                data.map(product => {return new ProductDTO(product)})
-                return res.status(200).json(data)
-            }
-            return res.status(404).json({error: 'No products were found on the database.'})
+    const id = req.params.id
+    if (id) {
+        let product = await ProductDAO.getById(id)
+        if (!product) {
+            return res.status(404).json({error: 'Product not found.'})
         }
-    } catch (err) {
-        logger.error(err)
+        // toClient() method returns only name, thumbnail, price, and stock
+        product = new ProductDTO(product)
+        return res.status(200).json(product)
+    } else {
+        let data = await ProductDAO.getAll()
+        // evaluates whether the query returned any data
+        if (data) {
+            data.map(product => {return new ProductDTO(product)})
+            return res.status(200).json(data)
+        }
+        return res.status(404).json({error: 'No products were found on the database.'})
     }
 }
 
@@ -50,25 +47,29 @@ addProduct = async (req, res) => {
         dateString: new Date.toLocaleString(),
         ...req.body
     }
-    let newProduct = await ProductDAO.save(product)
+    // VERIFY IF PRODUCT ALREADY EXISTS
+    const productAlreadyExists = await ProductDAO.filter('name', product.name)
+    if (productAlreadyExists) {
+        res.status(406).json({error: `A product with name '${product.name}' already exists.`})
+    }
+    const newProduct = await ProductDAO.save(product)
     logger.info(`New product successfully added - ${newProduct}`)
-    newProduct = new ProductDTO(newProduct)
-    res.status(201).json({newProduct})
+    res.status(201).json(new ProductDTO(newProduct))
 }
 
 updateProductById = async (req, res) => {
     const id = req.params.id
-    const item = {
+    const update = {
         dateString: new Date.toLocaleString(),
         ...req.body
     }
-    const result = await ProductDAO.updateItem(id, item)
-    logger.info(`Product successfully updated - ${result}`)
+    const updatedProduct = await ProductDAO.updateItem(id, update)
+    logger.info(`Product successfully updated - ${updatedProduct}`)
     // Guard clause evaluates whether there was an ID match (null is returned from the DAO if not, hence returning 404)
-    if (result === false) {
-        return res.status(404).json({error: 'Product not found'})
+    if (updatedProduct === null) {
+        return res.status(404).json({error: 'Product not found.'})
     }
-    return res.status(200).json({message: `Product ID: ${id} has been updated.`})
+    return res.status(200).json(new ProductDTO(updatedProduct))
 }
 
 deleteProductById = async (req, res) => {

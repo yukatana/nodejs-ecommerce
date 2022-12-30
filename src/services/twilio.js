@@ -38,19 +38,18 @@ sendPurchaseEmail = async (name, username, cart) => {
     }
 }
 
-sendRegisteredUserEmail = async (req, res, next) => {
-    const date = new Date().toLocaleString()
+sendRegisteredUserEmail = async (username) => {
+    const dateString = new Date().toLocaleString()
     try {
         const msg = {
             to: config.MY_EMAIL,
             from: config.MY_EMAIL,
-            subject: `New user registered - ${req.user.username}`,
-            html: `<h1> ${req.user.username} has registered in the platform at ${date} </h1>`
+            subject: `New user registered - ${username}`,
+            html: `<h1> ${username} has registered in the platform at ${dateString} </h1>`
         }
-        sendgridMail.send(msg)
+        return await sendgridMail.send(msg)
             .then((res) => logger.info(res))
             .catch(err => logger.error(err))
-        next()
     } catch (err) {
         logger.error(err)
     }

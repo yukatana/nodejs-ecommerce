@@ -78,10 +78,8 @@ class MongoDBDAO {
         try {
             const data = await this.Model
                 .find()
-            if (data) {
-                return data
-            } else {
-                return false
+            if (data.length === 0) {
+                return null
             }
         } catch (err) {
             logger.error(err)

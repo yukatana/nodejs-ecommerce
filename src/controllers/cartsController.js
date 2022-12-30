@@ -47,12 +47,15 @@ getByCartId = async (req, res) => {
 addProductToCart = async (req, res) => {
     const cartId = req.params.id
     const productId = req.params.productId
+    // Quantity of the product to be added to a cart is passed as 'qty' query, or defaults to 1 if not passed
+    const qty = req.query.qty || 1
     const product = await ProductDAO.getById(productId)
     if (!product) {
-        return res.status(404).json({error: `Either cart ID: ${req.params.id} or product ID: ${req.params.product_id} does not exist.`})
+        return res.status(404).json({error: `Either cart ID: ${cartId} or product ID: ${productId} does not exist.`})
     }
     // Executes only when a corresponding product has been found for the passed id
-    const updatedCart = await CartDAO.pushToProperty(cartId, product, 'products') // third parameter specifies the key to push changes to
+    const productWithQty = {...product, qty}
+    const updatedCart = await CartDAO.pushToProperty(cartId, productWithQty, 'products') // third parameter specifies the key to push changes to
     return res.status(200).json(new CartDTO(updatedCart))
 }
 
@@ -69,20 +72,21 @@ deleteProductFromCart = async (req, res) => {
 }
 
 purchaseCart = async (req, res) => {
-    const username = req.params.username
-    const name = req.session.user.name // WAITING FOR ANSWER REGARDING AUTHORIZATION PERSISTENCE
+    const cartOwnerUsername = req.params.username
+    const clientUsername = req.user.username // WAITING FOR ANSWER REGARDING AUTHORIZATION PERSISTENCE
     const id = req.params.id
     const cart = await CartDAO.getById(id)
-    if (await userService.verifyUsername(username) !== null && cart) {
-        if (cart.username === username) {
+    if (await userService.verifyUsername(cartOwnerUsername) !== null && cart) {
+        // Verifying that the specified cart belongs to the username passed in the URL
+        if (cart.username === cartOwnerUsername) {
             //using Twilio to send a WhatsApp message and an email upon purchase
-            await twilioService.sendPurchaseWhatsapp(name, username)
-            await twilioService.sendPurchaseEmail(name, username, cart)
-            logger.info(`New purchase from ${username}. Cart: ${cart}`)
+            await twilioService.sendPurchaseWhatsapp(clientUsername, cartOwnerUsername)
+            await twilioService.sendPurchaseEmail(clientUsername, cartOwnerUsername, cart)
+            logger.info(`New purchase from ${cartOwnerUsername}. Cart: ${cart}`)
             const order = {
-                username,
+                username: cartOwnerUsername,
                 items: cart.products,
-                orderNumber: OrderDAO.getCount(),
+                orderNumber: OrderDAO.getCount()+1, // Order numbers are increasingly assigned based on how many documents there are in the order collection
                 dateString: new Date.toLocaleString(),
                 state: 'generated'
             }
@@ -90,11 +94,11 @@ purchaseCart = async (req, res) => {
             return res.status(202).json(new OrderDTO(newOrder))
         }
         // Error sent when trying to purchase a cart that belongs to another user
-        return res.status(400).json({error: `Cart ID: ${id} does not belong to user ${username}.`})
+        return res.status(400).json({error: `Cart ID: ${id} does not belong to user ${cartOwnerUsername}.`})
     } else if (cart.products.length === 0) {
-        res.status(200).json({empty: `Cart ID: ${req.params.id} is empty.`})
+        res.status(200).json({error: `Cart ID: ${id} is empty.`})
     } else {
-        res.status(404).json({error: `Either username ${username} or cart ID: ${id} does not exist.`})
+        res.status(404).json({error: `Either username ${cartOwnerUsername} or cart ID: ${id} does not exist.`})
     }
 }
 
