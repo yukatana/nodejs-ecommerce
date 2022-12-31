@@ -1,5 +1,8 @@
 # nodejs-ecommerce
-eCommerce backend project supporting MongoDB, Firebase, file and memory persistence mechanisms. Developed with Node.js.
+eCommerce Express server project supporting MongoDB, Firebase, file and memory persistence mechanisms. Developed with Node.js.
+
+# Deployment
+### Check out this server's deployment at https://nodejs-ecommerce.onrender.com!
 
 ## What do I need to run this project?
 This API relies on the dotenv Node.js dependency in order to dynamically export DAOs on startup, as well as to securely initialize the project with sensitive variables. Hence, before you try to use it, please create a .env file on the root folder and add the following fields:
