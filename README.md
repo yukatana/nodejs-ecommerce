@@ -9,30 +9,30 @@ This API relies on the dotenv Node.js dependency in order to dynamically export 
 
 ### To choose a database for each entity's persistence:
 These variables take either 'memory', 'file', 'mongodb', or 'firebase' depending on your database preference.  
-- PRODUCTS_DATABASE='<your-preferred-database>'  
-- CARTS_DATABASE='<your-preferred-database>'  
-- MESSAGE_DATABASE='<your-preferred-database>'  
-- ORDER_DATABASE='<your-preferred-database>'
+- PRODUCTS_DATABASE='\<your-preferred-database>'  
+- CARTS_DATABASE='\<your-preferred-database>'  
+- MESSAGE_DATABASE='\<your-preferred-database>'  
+- ORDER_DATABASE='\<your-preferred-database>'
 
 ### For MongoDB:
-- MONGODB_USERNAME='<your-mongodb-username>'  
-- MONGODB_PASSWORD='<your-mongodb-password>'  
-- MONGODB_URI='<your-mongodb-URI>'  
-- MONGODB_DATABASE='<database-name>'
+- MONGODB_USERNAME='\<your-mongodb-username>'  
+- MONGODB_PASSWORD='\<your-mongodb-password>'  
+- MONGODB_URI='\<your-mongodb-URI>'  
+- MONGODB_DATABASE='\<database-name>'
 
 ### For Firebase:
 - I have included a sample SDK in this project for testing purposes, but feel free to add your own SDK to src/databases/firebase
 
 ### Twilio and SendGrid support:
-- TWILIO_SID='<your-twilio-SID>'  
-- TWILIO_TOKEN='<your-twilio-token>'  
-- TWILIO_PHONE='<your-twilio-phone>'  
-- MY_PHONE='<your-phone-number-for-testing>'  
-- MY_EMAIL='<your-email-address>'  
-- SENDGRID_API_KEY='<your-sendgrid-API-key>'
+- TWILIO_SID='\<your-twilio-SID>'  
+- TWILIO_TOKEN='\<your-twilio-token>'  
+- TWILIO_PHONE='\<your-twilio-phone>'  
+- MY_PHONE='\<your-phone-number-for-testing>'  
+- MY_EMAIL='\<your-email-address>'  
+- SENDGRID_API_KEY='\<your-sendgrid-API-key>'
 
 ### JSON Web Token (JWT)
-- JWT_KEY='<your-JWT-secret-key>'
+- JWT_KEY='\<your-JWT-secret-key>'
 
 ## Execution scripts and arguments:
 The server comes with two pre-defined scripts:  
