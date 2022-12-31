@@ -24,8 +24,6 @@ const MONGODB_USERNAME = process.env.MONGODB_USERNAME
 const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD
 const MONGODB_URI = process.env.MONGODB_URI
 const MONGODB_DATABASE = process.env.MONGODB_DATABASE
-const MONGODB_SESSIONS = process.env.MONGODB_SESSIONS
-const SESSION_SECRET = process.env.SESSION_SECRET
 
 // For Twilio and SendGrid
 const TWILIO_SID = process.env.TWILIO_SID
@@ -50,8 +48,6 @@ module.exports = {
     MONGODB_PASSWORD,
     MONGODB_URI,
     MONGODB_DATABASE,
-    MONGODB_SESSIONS,
-    SESSION_SECRET,
     TWILIO_SID,
     TWILIO_TOKEN,
     TWILIO_PHONE,
