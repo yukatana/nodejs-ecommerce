@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     password: {type: String, required: true},
     address: {type: String, required: true},
     phone: {type: String, required: true},
-    carts: {type: String, required: false}
+    carts: {type: Array, default: []}
 }, {timestamps: true})
 
 const User = model('users', UserSchema)

@@ -70,11 +70,11 @@ class MemoryDAO {
     deleteById = async (id) => { //deletes array item (object) specified by ID
         if (this.data.find(el => el.id == id)) {
             this.data.splice(this.data.indexOf(this.data.find(el => el.id == id)), 1)
-            logger.info("The item containing the specified ID has been deleted.")
+            logger.info('The item containing the specified ID has been deleted.')
             return true
             }
         else {
-            logger.info("The specified ID does not match any items.")
+            logger.info('The specified ID does not match any items.')
             return null
         }
     }

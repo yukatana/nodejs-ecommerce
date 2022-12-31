@@ -13,7 +13,7 @@ cartsRouter.post('/:username/:id', jwtValidation, cartsController.purchaseCart)
 // DELETE a cart by ID
 cartsRouter.delete('/:id', jwtValidation, cartsController.deleteCartById)
 // GET a cart's products by ID
-cartsRouter.get('/:id/products', cartsController.getByCartId)
+cartsRouter.get('/:id/products', cartsController.getCartById)
 // POST a product to a cart
 cartsRouter.post('/:id/products/:productId', jwtValidation, cartsController.addProductToCart)
 // DELETE a product from a cart

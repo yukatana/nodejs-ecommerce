@@ -26,7 +26,7 @@ class BodyValidator {
             }
             return true
         })
-        return this.validateResults(req, res, next)
+        next()
     }
 
     static validatePutProductBody = (req, res, next) => {
@@ -40,7 +40,7 @@ class BodyValidator {
             }
             return true
         })
-        return this.validateResults(req, res, next)
+        next()
     }
 }
 

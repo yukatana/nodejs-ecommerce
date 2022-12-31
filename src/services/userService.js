@@ -8,19 +8,21 @@ class UserService {
 
     // Fetches delivery address from user databases for when carts are created
     static getDeliveryAddress = async (username) => {
-        return User.findOne({username}, 'deliveryAddress -_id')
+        const deliveryAddress = await User.findOne({username}, 'address -_id')
+        // Returning address property since an object is returned
+        return deliveryAddress.address
     }
 
     // Pushes a newly created cart to the 'carts' property in the user object
     static pushCartToUser = async (username, cartId) => {
-        const user = User.findOne({username})
+        const user = await User.findOne({username})
         user.carts.push(cartId)
         return user.save()
     }
 
     // Deletes a cart from a user's 'carts' property
     static removeCartFromUser = async (username, cartId) => {
-        const user = User.findOne({username})
+        const user = await User.findOne({username})
         user.carts.pull(cartId)
         return user.save()
     }

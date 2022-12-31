@@ -42,7 +42,6 @@ const jwtStrategy = new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 }, async (token, done) => {
     try {
-        logger.info(token)
         return done(null, token)
     } catch (err) {
         logger.error(err)

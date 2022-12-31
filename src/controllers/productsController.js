@@ -2,6 +2,7 @@
 const ProductDAO = require('../factories/DAOFactory').getProductDAO()
 const { ProductDTO } = require('../DTOs')
 const { logger } = require('../../logs')
+const {validationResult} = require('express-validator')
 
 getProductById = async (req, res) => {
     const id = req.params.id
@@ -53,14 +54,20 @@ addProduct = async (req, res) => {
     // VERIFY IF PRODUCT ALREADY EXISTS
     const productAlreadyExists = await ProductDAO.filter('name', product.name)
     if (productAlreadyExists) {
-        res.status(406).json({error: `A product with name '${product.name}' already exists.`})
+        return res.status(406).json({error: `A product with name '${product.name}' already exists.`})
     }
     const newProduct = await ProductDAO.save(product)
+    if (!newProduct) {
+        return res.status(400).json({error: `There has been an error while adding a product. Please make sure all fields are valid.`})
+    }
     logger.info(`New product successfully added - ${newProduct}`)
-    res.status(201).json(new ProductDTO(newProduct))
+    return res.status(201).json(new ProductDTO(newProduct))
 }
 
 updateProductById = async (req, res) => {
+    // Validate results and serve 400 if there are any errors
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) { return res.status(400).json({errors: errors.array()}) }
     const id = req.params.id
     const update = {
         dateString: new Date().toLocaleString(),
@@ -68,11 +75,10 @@ updateProductById = async (req, res) => {
     }
     const updatedProduct = await ProductDAO.updateItem(id, update)
     logger.info(`Product successfully updated - ${updatedProduct}`)
-    // Guard clause evaluates whether there was an ID match (null is returned from the DAO if not, hence returning 404)
-    if (updatedProduct === null) {
-        return res.status(404).json({error: 'Product not found.'})
-    }
-    return res.status(200).json(new ProductDTO(updatedProduct))
+    // Ternary operator whether there was an ID match (null is returned from the DAO if not, hence returning 404)
+    updatedProduct ?
+        res.status(200).json(new ProductDTO(updatedProduct))
+        : res.status(404).json({error: 'Product not found.'})
 }
 
 deleteProductById = async (req, res) => {
@@ -80,7 +86,7 @@ deleteProductById = async (req, res) => {
     const success = await ProductDAO.deleteById(id)
     if (success) {logger.info(`Product ID: ${id} has been deleted successfully.`)}
     success ?
-        res.status(200).json({message: `Product ID: ${id} has been deleted.`})
+        res.status(200).json({success: `Product ID: ${id} has been deleted.`})
         : res.status(404).json({error: 'Product not found'})
 }
 

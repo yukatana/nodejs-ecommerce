@@ -36,7 +36,7 @@ sendPurchaseEmail = async (name, username, cart) => {
                    <h3 style='position: center'>Cart ID: ${cart._id || cart.id}</h3>
                    <h3 style='position: center'>Username: ${cart.username}</h3>
                    <h3 style='position: center'>Delivery address: ${cart.deliveryAddress}</h3>
-                   <ul>Products:
+                   <ul><h3>Products:</h3>
                         ${productsHTMLString}
                    </ul>
                    <h3 style='position: center'>Purchased at: ${cart.dateString}</h3>`

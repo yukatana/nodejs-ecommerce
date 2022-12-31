@@ -102,7 +102,7 @@ class FirebaseDAO {
                 return true
             } else {
                 logger.info('The specified ID does not match any items.')
-                return false
+                return null
             }
         } catch (err) {
             logger.error(err)

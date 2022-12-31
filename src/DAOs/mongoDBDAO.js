@@ -28,7 +28,7 @@ class MongoDBDAO {
     updateItem = async (id, item) => { //updates a single document in the collection
         try {
             id = Types.ObjectId(id)
-            const result = await this.Model.updateOne({_id: id}, item)
+            const result = await this.Model.findOneAndUpdate({_id: id}, item, {new: true}) // {new:true} returns updated document
             // Returns null when no match is found for the id param
             if (result.matchedCount === 0) {
                 return null
@@ -54,15 +54,14 @@ class MongoDBDAO {
 
     getById = async (id) => { //returns the object specified by the ID passed as an argument, or null if it does not exist
         try {
-            id = Types.ObjectId(id)
             const item = await this.Model
-                .findOne({_id: id})
+                .findById(id)
+                .lean()
             if (item) {
                 return item
             }
-            else {
-                return null
-            }
+            // Triggered when no item is returned from the query
+            return null
         } catch (err) {
             logger.error(err)
         }
@@ -75,6 +74,7 @@ class MongoDBDAO {
             if (data.length === 0) {
                 return null
             }
+            return data
         } catch (err) {
             logger.error(err)
         }
@@ -86,11 +86,11 @@ class MongoDBDAO {
             const success = await this.Model
                 .deleteOne({_id: id})
             if (success.deletedCount > 0) {
-                logger.info('The item containing the specified ID has been deleted.')
+                logger.info(`Item ID: ${id} has been deleted.`)
                 return true
             } else {
-                logger.info('The specified ID does not match any items.')
-                return false
+                logger.info(`No matches found for item id ${id}`)
+                return null
             }
         } catch (err) {
             logger.error(err)

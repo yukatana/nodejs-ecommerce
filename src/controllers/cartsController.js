@@ -19,7 +19,7 @@ createCart = async (req, res) => {
         username,
         products: [],
         dateString: new Date().toLocaleString(),
-        deliveryAddress: await UserService.getDeliveryAddress()
+        deliveryAddress: await UserService.getDeliveryAddress(username)
     })
     // pushCartToUser method pushes the newly created cart's ID to the user object's 'carts' property
     await UserService.pushCartToUser(username, newCart._id)
@@ -28,15 +28,17 @@ createCart = async (req, res) => {
 
 deleteCartById = async (req, res) => {
     const cartId = req.params.id
-    const cartOwner = await CartDAO.getById(cartId).username
-    const success = await CartDAO.deleteById(cartId)
+    const cart = await CartDAO.getById(cartId)
+    const cartOwner = cart.username
+    // Removing the cart's ID reference from the cart's owner user object
     await UserService.removeCartFromUser(cartOwner, cartId)
+    const success = await CartDAO.deleteById(cartId)
     success ?
         res.status(200).json({success: `Cart ID: ${cartId} has been deleted.`})
         : res.status(404).json({error: 'Cart not found'})
 }
 
-getByCartId = async (req, res) => {
+getCartById = async (req, res) => {
     const id = req.params.id
     const cart = await CartDAO.getById(id)
     if (!cart) {
@@ -118,7 +120,7 @@ getCartsByUser = async (req, res) => {
 module.exports = {
     createCart,
     deleteCartById,
-    getByCartId,
+    getCartById,
     addProductToCart,
     deleteProductFromCart,
     purchaseCart,

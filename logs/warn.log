@@ -1074,3 +1074,347 @@
     '    at processTicksAndRejections (node:internal/process/task_queues:78:11)',
   timestamp: '2022-12-30T23:00:00.201Z'
 }
+{
+  errors: {
+    code: ValidatorError: Path `code` is required.
+        at validate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaNumber.SchemaType.doValidate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:2903:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `code` is required.',
+        type: 'required',
+        path: 'code',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'code',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'products validation failed',
+  level: 'error',
+  message: 'products validation failed: code: Path `code` is required.',
+  stack: 'ValidationError: products validation failed: code: Path `code` is required.\n' +
+    '    at model.Document.invalidate (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:3123:32)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:2911:17\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\schematype.js:1349:9\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)',
+  timestamp: '2022-12-31T14:33:13.657Z'
+}
+{
+  errors: {
+    code: ValidatorError: Path `code` is required.
+        at validate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaNumber.SchemaType.doValidate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:2903:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `code` is required.',
+        type: 'required',
+        path: 'code',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'code',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'products validation failed',
+  level: 'error',
+  message: 'products validation failed: code: Path `code` is required.',
+  stack: 'ValidationError: products validation failed: code: Path `code` is required.\n' +
+    '    at model.Document.invalidate (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:3123:32)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:2911:17\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\schematype.js:1349:9\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)',
+  timestamp: '2022-12-31T14:35:55.862Z'
+}
+{
+  level: 'error',
+  message: 'Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer',
+  stack: 'BSONTypeError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer\n' +
+    '    at new BSONTypeError (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\bson\\lib\\error.js:41:28)\n' +
+    '    at new ObjectId (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\bson\\lib\\objectid.js:67:23)\n' +
+    '    at ObjectId (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\bson\\lib\\objectid.js:26:20)\n' +
+    '    at MongoDBDAO.deleteById (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\DAOs\\mongoDBDAO.js:86:24)\n' +
+    '    at deleteProductById (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\productsController.js:80:38)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at complete (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\middleware\\authenticate.js:271:13)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\middleware\\authenticate.js:278:15\n' +
+    '    at pass (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\authenticator.js:428:14)',
+  timestamp: '2022-12-31T14:47:00.706Z'
+}
+{
+  errors: {
+    name: ValidatorError: Path `name` is required.
+        at validate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaString.SchemaType.doValidate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:2903:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `name` is required.',
+        type: 'required',
+        path: 'name',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'name',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'products validation failed',
+  level: 'error',
+  message: 'products validation failed: name: Path `name` is required.',
+  stack: 'ValidationError: products validation failed: name: Path `name` is required.\n' +
+    '    at model.Document.invalidate (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:3123:32)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:2911:17\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\schematype.js:1349:9\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)',
+  timestamp: '2022-12-31T14:58:17.289Z'
+}
+{
+  errors: {
+    name: ValidatorError: Path `name` is required.
+        at validate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaString.SchemaType.doValidate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:2903:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `name` is required.',
+        type: 'required',
+        path: 'name',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'name',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'products validation failed',
+  level: 'error',
+  message: 'products validation failed: name: Path `name` is required.',
+  stack: 'ValidationError: products validation failed: name: Path `name` is required.\n' +
+    '    at model.Document.invalidate (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:3123:32)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:2911:17\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\schematype.js:1349:9\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)',
+  timestamp: '2022-12-31T15:02:22.026Z'
+}
+{
+  message: 'Bad POST request received for non-existing route /api/cart/',
+  level: 'warn',
+  timestamp: '2022-12-31T15:03:35.977Z'
+}
+{
+  errors: {
+    deliveryAddress: ValidatorError: Path `deliveryAddress` is required.
+        at validate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaString.SchemaType.doValidate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:2903:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `deliveryAddress` is required.',
+        type: 'required',
+        path: 'deliveryAddress',
+        value: null
+      },
+      kind: 'required',
+      path: 'deliveryAddress',
+      value: null,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carts validation failed',
+  level: 'error',
+  message: 'carts validation failed: deliveryAddress: Path `deliveryAddress` is required.',
+  stack: 'ValidationError: carts validation failed: deliveryAddress: Path `deliveryAddress` is required.\n' +
+    '    at model.Document.invalidate (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:3123:32)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:2911:17\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\schematype.js:1349:9\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)',
+  timestamp: '2022-12-31T15:04:05.936Z'
+}
+{
+  errors: {
+    carts: CastError: Cast to string failed for value "[]" (type Array) at path "carts"
+        at SchemaString.cast (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schema\string.js:603:11)
+        at SchemaString.SchemaType.applySetters (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1201:12)
+        at SchemaString.SchemaType.getDefault (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1141:25)
+        at applyDefaults (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\helpers\document\applyDefaults.js:99:24)
+        at model.Document (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:158:7)
+        at model.Model (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\model.js:121:12)
+        at new model (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\model.js:5048:15)
+        at Strategy.signupStrategy [as _verify] (C:\Users\romme\Desktop\backend-final-project\src\middlewares\auth\passportStrategies.js:22:22)
+        at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+      stringValue: '"[]"',
+      messageFormat: undefined,
+      kind: 'string',
+      value: [],
+      path: 'carts',
+      reason: null,
+      valueType: 'Array'
+    }
+  },
+  _message: 'users validation failed',
+  level: 'error',
+  message: 'users validation failed: carts: Cast to string failed for value "[]" (type Array) at path "carts"',
+  stack: 'ValidationError: users validation failed: carts: Cast to string failed for value "[]" (type Array) at path "carts"\n' +
+    '    at model.Document.invalidate (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:3123:32)\n' +
+    '    at applyDefaults (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\helpers\\document\\applyDefaults.js:101:17)\n' +
+    '    at model.Document (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:158:7)\n' +
+    '    at model.Model (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\model.js:121:12)\n' +
+    '    at new model (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\model.js:5048:15)\n' +
+    '    at Strategy.signupStrategy [as _verify] (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\middlewares\\auth\\passportStrategies.js:22:22)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-12-31T15:11:02.843Z'
+}
+{
+  level: 'error',
+  message: 'this.Model.findById(...).toObject is not a function',
+  stack: 'TypeError: this.Model.findById(...).toObject is not a function\n' +
+    '    at MongoDBDAO.getById (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\DAOs\\mongoDBDAO.js:59:18)\n' +
+    '    at addProductToCart (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\cartsController.js:58:38)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at next (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\express\\lib\\router\\route.js:144:13)\n' +
+    '    at complete (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\middleware\\authenticate.js:271:13)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\middleware\\authenticate.js:278:15\n' +
+    '    at pass (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\authenticator.js:428:14)\n' +
+    '    at Authenticator.transformAuthInfo (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\authenticator.js:450:5)\n' +
+    '    at C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\middleware\\authenticate.js:275:22\n' +
+    '    at IncomingMessage.req.login.req.logIn (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\passport\\lib\\http\\request.js:44:13)',
+  timestamp: '2022-12-31T16:22:36.179Z'
+}
+{
+  messageFormat: undefined,
+  stringValue: '"category"',
+  kind: 'ObjectId',
+  value: 'category',
+  path: '_id',
+  reason: BSONTypeError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new BSONTypeError (C:\Users\romme\Desktop\backend-final-project\node_modules\bson\lib\error.js:41:28)
+      at new ObjectId (C:\Users\romme\Desktop\backend-final-project\node_modules\bson\lib\objectid.js:67:23)
+      at castObjectId (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at ObjectId.cast (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schema\objectid.js:246:12)
+      at ObjectId.SchemaType.applySetters (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1201:12)
+      at ObjectId.SchemaType._castForQuery (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1648:15)
+      at ObjectId.SchemaType.castForQuery (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1636:15)
+      at ObjectId.SchemaType.castForQueryWrapper (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1612:20)
+      at cast (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\cast.js:342:32)
+      at model.Query.Query.cast (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\query.js:5341:12),
+  valueType: 'string',
+  level: 'error',
+  message: 'Cast to ObjectId failed for value "category" (type string) at path "_id" for model "products"',
+  stack: 'CastError: Cast to ObjectId failed for value "category" (type string) at path "_id" for model "products"\n' +
+    '    at model.Query.exec (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\query.js:4913:21)\n' +
+    '    at model.Query.Query.then (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\query.js:5012:15)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-12-31T16:29:02.729Z'
+}
+{
+  errors: {
+    orderNumber: CastError: Cast to Number failed for value "[object Promise]1" (type string) at path "orderNumber"
+        at SchemaNumber.cast (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schema\number.js:378:11)
+        at SchemaNumber.SchemaType.applySetters (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1201:12)
+        at model.$set (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:1421:22)
+        at model.$set (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:1146:16)
+        at model.Document (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:166:12)
+        at model.Model (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\model.js:121:12)
+        at new model (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\model.js:5048:15)
+        at MongoDBDAO.save (C:\Users\romme\Desktop\backend-final-project\src\DAOs\mongoDBDAO.js:21:26)
+        at purchaseCart (C:\Users\romme\Desktop\backend-final-project\src\controllers\cartsController.js:99:39)
+        at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+      stringValue: '"[object Promise]1"',
+      messageFormat: undefined,
+      kind: 'Number',
+      value: '[object Promise]1',
+      path: 'orderNumber',
+      reason: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+      
+        assert.ok(!isNaN(val))
+      
+          at castNumber (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\cast\number.js:27:10)
+          at SchemaNumber.cast (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schema\number.js:376:12)
+          at SchemaNumber.SchemaType.applySetters (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1201:12)
+          at model.$set (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:1421:22)
+          at model.$set (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:1146:16)
+          at model.Document (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:166:12)
+          at model.Model (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\model.js:121:12)
+          at new model (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\model.js:5048:15)
+          at MongoDBDAO.save (C:\Users\romme\Desktop\backend-final-project\src\DAOs\mongoDBDAO.js:21:26)
+          at purchaseCart (C:\Users\romme\Desktop\backend-final-project\src\controllers\cartsController.js:99:39) {
+        generatedMessage: true,
+        code: 'ERR_ASSERTION',
+        actual: false,
+        expected: true,
+        operator: '=='
+      },
+      valueType: 'string'
+    },
+    originCart: ValidatorError: Path `originCart` is required.
+        at validate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaString.SchemaType.doValidate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:2903:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `originCart` is required.',
+        type: 'required',
+        path: 'originCart',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'originCart',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    deliveryAddress: ValidatorError: Path `deliveryAddress` is required.
+        at validate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaString.SchemaType.doValidate (C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\romme\Desktop\backend-final-project\node_modules\mongoose\lib\document.js:2903:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `deliveryAddress` is required.',
+        type: 'required',
+        path: 'deliveryAddress',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'deliveryAddress',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'orders validation failed',
+  level: 'error',
+  message: 'orders validation failed: orderNumber: Cast to Number failed for value "[object Promise]1" (type string) at path "orderNumber", originCart: Path `originCart` is required., deliveryAddress: Path `deliveryAddress` is required.',
+  stack: 'ValidationError: orders validation failed: orderNumber: Cast to Number failed for value "[object Promise]1" (type string) at path "orderNumber", originCart: Path `originCart` is required., deliveryAddress: Path `deliveryAddress` is required.\n' +
+    '    at model.Document.invalidate (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:3123:32)\n' +
+    '    at model.$set (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:1463:12)\n' +
+    '    at model.$set (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:1146:16)\n' +
+    '    at model.Document (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\document.js:166:12)\n' +
+    '    at model.Model (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\model.js:121:12)\n' +
+    '    at new model (C:\\Users\\romme\\Desktop\\backend-final-project\\node_modules\\mongoose\\lib\\model.js:5048:15)\n' +
+    '    at MongoDBDAO.save (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\DAOs\\mongoDBDAO.js:21:26)\n' +
+    '    at purchaseCart (C:\\Users\\romme\\Desktop\\backend-final-project\\src\\controllers\\cartsController.js:99:39)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-12-31T16:30:47.940Z'
+}
