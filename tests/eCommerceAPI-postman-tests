@@ -16,7 +16,38 @@
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Rommel",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Aranguren",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "7357 Test St",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "73577357",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:8080/auth/signup",
@@ -43,12 +74,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "",
+									"value": "test@test.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "",
+									"value": "test",
 									"type": "text"
 								}
 							]
@@ -74,7 +105,7 @@
 			"name": "Product router",
 			"item": [
 				{
-					"name": "Get products",
+					"name": "Get product by ID / all products",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -102,8 +133,40 @@
 					"response": []
 				},
 				{
+					"name": "Get products by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products/category/animal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"category",
+								"animal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Add a product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImZpcnN0TmFtZSI6IlJvbW1lbCIsImxhc3ROYW1lIjoiQXJhbmd1cmVuIiwidXNlcm5hbWUiOiJ0ZXN0QHRlc3QuY29tIiwiYWRkcmVzcyI6IjczNTcgVGVzdCBTdCIsInBob25lIjoiNzM1NzczNTcifSwiaWF0IjoxNjcyNDQwMTg2fQ.DsNGOn82rP2KZp5NtLnRadZfw_tqMY_3UiepU4PkUwU",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -115,13 +178,13 @@
 									"type": "text"
 								},
 								{
-									"key": "price",
-									"value": "10",
+									"key": "category",
+									"value": "Protozoan parasyte",
 									"type": "text"
 								},
 								{
-									"key": "stock",
-									"value": "100",
+									"key": "price",
+									"value": "10",
 									"type": "text"
 								},
 								{
@@ -131,7 +194,7 @@
 								},
 								{
 									"key": "description",
-									"value": "Causes Chagas disease.",
+									"value": "Causes Chagas disease",
 									"type": "text"
 								}
 							]

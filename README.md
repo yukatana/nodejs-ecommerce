@@ -46,3 +46,6 @@ For example, if you wanted to run the server in cluster mode listening on port 8
 > npm run start -- -p 8000 -m cluster  
 
 The default value for port is 8080, and the default mode is fork mode.
+
+## Want to test it?
+In the root directory, you will find the /tests folder with a Postman test collection in it. Feel free to import it to your Postman instance to try all the available endpoints.
