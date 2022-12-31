@@ -88,15 +88,18 @@ purchaseCart = async (req, res) => {
             //using Twilio to send a WhatsApp message and an email upon purchase
             await twilioService.sendPurchaseWhatsapp(clientUsername, cartOwnerUsername)
             await twilioService.sendPurchaseEmail(clientUsername, cartOwnerUsername, cart)
-            logger.info(`New purchase from ${cartOwnerUsername}. Cart: ${cart}`)
             const order = {
                 username: cartOwnerUsername,
-                items: cart.products,
-                orderNumber: OrderDAO.getCount()+1, // Order numbers are increasingly assigned based on how many documents there are in the order collection
+                products: cart.products,
+                originCart: cart._id || cart.id,
+                deliveryAddress: cart.deliveryAddress,
+                orderNumber: await OrderDAO.getCount()+1, // Order numbers are increasingly assigned based on how many documents there are in the order collection
                 dateString: new Date().toLocaleString(),
                 state: 'generated'
             }
-            const newOrder = OrderDAO.save(order)
+            const newOrder = await OrderDAO.save(order)
+            logger.info(newOrder)
+            logger.info(`New purchase from ${cartOwnerUsername}. Cart: ${cart}`)
             return res.status(202).json(new OrderDTO(newOrder))
         }
         // Error sent when trying to purchase a cart that belongs to another user

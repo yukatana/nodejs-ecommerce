@@ -2,7 +2,7 @@
 const ProductDAO = require('../factories/DAOFactory').getProductDAO()
 const { ProductDTO } = require('../DTOs')
 const { logger } = require('../../logs')
-const {validationResult} = require('express-validator')
+const { validationResult } = require('express-validator')
 
 getProductById = async (req, res) => {
     const id = req.params.id
@@ -44,6 +44,9 @@ getByCategory = async (req, res) => {
 }
 
 addProduct = async (req, res) => {
+    // Validate results and serve 400 if there are any errors
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) { return res.status(400).json({errors: errors.array()}) }
     const product = {
         dateString: new Date().toLocaleString(),
         // Description and stock fields are optional, so defaults are assigned in the controller to avoid cluttering DAOs

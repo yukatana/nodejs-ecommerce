@@ -1,7 +1,7 @@
 {
-  "name": "backend-final-project",
-  "version": "3.0.0",
-  "description": "Backend final project for Coderhouse. Developed with Node.js.",
+  "name": "nodejs-ecommerce",
+  "version": "4.0.0",
+  "description": "eCommerce backend project with websocket support. Developed with Node.js.",
   "main": "bin/run.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

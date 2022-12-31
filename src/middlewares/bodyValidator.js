@@ -1,46 +1,39 @@
-const { body, validationResult } = require('express-validator')
+const { body } = require('express-validator')
 
 class BodyValidator {
-    // Class-wide method checks whether there have been any validation errors
-    static validateResults = (req, res, next) => {
-        // Validate results and serve 400 if there are any errors
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) { return res.status(400).json({errors: errors.array()}) }
-        // Return next() is all required fields are OK
-        return next()
+    static validatePostProductBody = () => {
+        return [
+            // Check for mandatory fields
+            body('name').exists().withMessage('Your request must contain a "name" field'),
+            body('category').exists().withMessage('Your request must contain a "category" field'),
+            body('thumbnail').exists().isURL().withMessage('Your request must contain a "thumbnail" field'),
+            body('price').exists().withMessage('Your request must contain a "price" field'),
+            // Check for allowed fields so no wildcards are saved
+            body().custom((body) => {
+                const allowedKeys = ['name', 'category', 'description', 'thumbnail', 'price', 'stock']
+                for (const key of Object.keys(body)) {
+                    if (!allowedKeys.includes(key)) {
+                        throw new Error(`Unknown property: ${key}`)
+                    }
+                }
+                return true
+            }).withMessage('Only name, category, description, thumbnail, price, and stock fields are allowed for product creation.')
+        ]
     }
 
-    static validatePostProductBody = (req, res, next) => {
-        // Check for mandatory fields
-        body('name').exists()
-        body('category').exists()
-        body('thumbnail').exists().isURL()
-        body('price').exists()
-        // Check for allowed fields so no wildcards are saved
-        body().custom((body) => {
-            const allowedKeys = ['name', 'category', 'description', 'thumbnail', 'price', 'stock']
-            for (const key of Object.keys(body)) {
-                if (!allowedKeys.includes(key)) {
-                    throw new Error(`Unknown property: ${key}`)
+    static validatePutProductBody = () => {
+        return [
+            // Only check for allowed fields since updates can be partial
+            body().custom((body) => {
+                const allowedKeys = ['name', 'category', 'description', 'thumbnail', 'price', 'stock']
+                for (const key of Object.keys(body)) {
+                    if (!allowedKeys.includes(key)) {
+                        throw new Error(`Unknown property: ${key}`)
+                    }
                 }
-            }
-            return true
-        })
-        next()
-    }
-
-    static validatePutProductBody = (req, res, next) => {
-        // Only check for allowed fields since updates can be partial
-        body().custom((body) => {
-            const allowedKeys = ['name', 'category', 'description', 'thumbnail', 'price', 'stock']
-            for (const key of Object.keys(body)) {
-                if (!allowedKeys.includes(key)) {
-                    throw new Error(`Unknown property: ${key}`)
-                }
-            }
-            return true
-        })
-        next()
+                return true
+            }).withMessage('Only name, category, description, thumbnail, price, and stock fields are allowed for product updates.')
+        ]
     }
 }
 
