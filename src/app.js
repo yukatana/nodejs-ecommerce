@@ -16,6 +16,11 @@ app.use(cookieParser())
 const hbs = require('../views')
 app.engine('hbs', hbs.engine)
 
+// Root endpoint redirects to login page
+app.get('/', (req, res) => {
+    res.redirect('/auth/login')
+})
+
 // Router declaration
 app.use('/api/products', productsRouter)
 app.use('/api/cart', cartRouter)
