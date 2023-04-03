@@ -5,9 +5,11 @@ const authRouter = require('./routes/authRouter')
 const chatRouter = require('./routes/chatRouter')
 const cookieParser = require('cookie-parser')
 const { warningLogger } = require('../logs')
+const cors = require('cors')
 
 const app = express()
 
+app.use(cors())
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
