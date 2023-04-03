@@ -2,6 +2,7 @@ const { Router } = require('express')
 const authRouter = Router()
 const { passportSignup, passportLogin } = require('../middlewares/auth/passport')
 const AuthController = require('../controllers/authController')
+// allowing CORS for login and signup POST endpoints
 const cors = require('cors')
 
 // GET login form
